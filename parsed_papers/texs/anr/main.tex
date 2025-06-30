@@ -1,0 +1,136 @@
+\documentclass{amsart}
+\usepackage{graphicx, amsmath, amssymb, amsthm, amsfonts, fullpage, latexsym,enumerate, xcolor, commath, tikz, tikz-cd, verbatim, hyperref, mathtools}
+\usepackage[hyphenbreaks]{breakurl}
+\tikzcdset{scale cd/.style={every label/.append style={scale=#1},
+    cells={nodes={scale=#1}}}}
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+\addbibresource{references.bib}
+
+
+\title{Chow rings of matroids as permutation representations}
+\author{Robert Angarone, Anastasia Nathanson, Victor Reiner}
+\address{University of Minnesota - Twin Cities, Minneapolis MN 55455}
+\email{angar017@umn.edu, natha129@umn.edu, reiner@umn.edu}
+
+
+\keywords{matroid, building set, nested set, Chow ring, Koszul, log-concave, unimodal, Kahler package, Burnside ring, equivariant, Polya freqency, real-rooted}
+\subjclass[2010]{
+05B35, %Combinatorial aspects of matroids and geometric lattices
+05E18, %Group actions on combinatorial structures
+05E14, %Combinatorial aspects of algebraic geometry
+}
+%\date{\today}
+
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{question}[thm]{Question}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+
+
+
+
+
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{example}[thm]{Example}
+\newtheorem{remark}[thm]{Remark}
+
+
+
+
+
+
+
+
+\newcommand{\xx}{\mathbf{x}}
+
+\newcommand{\R}{\mathbb{R}} 
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\kk}{\mathbb{F}}
+
+\newcommand{\M}{\mathcal{M}} %matroid
+\newcommand{\FF}{\mathfrak{F}} %set of all flats
+\newcommand{\symm}{\mathfrak{S}} %For Tor()
+\newcommand{\F}{\mathcal{F}} %flag
+\newcommand{\DD}{\mathfrak{D}} %dots and dashes
+
+\newcommand{\G}{\mathcal{G}} %building set
+\newcommand{\N}{\mathcal{N}} %nested set
+
+\newcommand{\subgroup}{G}
+
+\newcommand{\Hom}{\mathrm{Hom}} %For Hom()
+\newcommand{\Tor}{\mathrm{Tor}} %For Tor()
+
+%\newcommand{\A}{A^\bullet} %in case we choose to change it to CH
+\newcommand{\E}{E} %ground set, in case we want to change it to [n]
+\newcommand{\m}{\mathbf{m}} %for monomial
+
+\newcommand{\supp}{\mathrm{supp}} %support of a monomial
+\newcommand{\esp}{\overline{\mathrm{supp}}} %essential support of a monomial
+\newcommand{\fy}{\mathrm{FY}}
+\newcommand{\FY}{\mathrm{FY}}
+\newcommand{\spn}{\mathrm{span}}
+\newcommand{\init}{\mathrm{in}}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\bij}{\leftrightarrow}
+\newcommand{\blank}{\phantom{\bullet}}
+
+\renewcommand{\phi}{\varphi}
+\renewcommand{\L}{\mathcal{L}}
+
+
+\newcommand{\verteq}[0]{\begin{turn}{90} $=$\end{turn}}
+
+
+\DeclareMathOperator\rk{\mathrm{rk}}
+\DeclareMathOperator\cork{\mathrm{cork}}
+\DeclareMathOperator\Aut{\mathrm{Aut}}
+\DeclareMathOperator\stab{\mathrm{Stab}}
+
+\DeclareRobustCommand{\a}[1]{ {\begingroup\color{orange}  {Anastasia: #1}\endgroup} }
+\DeclareRobustCommand{\robbie}[1]{ {\begingroup\color{teal}  {Robbie: #1}\endgroup} }
+\DeclareRobustCommand{\vic}[1]{ {\begingroup\color{violet}  {Vic: #1}\endgroup} }
+
+\DeclareRobustCommand{\redo}[1]{ {\begingroup\color{red}  {Redo: #1}\endgroup} }
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Given a matroid with a symmetry group, we study the induced group action on the Chow ring of the matroid with respect to symmetric building sets. This turns out to always be a permutation action. Work of
+Adiprasito, Huh and Katz showed that the Chow ring satisfies Poincar\'e duality and
+the Hard Lefschetz theorem.  We lift these to statements about this permutation action,
+and suggest further conjectures in this vein.
+\end{abstract}
+
+\section{Introduction}
+\label{intro-section}
+\input{Introduction}
+
+\section{Background}
+\label{background-section}
+\input{Background}
+
+\section{Proof of Theorem~\ref{main-theorem}}
+\label{main-theorem-section}
+\input{Proof}
+
+\section{Conjectures on equivariant and Burnside ring inequalities}
+\label{conjectures-section}
+\input{LC_PF_Koszulity}
+
+
+\printbibliography
+\end{document}
+
+
+

@@ -1,0 +1,258 @@
+A {\it matroid} $\M$ is a combinatorial abstraction of lists of vectors $v_1,v_2,\ldots,v_n$ in a vector space, recording only the information about which subsets of the vectors
+are linearly independent or dependent, forgetting their coordinates-- see
+Section~\ref{matroid-background-section} for definitions and references.
+In groundbreaking work, Adiprasito, Huh and Katz \cite{AHK} affirmed long-standing conjectures of Rota--Heron--Welsh and Mason about vectors and matroids via a new methodology.  Their work employed
+a certain graded $\Z$-algebra $A=\bigoplus_{k=0}^r A^k$
+called the \emph{Chow ring} for a matroid $\M$ of rank $r+1$, introduced by Feichtner and Yuzvinsky \cite{FY} as a generalization of the Chow ring of DeConcini and Procesi's \emph{wonderful compactifications} for hyperplane arrangement complements \cite{DCP}. 
+A remarkable integral Gr\"obner basis result proven by Feichtner and Yuzvinsky \cite[Thm. 2]{FY} shows that each homogeneous component of $A$ is free abelian:  $A^k \cong \Z^{a_k}$ for a positive integer sequence $(a_0,a_1,\ldots,a_r)$.
+%, with $a_r=1$ so that there is a {\it degree map} isomorphism $\deg: A^r \overset{\sim}{\longrightarrow} \Z$.
+
+A key step in \cite{AHK} shows not only that 
+%the sequence
+$(a_0,a_1,\ldots,a_r)$ is
+{\it symmetric} and {\it unimodal}, that is,
+\begin{align}
+\label{symmetry}
+&a_k = a_{r-k}\text{ for } k \leq r/2\\
+\label{unimodality} 
+&a_0 \leq a_1 \leq \cdots \leq a_{\lfloor \frac{r}{2} \rfloor} =
+a_{\lceil \frac{r}{2} \rceil} \geq \cdots \geq a_{r-1} \geq a_r,
+\end{align}
+but in fact proves this as a corollary of something much stronger: the Chow ring $A$ enjoys a trio of properties referred to as the {\it K\"ahler package}, reviewed in Section~\ref{AHK-section} below.  The first of these properties is
+{\it Poincar\'e duality}, proving \eqref{symmetry} via a natural
+$\Z$-module isomorphism $A^{r-k} \cong \Hom_\Z(A^k,\Z)$.  The second property, called the {\it Hard Lefschetz Theorem}, shows that after tensoring $A$ over $\Z$ with $\R$ to obtain $A_\R=\bigoplus_{k=0}A^k_\R$, one can find {\it Lefschetz elements} $\omega$ in $A^1_\R$ such that multiplication by $\omega^{r-2k}$ gives $\R$-linear isomorphisms $A^k_\R \rightarrow A^{r-k}_\R$ for $k \leq \frac{r}{2}$.  In particular, multiplication by $\omega$ maps $A^k_\R \rightarrow A_\R^{k+1}$ {\it injectively} for $k < \frac{r}{2}$, strengthening the unimodality assertion \eqref{unimodality}. 
+
+
+Feichtner and Yuzvinsky defined the Chow ring $A(\L_\M,\G)$ for any choice of a {\it building set} $\G$ inside the {\it lattice of flats} $\L_\M$ for the matroid $\M$ and gave their integral Gr\"obner basis presentation in that context; these notions are reviewed in Section~\ref{background-section} below.
+%All of these results turn out to hold more generally, for any choice of a {\it building set} $\G$ inside the {\it lattice of flats} $\L_\M$ for the matroid $\M$; these notions are reviewed in Section~\ref{background-section} below.
+While the results of \cite{AHK} were proven for the {\it maximal building set} $\G=\L_\M \setminus \{\hat{0}\}$, the Chow ring satisfies the K\"ahler package for any building set (and even for Chow rings of {\it polymatroids}), as shown by Pagaria and Pezzoli \cite[Thm.~4.21]{PagariaPezzoli}.
+% However,  Feichtner and Yuzvinsky defined the Chow ring $A(\L_\M,\G)$ for {\it all} building sets and gave their integral Gr\"obner basis presentation in that context. 
+% Furthermore, for all building sets $\G$, the ring $A(\L_\M,\G)$ satisfies the K\"ahler package--  this follows for the maximal building set by the results of \cite{AHK}, and for arbitrary building sets (and even for Chow rings of {\it polymatroids}) by work of Pagaria and Pezzoli \cite[Thm.~4.21]{PagariaPezzoli}.
+
+%by applying a result of \cite{AHK}and Ardila, Denham and Huh \cite[Thm.~1.6]{ADH}, showing that the K\"ahler package depends only on the support of the Bergman fan of $\M$, not on its triangulation given by the building set $\G$.
+
+
+
+
+
+
+We are interested  in how the {\it Poincar\'e duality} and {\it Hard Lefschetz} properties interact with symmetry.  We consider any subgroup $\subgroup$ of the group $\Aut(\M)$ of symmetries of the matroid $\M$, assuming that the building set $\G$ is also setwise $\subgroup$-stable.  We observe (see Section~\ref{matroid-background-section} below) that in this situation, $\subgroup$ acts via graded $\Z$-algebra automorphisms
+on $A(\L_\M, \G)$, giving $\Z \subgroup$-module structures on each $A^k$, and
+$\R \subgroup$-module structures on each $A^k_\R$.  One can also check that $A^r \cong \Z$ with trivial $\subgroup$-action, under one additional technical assumption, that $\G$ contains the ground set of
+the matroid--see the proof of Corollary~\ref{integral-equivariant-PD-cor} below.  From
+this, the Poincar\'e duality pairing immediately gives 
+rise to a $\Z \subgroup$-module isomorphism
+\begin{equation}
+\label{integral-rep-PD-isomorphism}
+A^{r-k} \cong \Hom_\Z(A^k,\Z)
+\end{equation}
+where $g$ in $\subgroup$ acts on $\varphi$ in $\Hom_\Z(A^k ,\Z)$ via $\varphi \mapsto \varphi \circ g^{-1}$; similarly
+$A^{r-k} \cong \Hom_\R(A^k,\R)$ as $\R \subgroup$-modules.  
+Furthermore, we observe that
+%at least for the Chow ring $A(\L_\M,\G_{\max})$ \a{shouldn't this be true for all building sets?} associated with the maximal building set,
+one can pick a Lefschetz element $\omega$ 
+%as in \cite{AHK} 
+which is $\subgroup$-fixed (see Corollary~\ref{AHK-equivariant-Hard-Lefschetz} below), giving $\R \subgroup$-module isomorphisms and injections
+
+\begin{align}
+    \label{real-Lefschetz-PD-isomorphism}
+    A_\R^{k} &\overset{\sim}{\longrightarrow} A_\R^{r-k} 
+     \quad \text{ for }k \leq \frac{r}{2} \nonumber \\
+    a &\longmapsto  a \cdot \omega^{r-2k}
+\end{align}
+\begin{align}
+  \label{real-Lefschetz-injection}
+        A_\R^{k} &\hookrightarrow A_\R^{k+1} \quad \text{ for }k < \frac{r}{2} \nonumber \\
+        a & \longmapsto  a \cdot \omega. 
+\end{align}
+
+We wish to view the isomorphism \eqref{real-Lefschetz-PD-isomorphism} and injection \eqref{real-Lefschetz-injection}
+as lifting the numerical equality \eqref{symmetry} and inequality \eqref{unimodality} from $\Z$ to the {\it ring of virtual (complex) characters} $R_\C(\subgroup)$.  Recall that this ring $R_\C(G)$ is a subring of the ring of (conjugacy) class functions $\{f: \subgroup \rightarrow \C\}$ with pointwise addition and multiplication.  It is defined as the free $\Z$-submodule with basis given by the irreducible complex characters $\{ \chi_1,\ldots,\chi_M\}$, where the number $M$ of irreducible characters coincides with the number of conjugacy classes of $\subgroup$.  Thus every virtual character $\chi$ in $R_\C(\subgroup)$ has a unique expansion $\chi = \sum_{i=1}^M a_i \chi_i$ for some $a_i \in \Z$.  If $a_i \geq 0$ for $i=1,2,\ldots,M$,
+call $\chi$ a {\it genuine character}, and write $\chi \geq_{R_\C(\subgroup)} 0$.
+Similarly, write $\chi \geq_{R_\C(\subgroup)} \chi'$ when $\chi-\chi' \geq_{R_\C(\subgroup)} 0$.
+There is a surjective ring map
+\begin{equation}
+\label{characters-to-integers-map}
+R_\C(\subgroup) \longrightarrow \Z
+\end{equation}
+sending a virtual character $\chi$ to its value $\chi(e)$ on the identity $e$ of $\subgroup$, carrying genuine characters $\chi \geq_{R_\C(\subgroup)} 0$ to nonnegative integers $\Z_{\geq 0}$.  Through this map, equalities and inequalities in $R_\C(\subgroup)$ lift inequalities in $\Z$.  For example,
+\eqref{real-Lefschetz-PD-isomorphism}, \eqref{real-Lefschetz-injection}
+give rise to equalities and inequalities in $R_\C(G)$ of this form
+\begin{align}
+\label{character-symmetry}
+\chi_{A_\R^k}&=\chi_{A_\R^{n-k}} \quad \text{
+for }k \leq \frac{r}{2},\\
+\label{character-unimodality}
+\chi_{A_\R^k} &\leq_{R_\C(G)} \chi_{A_\R^{k+1}}
+\quad \text{ for }k < \frac{r}{2},
+\end{align}
+which lift the equalities and inequalities \eqref{symmetry}, \eqref{unimodality} in $\Z$
+ through the map \eqref{characters-to-integers-map}.
+
+
+Our goal in this paper is to use  Feichtner and Yuzvinsky's Gr\"obner basis result, along with some combinatorics of {\it nested sets} (reviewed in Section~\ref{nested-set-subsection}), to prove a combinatorial strengthening/lifting of the isomorphisms and injections \eqref{integral-rep-PD-isomorphism}, \eqref{real-Lefschetz-PD-isomorphism}, \eqref{real-Lefschetz-injection}.  For the sake of stating this, recall (or see Section~\ref{matroid-background-section} below) that a (simple) matroid $\M$ can be specified by
+its {\it lattice of flats} $\L_\M$;  in the case where $\M$ is realized by
+a list of vectors $v_1,v_2,\ldots,v_n$ in a vector space, a subset $F \subseteq \{1,2,\ldots,n\}=:E$ is a flat when  $\{v_j\}_{j \in F}$ is linearly closed, meaning that every vector $v_i$ for $i\in E$ that lies in the linear span of $\{v_j\}_{j \in F}$ already has $i$ in $F$.
+This $\L_\M$ is a ranked lattice, whose rank function $\rk: \L_\M \rightarrow \{0,1,2\ldots\}$ is modeled after the dimension of the span of $\{v_j\}_{j \in F}$. A building set $\G \subseteq \L_\M$ is a subset of $\L_\M$ satisfying axioms that roughly say every flat $F$ in $\L_\M$ can be ``built" in a certain way from elements of $\G$.
+The building set $\G$ distinguishes certain subsets $N=\{F_1,\ldots,F_\ell\} \subset \G$ called {\it $\G$-nested sets}.
+To each flat $F$ in the $\G$-nested set $N$, we need a crucial quantity
+\begin{equation}
+\label{crucial-quantity}
+m_N(F):=\rk(F) - \rk(\vee N_{<F})
+\end{equation}
+where $\vee  N_{<F}$ denotes the lattice join in $\L_\M$ of all elements of $N$ strictly
+below $F$.
+Then the \emph{Chow ring} $A(\L_\M, \G)$ of $\M$ with respect to the building set $\G$
+is presented as a quotient of the
+polynomial ring $S:=\Z[x_F]$ having one variable $x_F$ for each flat $F$ in $\G$.  The presentation takes the form 
+$
+A(\L_\M, \G) := S / (I + J)
+$
+where $I ,J$ are certain ideals of $S$ defined more precisely in Definition~\ref{Chow-ring-definition} below.
+Feichtner and Yuzvinsky exhibited (see Theorem~\ref{FY-GB-theorem}, Corollary~\ref{cor: mon_basis} below) a Gr\"obner basis for $I + J$ that leads to the following standard monomial $\Z$-basis for $A(\L_\M, \G)$,
+which we will call the {\it FY-monomials} of $\M$:
+$$
+\fy:=\left\{x_{F_1}^{m_1}  \cdots x_{F_\ell}^{m_\ell} \colon
+N:=\{F_1, \cdots,  F_\ell\} \text{ is } \G\text{-nested, and } 
+0 \leq m_i < m_N(F_i) \text{ for }i=1,2,\ldots,\ell.\right\}
+$$
+
+
+The subset $\FY^k$ of FY-monomials $x_{F_1}^{m_1} \cdots x_{F_\ell}^{m_\ell}$ of total degree $m_1+\cdots+m_\ell=k$ then gives a $\Z$-basis for $A^k$.
+One can readily check
+(see Corollary~\ref{Chow-ring-carries-perm-reps-cor}) that the group $\subgroup$ permutes the $\Z$-basis $\FY^k$ for $A^k$, 
+endowing $A^k$ with the structure of
+a {\it permutation representation}, or {\it $\subgroup$-set}.  
+Our main result, proven in Section~\ref{main-theorem-section}, is this strengthening of the isomorphisms and injections \eqref{integral-rep-PD-isomorphism}, \eqref{real-Lefschetz-PD-isomorphism}, \eqref{real-Lefschetz-injection}.
+
+
+\begin{thm}
+\label{main-theorem}
+Let $\M$ be a simple matroid rank $r+1$ on ground set $E$.  Let $\subgroup$
+be a group automorphisms of $\M$, and $\G$ a building set in
+$\L_\M$
+that contains $E$, is setwise $G$-stable, and satisfies this
+{\it stabilizer condition}\footnote{This condition was missing in {\tt arXiv} version 2 of this paper--  the authors 
+thank R. Pagaria for pointing out the issue.}:
+\begin{equation}
+\label{eq:stabilizer-condition}
+  \text{for any }\G\text{-nested set }
+   N=\{F_i\}_{i=1,\ldots,\ell}, \text{ if }g \in G\text{ has } 
+    g(N)=N, \text{ then }g(F_i)=F_i \text{ for } i=1,\ldots,\ell.
+\end{equation}
+Then there exist
+\begin{itemize}
+\item[(i)]
+$\subgroup$-equivariant  bijections 
+$
+\pi: \FY^k  \overset{\sim}{\longrightarrow}  \FY^{r-k}
+$ for $k \leq \frac{r}{2}$, and
+\item[(ii)]
+$\subgroup$-equivariant injections
+$
+\lambda: \FY^k  \hookrightarrow  \FY^{k+1}
+$
+for $k < \frac{r}{2}$.
+\end{itemize}
+\end{thm}
+
+
+\begin{example} 
+        Let $\M=U_{4,5}$ be the uniform matroid of rank $4$ on $E=\{1,2,3,4,5\}$, associated to $5$ {\it generic} vectors $v_1,v_2,v_3,v_4,v_5$ in a $4$-space, so that any quadruple $v_i,v_j,v_k,v_\ell$ is linearly independent.  Choose $\G=\G_{\max}=\L_\M\setminus\{\varnothing\}$, the \emph{maximal} building set.
+        Then $\L_\M$ has these flats of various ranks:
+
+\begin{center}
+\begin{tabular}{|c|c|}\hline
+rank & flats $F \in \L_\M$ \\ \hline\hline
+ $0$ & $\varnothing$ \\ \hline
+ $1$ & $1,2,3,4,5$ \\ \hline
+ $2$ & $12,13,14,15,23,24,25,34,35,45$ \\ \hline
+ $3$ & $123,124,125,134,135,145,234,235,245,345$ \\ \hline
+ $4$ & $E=12345$ \\ \hline
+\end{tabular}
+\end{center}
+The Chow ring $A(\L_\M, \G)=S/(I+J)$, where 
+$
+S= \Z[ x_i, x_{jk}, x_{\ell m n}, x_E]
+$
+with
+$\{i\}, \{j,k\}, \{\ell, m, n\}$ running through all one, two and three-element subsets of 
+$E=\{1,2,3,4,5\}$,
+and 
+$$
+I=\Big( x_F x_{F'} \Big)_{F \not\subset F', F' \not \subset F},
+\qquad
+J=\bigg( x_i 
++ \sum_{\substack{1 \leq j < k \leq 5\\i \in \{j,k\}}} x_{jk}
++ \sum_{\substack{1 \leq \ell  < m < n \leq 5\\i \in \{\ell,m,n\} }} x_{\ell m n}
+\,\,\, + x_E \bigg)_{i=1,2,3,4,5}.
+$$
+The FY-monomial bases for $A^0,A^1,A^2,A^3$ are shown here,
+together with the $\subgroup$-equivariant maps $\lambda$:
+$$
+\begin{array}{cccccccc}
+\bf{FY^0} & & \bf{FY^1}& & \bf{FY^2} & & &\bf{FY^3} \\
+ & & & & & & & \\
+1 &\overset{\lambda}{\longmapsto}& x_E &\overset{\lambda}{\longmapsto} & x_E^2 &  & &x_E^3 \\
+ & & & & & & &\\
+  & & x_{ijk} &\overset{\lambda}{\longmapsto} & x_{ijk}^2& & &\\
+      & &  1 \leq i<j<k \leq 5 & & & & & \\
+       & & & & & & &\\
+  & &x_{ij} &\overset{\lambda}{\longmapsto} &x_{ij} \cdot x_E& & &\\
+   & & 1 \leq i<j \leq 5& & & &  &\\
+\end{array} 
+$$
+Therefore in this case, the ranks of the free $\Z$-modules $(A^0,A^1,A^2,A^3)$ form the symmetric, unimodal sequence $(a_0,a_1,a_2,a_3)=(1,21,21,1)$. 
+Here the bijection $\pi: \fy^0 \rightarrow \fy^3$ 
+necessarily maps $1 \longmapsto x_E^3$, and 
+the bijection $\pi: \fy^1 \rightarrow \fy^2$  coincides with
+the map $\lambda: \fy^1 \rightarrow \fy^2$ above.  
+\end{example}
+
+We wish to also view Theorem~\ref{main-theorem} as lifting \eqref{character-symmetry}, \eqref{character-unimodality} from the virtual character ring $R_\C(G)$ to the 
+{\it Burnside ring $B(\subgroup)$ of virtual $G$-sets}.  Recall that to define the Burnside ring $B(G)$
+(see, e.g., Bouc \cite{Bouc}), one starts with a free $\Z$-module having as basis the $\subgroup$-equivariant isomorphism classes $[X]$ of finite $\subgroup$-sets $X$.  Then $B(\subgroup)$ is the quotient $\Z$-module that mods out by the span of all elements $[X \sqcup Y] - ([X]+[Y])$.  
+Multiplication in $B(\subgroup)$ is induced from the rule $[X] \cdot [Y] = [X \times Y]$.
+It turns out that $B(\subgroup)$ has a $\Z$-basis given by the isomorphism classes of $\{ [\subgroup/\subgroup_i] \}_{i=1}^N$ of the transitive $G$-sets $G/G_i$ as $\subgroup_1,\ldots,\subgroup_N$ run through representatives of the $\subgroup$-conjugacy classes of subgroups of $\subgroup$. 
+Thus every element $b$ of $B(\subgroup)$ has a unique expansion $b = \sum_{i=1}^N a_i [\subgroup/\subgroup_i]$ for some $a_i \in \Z$.  If $a_i \geq 0$ for $i=1,2,\ldots,N$, then write $b \geq_{B(\subgroup)} 0$ and call $b$ a {\it genuine} element of $B(G)$, 
+since it is the class $b=[X]$ 
+of the (genuine, not virtual) 
+$G$-set $X$ that has a total of  $\sum_{i=1}^N a_i$ disjoint $G$-orbits, among which $a_i$ of the orbits are isomorphic to the transitive $G$-set $G/G_i$.
+Similarly, write $b \geq_{B(\subgroup)} b'$ when $b-b' \geq_{B(\subgroup)} 0$.  The map which sends the class $[X]$ of a $\subgroup$-set $X$ to the character $\chi_{\C[X]}(g)=\#\{x \in X:g(x)=x\}$ of its $\subgroup$-permutation representation $\C[X]$ gives a natural ring map
+\begin{equation}
+    \label{Burnside-to-character-map}
+B(\subgroup) \longrightarrow R_\C(\subgroup)
+\end{equation} 
+This map sends genuine elements $b \geq_{B(\subgroup)} 0$ in $B(\subgroup)$ to genuine characters $\chi \geq_{R_\C(\subgroup)} 0$ in $R_\C(G)$.  In this way, equalities and inequalities in $B(\subgroup)$ lift equalities and inequalities in $R_\C(\subgroup)$.
+For example, Theorem~\ref{main-theorem} (i),(ii) 
+lead to equalities and inequalities in $B(G)$ of this form
+\begin{align}
+\label{Burnside-symmetry}
+[\FY^k]&=[\FY^{n-k}] 
+\quad \text{ for }k \leq \frac{r}{2},\\
+\label{Burnside-unimodality}
+[\FY^k] &\leq_{B(G)} [\FY^{k+1}]
+\quad \text{ for }k < \frac{r}{2},
+\end{align}
+which lift the equalities and inequalities \eqref{character-symmetry}, \eqref{character-unimodality} in $R_\C(G)$
+ through the map \eqref{Burnside-to-character-map}.
+
+
+Before proving Theorem~\ref{main-theorem} in Section~\ref{main-theorem-section}, the background Section~\ref{background-section} reviews properties of building sets of atomic lattices, Chow rings, and matroids. It also collects a few simple observations,
+including one new and crucial numerical fact about $\G$-nested sets, Lemma~\ref{lem:crucial-numerical-fact}.
+Section~\ref{conjectures-section} pursues the theme of lifting inequalities in $\Z$ to inequalities $R_\C(G)$ and in $B(G)$, going beyond unimodality to conjectures that would extend recent log-concavity and total positivity conjectures for Hilbert functions of Chow rings $A(\L_\M, \G)$.
+Section~\ref{sec: further-questions} poses additional questions
+and conjectures.
+
+
+
+\section*{Acknowledgements}
+The authors thank Federico Ardila, Alessio D'Ali, Graham Denham, Chris Eur, Eva-Maria Feichtner, Luis Ferroni, June Huh, Matt Larson, Hsin-Chieh Liao,  Diane Maclagan, Matt Maestroni, Jacob Matherne, Ethan Partida, Connor Simpson, Lorenzo Vecchi and Peter Webb for helpful conversations and references.  They particularly thank Roberto Pagaria for
+alerting them to an issue in the previous statement of Theorem~\ref{main-theorem} that omitted the stabilizer condition \eqref{eq:stabilizer-condition}. 
+They thank an anonymous referee for helpful suggestions that improved the exposition.  Additionally, they are grateful to Trevor Karn for his wonderful {\tt Sage/Cocalc} code that checks whether a symmetric group representation is a permutation representation.  The authors received partial support from NSF grants 
+DMS-1949896, DMS-1745638, DMS-2053288, DMS-2230648. The second author received partial support from PROM project no. POWR.03.03.00-00-PN13/18.
+
+
+%First author received partial support from NSF grant DMS-1949896. First and second authors received partial support from NSF RTG grant DMS-1745638. Second author received partial support from PROM project no.~POWR.03.03.00-00-PN13/18. Third author received partial support from NSF grant DMS-2053288.
+
+

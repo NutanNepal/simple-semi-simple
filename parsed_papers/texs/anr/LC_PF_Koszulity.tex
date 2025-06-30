@@ -1,0 +1,917 @@
+\label{rep-theoreric-inequalities-section}
+
+
+Recall from the Introduction that the unimodality statement \eqref{unimodality}, asserting
+for $k < \frac{r}{2}$ the inequality
+$$
+a_k \leq a_{k+1},
+$$
+is weaker than the statement in Corollary~\ref{AHK-equivariant-Hard-Lefschetz} asserting that there are injective $\R \subgroup$-module maps
+$$
+A^k_\R \hookrightarrow A_\R^{k+1},
+$$
+which is weaker than 
+Theorem~\ref{main-theorem}(ii) asserting that there are
+injective $\subgroup$-equivariant maps of the $\subgroup$-sets
+$$
+\FY^k \hookrightarrow \FY^{k+1}.
+$$
+We also introduced there the ring $R_\C(G)$ of virtual complex $G$-characters and the Burnside ring $B(G)$ of virtual $G$-sets,
+along with maps $B(G) \rightarrow R_\C(G)$ in
+\eqref{Burnside-to-character-map} and a map 
+$R_\C(G) \rightarrow \Z$ in \eqref{characters-to-integers-map}. This allowed us to view the inequality $a_k \leq a_{k+1}$ as lifting through the map $R_\C(G) \rightarrow \Z$ to an inequality \eqref{character-unimodality} of the form $
+\chi_{A^k_\R} \leq_{R_\C(G)} \chi_{A_\R^{k+1}},
+$
+in $R_\C(G)$, which then lifts 
+through the map $B(G) \rightarrow R_\C(G)$ to an inequality
+of the form \eqref{Burnside-unimodality} 
+of the form $[\FY^k] \leq_{B(G)} [\FY^{k+1}]$ in $B(G)$.  The goal of this section is to go beyond unimodality for $(a_0,a_1,\ldots,a_r)$, 
+considering properties
+like {\it log-concavity}, {\it the P\'olya frequency property}, and similarly lifting them to statements in $R_\C(G)$ and $B(G)$.
+
+%% Removed this next subsection, because the referee wanted this discussed in the Introduction
+
+\begin{comment}
+\subsection{Virtual character rings and Burnside rings}
+
+\begin{defn} (Virtual character ring) \rm
+For a finite group $\subgroup$, its {\it virtual (complex) character ring} $R_\C(\subgroup)$ is the
+free $\Z$-submodule of the ring of (conjugacy) class functions $\{f: \subgroup \rightarrow \C\}$ with pointwise addition and multiplication, having as a $\Z$-basis the irreducible complex characters $\{ \chi_1,\ldots,\chi_M\}$, where $M$ is the number of conjugacy classes of $\subgroup$.  Thus every virtual character $\chi$ in $R_\C(\subgroup)$ has a unique expansion $\chi = \sum_{i=1}^M a_i \chi_i$ for some $a_i \in \Z$.  If $a_i \geq 0$ for $i=1,2,\ldots,M$,
+call $\chi$ a {\it genuine character}, and write $\chi \geq_{R_\C(\subgroup)} 0$.
+Similarly, we write $\chi \geq_{R_\C(\subgroup)} \chi'$ when $\chi-\chi' \geq_{R_\C(\subgroup)} 0$.
+\end{defn}
+
+\begin{defn} (Burnside ring) \rm
+For a finite group $\subgroup$, to define its {\it Burnside ring} $B(\subgroup)$ one starts with a free $\Z$-module having as basis the $\subgroup$-equivariant isomorphism classes $[X]$ of finite $\subgroup$-sets $X$.  Then $B(\subgroup)$ is the quotient $\Z$-module that mods out by the span of all elements $[X \sqcup Y] - ([X]+[Y])$.  
+Multiplication in $B(\subgroup)$ is induced from the rule $[X] \cdot [Y] = [X \times Y]$.
+It turns out that $B(\subgroup)$ has a $\Z$-basis $\{ [\subgroup/\subgroup_i] \}_{i=1}^N$ as $\subgroup_1,\ldots,\subgroup_N$ run through representatives of the $\subgroup$-conjugacy classes of subgroups of $\subgroup$. 
+Thus every element $b$ of $B(\subgroup)$ has a unique expansion $b = \sum_{i=1}^N a_i [\subgroup/\subgroup_i]$ for some $a_i \in \Z$.  If $a_i \geq 0$ for $i=1,2,\ldots,N$, call $b$ a {\it genuine permutation representation}, and write $b \geq_{B(\subgroup)} 0$.
+Similarly, write $b \geq_{B(\subgroup)} b'$ when $b-b' \geq_{B(\subgroup)} 0$.
+\end{defn}
+
+Note that there is a natural ring map
+$
+B(\subgroup) \longrightarrow R_\C(\subgroup)
+$
+which sends the class $[X]$ of a $\subgroup$-set $X$ to the character $\chi_{\C[X]}$ of its $\subgroup$-permutation representation $\C[X]$,
+having character values \[\chi_{\C[X]}(g)=\#\{x \in X:g(x)=x\}.\] 
+There is also a ring map
+$
+R_\C(\subgroup) \longrightarrow \Z
+$
+which sends a virtual character $\chi$ to its value $\chi(e)$ on the identity $e$ of $\subgroup$.  These maps carry genuine elements $b \geq_{B(\subgroup)} 0$ in $B(\subgroup)$ to genuine characters $\chi \geq_{R_\C(\subgroup)} 0$ which are then carried to nonnegative integers $\Z_{\geq 0}$.  In this way, inequalities in $B(\subgroup)$ lift inequalities in $R_\C(\subgroup)$, which lift inequalities in $\Z$.
+
+\begin{example} \rm
+We saw that the unimodality inequality \eqref{unimodality} 
+$a_k \leq_\Z a_{k+1}$ lifts to the inequality $A_\R^k \leq_{R_\C(\subgroup)} A_\R^{k+1}$ in Corollary~\ref{AHK-equivariant-Hard-Lefschetz}, which lifts to the inequality $[\FY^k] \leq_{B(\subgroup)} [\FY^{k+1}]$ in Theorem~\ref{main-theorem}(ii).
+\end{example}
+
+\end{comment}
+%%%%%
+
+In the process, we will make frequent use of the following fact:  just as one can multiply inequalities in $\Z$ like $a< b$ and $c < d$ to get new inequalities $ac < bc < bd$, the same works in $R_\C(\subgroup)$
+and in $B(\subgroup)$.  This is because
+ $\chi, \chi' \geq_{R_\C(\subgroup)} 0$ implies $\chi \cdot \chi' \geq_{R_\C(\subgroup)} 0$, and similarly
+$b, b' \geq_{B(\subgroup)} 0$ implies $b \cdot b' \geq_{B(\subgroup)} 0$.
+
+\subsection{PF sequences and log-concavity}
+For a sequence of {\it positive} real numbers $(a_0,a_1,\ldots,a_r)$, the property of {\it unimodality} lies at the bottom of a hierarchy of concepts
+\begin{equation}
+\label{PF-hierarchy}
+\begin{array}{rccccccccccccccc}
+\text{unimodal}
+&\Leftarrow&
+PF_2
+&\Leftarrow&
+&PF_3&
+&\Leftarrow&
+&PF_4&
+&\Leftarrow&
+\cdots&
+\Leftarrow&
+&PF_\infty\\
+&  & \Vert & & & &
+& & & & & & & &
+&\Vert\\
+&  & \text{(strongly) log-concave} & & & &
+& & & & & & & &
+&PF\\
+\end{array}
+\end{equation}
+which we next review, along with their equivariant and Burnside ring extensions.  For background on the non-equivariant versions, see Brenti \cite{Brenti} and Stanley \cite{Stanley-log-concavity}.  For the equivariant versions, see Gedeon, Proudfoot and Young \cite{GPY},
+Matherne, Miyata, Proudfoot and Ramos \cite{MMPR}, Gui \cite{Gui2022}, Gui and Xiong \cite{GuiXiong}, and Li \cite{Li2022}.
+
+\begin{defn}\rm
+\label{numerical-inequality-conditions}
+    Say a sequence of positive reals $(a_0,a_1,\ldots,a_r)$ is {\it unimodal} if there is some index $m$ with 
+    $$
+    a_0 \leq a_1 \leq \cdots \leq a_{m-1} \leq a_m \geq a_{m+1} \geq \cdots \geq a_{r-1} \geq a_r.
+    $$
+    
+    Say the sequence is {\it strongly\footnote{The word ``strongly" here is superfluous, since we assumed each $a_k >0$, so they are strongly log-concave if and only they are weakly log-concave:  $a_k^2 \geq a_{k-1} a_{k+1}$.  The distinction becomes important for the equivariant analogue; see \cite[\S 2]{MMPR}.} log-concave} (or {\it $PF_2$}) if  $0 \leq i\leq j \leq k \leq \ell\leq r$ and $i+\ell=j+k$ implies
+    $$
+    a_i a_\ell \leq a_j a_k, \text{ or equivalently,  }
+    \det\left[ \begin{matrix} a_j & a_\ell \\ a_i & a_k \end{matrix}\right] \geq 0.
+    $$
+    
+    For $\ell=2,3,4,\ldots$, say that the sequence is $PF_\ell$ if the associated (infinite) {\it Toeplitz matrix} 
+    $$
+    T(a_0,\ldots,a_r):=
+    \left[
+    \begin{matrix}
+        a_0 & a_1& a_2& \cdots & a_{r-1} & a_r     & 0   & 0 & \cdots  \\
+        0   & a_0 & a_1 & \cdots & a_{r-2} & a_{r-1} & a_{r} & 0 &\cdots \\
+        0   & 0   & a_0 & \cdots & a_{r-3} & a_{r-2} & a_{r-1} & a_{r}& \cdots \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots 
+    \end{matrix}
+    \right]
+    $$
+    has all {\it nonnegative} square minor subdeterminants of size 
+    $m \times m$ for $1\leq m  \leq \ell$.
+    Say that the sequence is a {\it P\'olya frequency sequence} (or {\it $PF_\infty$}, or just {\it $PF$}) if it is $PF_\ell$ for all $\ell=2,3,\ldots$.
+\end{defn}
+\noindent
+One can check the implication ($PF_2$ implies
+unimodality) from \eqref{PF-hierarchy} using the assumption 
+$a_k >0$ for all $k$.
+It also turns out that $(a_0,a_1,\ldots,a_r)$ is $PF$ if and only if the polynomial $a_0 + a_1 t+a_2 t^2+ \cdots+ a_r t^r$ has only (negative) real roots; see \cite[\S 2.2, 4.5]{Brenti}.
+
+\begin{defn} \rm
+For a finite group $\subgroup$ and (genuine, nonzero) $\C \subgroup$-modules $(A^0,A^1,\ldots,A^r)$, define the analogous
+notions of {\it equivariant unimodality}, {\it equivariant strong log-concavity}, {\it equivariant $PF_r$ or $PF_\infty$} by replacing the numerical inequalities in 
+Definition~\ref{numerical-inequality-conditions} by
+inequalities in the representation ring $R_\C(\subgroup)$. 
+
+Similarly, for (nonempty) $\subgroup$-sets
+$(X_0,X_1,\ldots,X_r)$, define the notions of  {\it Burnside unimodality}, {\it Burnside strong log-concavity}, {\it Burnside $PF_r$ or $PF_\infty$} by replacing them with  inequalities in the Burnside ring $B(\subgroup)$. 
+\end{defn}
+
+\begin{example} \rm
+\label{unimodality-of-various-kinds-example}
+We've seen the following holds for Chow rings $A(\M, \G)=\bigoplus_{k=0}^r A^k$ of rank $r+1$ matroids $\M$ with $\subgroup=\Aut(\M)$, and choice of $\subgroup$-stable building set $\G$ containing $E$ that satisfies \eqref{eq:stabilizer-condition}:
+\begin{itemize}
+    \item 
+the sequence $(a_0,a_1,\ldots,a_r)$ with $a_k:=\rk_\Z A_k$ is {\it unimodal}, 
+\item after tensoring with $\C$, the sequence of $\C \subgroup$-modules $(A^0_\C,A^1_\C,\ldots,A^r_\C)$ is {\it equivariantly unimodal}, and
+\item the sequence of $\subgroup$-sets $(\FY^0,\FY^1,\ldots,\FY^r)$
+is {\it Burnside unimodal}.
+\end{itemize}
+\end{example}
+
+
+ We give here several conjectures for the Chow ring $A(\L_\M,\G_{\max})$ of a simple matroid $\M$ with the choice of the maximal building set $\G_{\max}$. 
+
+
+ 
+\begin{conj}
+\label{log-concavity-conjectures}
+For any simple matroid $\M$ with lattice of flats $\L=\L_\M$ of rank $r+1$ and $\subgroup:=\Aut(\M)$, the Chow ring $A(\L,\G_{\max})=\oplus_{k=}^r A_k$
+and the sequence $(a_0,a_1,\ldots,a_r)$ with $a_k:=\mathrm{rank}_\Z A_k$
+satisfy the following:
+    \begin{itemize}
+    \item[(i)] (Ferroni-Schr\"oter \cite[Conj. 10.19]{FerroniSchroter}) $(a_0,\ldots,a_r)$ is $PF_\infty$.
+\item[(ii)] $(A^0_\C,\ldots,A^r_\C)$ is equivariantly $PF_\infty$.
+%$(A^0_\C,\ldots,A^r_\C)$ is equivariantly $PF_2$, i.e.,
+%\[ A^i_\C \otimes A^\ell_\C \leq_{R_\C(\subgroup)} A^j_\C \otimes A^k_\C \qquad  \text{for } \; i \leq j \leq k \leq \ell \; \text{ with } \; i+\ell=j+k.\]
+\item[(iii)] $(\FY^0,\ldots,\FY^r)$
+is Burnside $PF_2$ (Burnside log-concave), that is,
+\[
+[\FY^i][\FY^\ell] \leq_{B(\subgroup)}
+[\FY^j][\FY^k]
+\qquad \text{for } 
+ \; i \leq j \leq k \leq \ell \; \text{ with } \; i+\ell=j+k.\]
+\end{itemize}
+\end{conj}
+Of course, in Conjecture~\ref{log-concavity-conjectures}, 
+assertion (ii) implies assertion (i).
+However assertion (iii) would only imply the weaker $PF_2$ part of 
+the conjectural assertion (ii), and only imply the $PF_2$ part of Ferroni and Schr\"oter's assertion (i), but not their $PF_\infty$ assertions. Even the $PF_2$ property for $(a_0,\ldots,a_r)$ is still conjectural; see \cite[\S10.3]{FerroniSchroter} and \cite[\S 3.7]{FMSV} for a discussion 
+of the current evidence for Conjecture~\ref{log-concavity-conjectures}(i).
+
+\begin{example}
+\label{Burnside-PF3-counterexample}
+ \rm \ 
+We explain here why Conjecture~\ref{log-concavity-conjectures} {\it does not} assert that $(\FY^0,\ldots,\FY^r)$ is Burnside $PF_\infty$.  In fact, $(\FY^0,\ldots,\FY^r)$ {\it fails even to be Burnside $PF_3$}, already when $\M$ is a rank $4$ Boolean matroid. Its Chow ring $A(\L_\M,\G_{\max})=A^0 \oplus A^1 \oplus A^2 \oplus A^3$ has $A_0,A_3$ carrying the trivial $\C \symm_4$-module, and $A^1,A^2$ carrying isomorphic permutation representations, each having three orbits, whose three $\symm_4$-stabilizer groups are the Young subgroups $\symm_4, \symm_3 \times \symm_1, \symm_2 \times \symm_2$.  
+%Frobenius characteristics for their $\symm_4$-characters:
+%\begin{align*} [A^0]=[A^3]&=h_4,\\ [A^1]=[A^2]&=h_4+h_{3,1}+h_{2,2}.\end{align*}
+The red $3 \times 3$ minor 
+%in rows $\{1,2,3\}$ and columns $\{2,3,5\}$  
+of the Toeplitz matrix shown here
+$$
+\left[
+\begin{matrix}
+    a_0 & {\color{red}a_1} & {\color{red}a_2} & a_3 & {\color{red} 0} & 0 &\cdots \\
+       0  & {\color{red}a_0} & {\color{red}a_1}& a_2 & {\color{red} a_3} & 0 & \cdots \\
+       0  &  {\color{red} 0}   & {\color{red} a_0} & a_1 & {\color{red}a_2} & a_3 &\cdots \\
+        0  &  0 & 0   &  a_0 & a_1 & a_2  &\cdots \\
+  \vdots  &  \vdots   & \vdots & \vdots & \vdots & \vdots & \ddots \\
+\end{matrix}
+\right]
+$$
+has determinant 
+$
+{\color{red}a_1^2 a_2-a_1 a_3 - a_2^2}.
+$
+Hence the Burnside $PF_3$ condition would require that the following genuine $\symm_4$-character should come from a genuine permutation representation
+$$
+{\color{red}\left( \chi_{A^1}\right)^2 \cdot \chi_{A^2} - 
+\chi_{A^1} \chi_{A^3} - \left(\chi_{A^2}\right)^2
+}= 29 \chi^{(1, 1, 1, 1)} + 124 \chi^{(2, 1, 1)} + 
+103 \chi^{(2, 2)} + 172 \chi^{(3, 1)} + 76\chi^{(4)},
+$$
+where here $\chi^\lambda$ denotes the irreducible $\symm_n$-representation \cite{Sagan}, \cite[\S 7.18]{Stanley-EC2} indexed by the partition $\lambda$ of $n$; this expansion was computed using {\tt Sage/Cocalc}.  But one can check that this is {\it not} a permutation representation, as its character value on the conjugacy class of $4$-cycles in $\symm_4$ is $76-172+124-29=-1<0$.
+\end{example}
+
+
+\begin{remark} \rm \
+\label{PF-needs-max-building-set}
+There would exist small counterexamples if one allowed $\G \neq \G_{\max}$ in Conjecture~\ref{log-concavity-conjectures}(i),(ii).  For example, 
+Maestroni and McCullough point out in
+\cite[Ex.~6.3]{MaestroniMcCullough} that the uniform matroid $\M=U_{3,4}$ of rank $3$ on $4$ elements has
+$A(\L_\M,\G_{\min}) \cong \Z[x_E]/(x_E^3)$ with ranks $(a_0,a_1,a_2)=(1,1,1)$, a sequence which is not even $PF_3$.  On the other hand,
+we have not extensively investigated Conjecture~\ref{log-concavity-conjectures}(iii) whether might hold when generalized to all $\subgroup$-stable
+building sets $\G$ containing $E$.
+\end{remark}
+
+\begin{remark} \rm  \ 
+Although Example~\ref{Burnside-PF3-counterexample} shows that even Boolean lattices/matroids contradict strengthening
+Conjecture~\ref{log-concavity-conjectures}(iii) to Burnside $PF_3$, they seem to satisfy a {\it different} strengthening of strong log-concavity:
+
+\begin{conj}
+\label{boolean-h-log-concavity-conj}
+Consider the Boolean lattice $\L$ of rank $n$ with $\G=\G_{\max}$, and $\subgroup=\symm_n$ the symmetric group.  Then for any $i \leq j \leq k \leq \ell$ with  $i+\ell=j+k$, not only is the element
+$$
+[\FY^j][\FY^k]-[\FY^i][\FY^\ell] \geq_{B(\symm_n)} 0,
+$$
+but in fact a permutation representation with 
+orbit-stabilizers all Young subgroups
+$\symm_\lambda:=\symm_{\lambda_1} \times \symm_{\lambda_2} \times \cdots \times \symm_{\lambda_\ell}$.
+\end{conj}
+\end{remark}
+
+
+
+We note here a small amount of evidence for Conjecture~\ref{log-concavity-conjectures}(ii), (iii), namely their strong log-concavity assertions
+hold for the case
+$i=0$. For assertion (ii), this is an easy consequence
+of the fact that the Chow ring $A(\L,\G_{\max})$ is generated by the variables $\{ y_F \}$ spanning its degree one component $A^1$, which shows that this $\subgroup$-equivariant multiplication map surjects:
+\begin{equation}
+\label{multiplication-surjects}
+A^j \otimes A^k  \twoheadrightarrow  A^{j+k} \left(\cong A^0 \otimes A^{j+k}\right).
+\end{equation}
+We next check that the
+stronger assertion of Conjecture~\ref{log-concavity-conjectures}(iii) also holds in the special case $i=0$.
+
+\begin{prop}
+\label{thm:2by2kos}
+Any simple matroid has $\subgroup$-equivariant injection 
+$
+\FY^{j+k} \hookrightarrow \FY^j \times \FY^k
+$
+for $j,k \geq 0$.
+\end{prop}
+\begin{proof}
+Given $a=x_{F_1}^{m_1} \cdots x_{F_\ell}^{m_\ell}$ in $\FY^{j+k}$, so that $j+k=\sum_{i=1}^\ell m_i$, let $p$ be the smallest 
+index such that
+\begin{equation}
+\label{index-definining-inqualities}
+\sum_{i=1}^{p-1} m_i < j \leq \sum_{i=1}^{p} m_i
+\end{equation}
+and factor the monomial $a=b \cdot c$ where
+$$
+a= \underbrace{x_{F_1}^{m_1} \cdots x_{F_{p-1}}^{m_{p-1}} x_{F_p}^\delta}_{b}
+\quad \cdot \quad 
+\underbrace{ x_{F_p}^{m_p-\delta} x_{F_{p+1}}^{m_{p+1}}  \cdots x_{F_\ell}^{m_\ell}}_{c}
+$$
+with 
+$\delta:=j-\sum_{i=1}^{p-1}m_i$ 
+(so $\delta > 0$ by \eqref{index-definining-inqualities}), and
+$m_p-\delta \geq 0$.  One can check that, since $a$ lies in $\FY^{j+k}$,
+one will also have $b, c$ lying in $\FY^j, \FY^k$, respectively.
+It is easily seen that the map $a \longmapsto (b,c)$ is injective,
+since its inverse sends $(b,c) \longmapsto bc$. It is also not
+hard to check that it is $\subgroup$-equivariant.\qedhere
+\end{proof}
+
+
+
+\begin{remark} \rm
+Note that one can iterate the map in the previous proof to construct $\subgroup$-equivariant 
+injections 
+$
+\prod_{i=1}^q \FY^{\alpha_i} \into \prod_{j=1}^p \FY^{\beta_j}
+$
+whenever $\beta = (\beta_1, \beta_2, \ldots, \beta_p)$ is a composition refining $\alpha = (\alpha_1, \alpha_2, \ldots, \alpha_q).$ 
+\end{remark}
+
+As another small piece of evidence for Conjecture \ref{log-concavity-conjectures} (ii), (iii), we show that $(\FY^0, \ldots, \FY^r)$ is Burnside $PF_2$ for $r \leq 5$, that is, for matroids of rank at most $6$.
+
+
+\begin{prop} \label{thm:small-burnside-pf2}
+For simple matroids $\M$ with $\rk(\M) \leq 6$, the sequence $(\FY^0, \ldots, \FY^r)$ is Burnside $PF_2$.
+\end{prop}
+
+\begin{proof}[Proof sketch.]
+We check it for $\rk(\M)=6$, and $\rk(\M) \leq 5$ is similar. Theorem~\ref{main-theorem}(i) shows  
+that in $B(\subgroup)$,
+\[
+ \Big([\FY^0], \, [\FY^1], \, [\FY^2], \, [\FY^3], \,[\FY^4], \, [\FY^5] \Big)
+=
+\Big(1, \, [\FY^1], \,[\FY^2], \, [\FY^2], \,[\FY^1], \, 1\Big).
+\]
+
+Hence one must check nonnegativity in $B(\subgroup)$
+for all 2 x 2 minors in this infinite Toeplitz matrix:
+\[
+\begin{bmatrix}
+    1 & [\FY^1] & [\FY^2] & [\FY^2] & [\FY^1] & 1 & 0 & 0 & \ldots \\
+    0 & 1 & [\FY^1] & [\FY^2] & [\FY^2] & [\FY^1] & 1 & 0 & \ldots \\
+    0 & 0 & 1 & [\FY^1] & [\FY^2] & [\FY^2] & [\FY^1] & 1 & \ldots \\
+    0 & 0 & 0 & 1 & [\FY^1] & [\FY^2] & [\FY^2] & [\FY^1] & \ldots \\
+    0 & 0 & 0 & 0 & 1& [\FY^1] & [\FY^2] & [\FY^2] & \ldots \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+\end{bmatrix}
+\]
+From periodicity of the matrix, one may assume without loss of generality that the $2 \times 2$ minor has its top-left entry in the first row.  If the minor has a $0$ as either its lower-left or upper-right entry, then its determinant is a product $[\FY^i] [\FY^j] = [\FY^i \times \FY^j] \geq_{B(\subgroup)} 0$. This already leaves only finitely many $2 \times 2$ minors to check.  Additionally, if it has $1$ as its lower left entry, then it was shown to be Burnside-nonnegative
+in Theorem~\ref{thm:2by2kos}.  All of the remaining $2 \times 2$ minors we claim 
+are Burnside-nonnegative because they compare two (possibly non-consecutive) terms in this chain of inequalities:
+$$
+1
+\overset{(a)}{\leq}_{B(\subgroup)}[\FY^1] 
+\overset{(b)}{\leq}_{B(\subgroup)} [\FY^2] 
+\overset{(c)}{\leq}_{B(\subgroup)} [\FY^1][\FY^1] 
+\overset{(d)}{\leq}_{B(\subgroup)} [\FY^1][\FY^2] 
+\overset{(e)}{\leq}_{B(\subgroup)} [\FY^2][\FY^2]
+$$
+where inequalities (a),(b) follow from Theorem~\ref{main-theorem}(ii), inequality (c) follows from Theorem~\ref{thm:2by2kos}, and inequality (d),(e) come from multiplying inequality (b) by $[\FY^1]$ and multiplying inequality (a) by $[\FY^2]$.
+% Longer version of proof preserved below here
+\begin{comment}
+We will check that this theorem holds for the case $\rk(\M)=6$; the lower-rank cases are proved similarly. We must check that each $2 \times 2$ minor of the infinite Toeplitz matrix $T(FY^0, \ldots, FY^r)$ is Burnside-nonnegative.
+
+Since the matrix 
+    \[T(FY^0, \ldots, FY^r) = \begin{bmatrix}
+    [FY^0] & [FY^1] & [FY^2] & [FY^3] & [FY^4] & [FY^5] & 0 & 0 & \ldots \\
+    0 & [FY^0] & [FY^1] & [FY^2] & [FY^3] & [FY^4] & [FY^5] & 0 & \ldots \\
+    0 & 0 & [FY^0] & [FY^1] & [FY^2] & [FY^3] & [FY^4] & [FY^5] & \ldots \\
+    0 & 0 & 0 & [FY^0] & [FY^1] & [FY^2] & [FY^3] & [FY^4] & \ldots \\
+    0 & 0 & 0 & 0 & [FY^0] & [FY^1] & [FY^2] & [FY^3] & \ldots \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+    \end{bmatrix}\]
+is periodic, we may assume without loss of generality that any $2 \times 2$ minor has its top-left entry in the first row. We also only need to check minors whose top-right entry is nonzero, since otherwise the minor is lower-triangular, and clearly has a Burnside nonnegative determinant. Similarly, we need not check minors whose bottom-left entry is $0$. By Proposition~\ref{thm:2by2kos}, we also do not need to check minors that have $[FY^0]$ in the bottom-left corner.
+
+This leaves us with only $10$ minors that need to be checked for Burnside nonnegativity. They are
+    \begin{align*}
+    &\begin{bmatrix}
+    [\FY^2] & [\FY^3] \\
+    [\FY^1] & [\FY^2]
+    \end{bmatrix},
+    &&\begin{bmatrix}
+    [\FY^2] & [\FY^4] \\
+    [\FY^1] & [\FY^3]
+    \end{bmatrix},
+    &&\begin{bmatrix}
+    [\FY^2] & [\FY^5] \\
+    [\FY^1] & [\FY^4]
+    \end{bmatrix},
+    &&\begin{bmatrix}
+    [\FY^3] & [\FY^4] \\
+    [\FY^2] & [\FY^3]
+    \end{bmatrix},
+    &&\begin{bmatrix}
+    [\FY^3] & [\FY^5] \\
+    [\FY^2] & [\FY^4]
+    \end{bmatrix}, \\
+    &\begin{bmatrix}
+    [\FY^3] & [\FY^4] \\
+    [\FY^1] & [\FY^2]
+    \end{bmatrix},
+    &&\begin{bmatrix}
+    [\FY^3] & [\FY^5] \\
+    [\FY^1] & [\FY^3]
+    \end{bmatrix},
+    &&\begin{bmatrix}
+    [\FY^4] & [\FY^5] \\
+    [\FY^3] & [\FY^4]
+    \end{bmatrix},
+    &&\begin{bmatrix}
+    [\FY^4] & [\FY^5] \\
+    [\FY^2] & [\FY^3]
+    \end{bmatrix},
+    &&\begin{bmatrix}
+    [\FY^4] & [\FY^5] \\
+    [\FY^1] & [\FY^2]
+    \end{bmatrix}.
+    \end{align*}
+By Theorem~\ref{main-theorem}, we have
+    \begin{align*}
+    [\FY^0] \leq_{B(\subgroup)} [\FY^1] \leq_{B(\subgroup)} [\FY^2] &= [\FY^3] \geq_{B(\subgroup)} [\FY^4] \geq_{B(\subgroup)} [\FY^5], \\
+    [\FY^0] = [\FY^5], &\text{ and } [\FY^1] = [\FY^4].
+    \end{align*}
+These inequalities can be used to easily verify that any of the above minors are nonnegative. For example, to show that
+    \[\det\begin{bmatrix}
+    [\FY^3] & [\FY^5] \\
+    [\FY^2] & [\FY^4]
+    \end{bmatrix}
+    = [\FY^3 \times \FY^4] - [\FY^2 \times \FY^5] \geq_{B(\subgroup)} 0,\]
+we first use the fact that $[\FY^3] = [\FY^2]$ to see that
+    \[[\FY^3 \times \FY^4] - [\FY^2 \times \FY^5] = [\FY^2 \times \FY^4] - [\FY^2 \times \FY5] = [\FY^2] \cdot \left([\FY^4]-[\FY^5]\right).\]
+This is Burnside nonnegative because $[\FY^5] \leq_{B(\subgroup)} [\FY^4]$. As another example, consider the minor
+    \[\det \begin{bmatrix}
+    [\FY^4] & [\FY^5] \\
+    [\FY^3] & [\FY^4]
+    \end{bmatrix}
+    = [\FY^4 \times \FY^4] - [\FY^5 \times \FY^3].\]
+We use the fact that $[\FY^5]=[\FY^0]$, $[\FY^4]=[\FY^1]$, and $[\FY^3=\FY^2]$ to rewrite this determinant as
+    \[\det \begin{bmatrix}
+    [\FY^4] & [\FY^5] \\
+    [\FY^3] & [\FY^4]
+    \end{bmatrix} 
+    = \det \begin{bmatrix}
+    [\FY^1] & [\FY^0] \\
+    [\FY^2] & [\FY^1]
+    \end{bmatrix} 
+    = \det \begin{bmatrix}
+    [\FY^1] & [\FY^2] \\
+    [\FY^0] & [\FY^1]
+    \end{bmatrix},\]
+which is Burnside nonnegative by Proposition~\ref{thm:2by2kos}.
+\end{comment}
+\end{proof}
+
+\begin{remark} \rm
+When $\rk(\M) \geq 7$, one encounters the first $2 \times 2$ minor in $B(\subgroup)$ for $\subgroup=\Aut(\M)$
+$$
+\det 
+\left[
+\begin{matrix}
+    [\FY^2] & [\FY^3] \\
+    [\FY^1] & [\FY^2]
+\end{matrix}
+\right]
+=
+[\FY^2] [\FY^2] - [\FY^1] [\FY^3]
+=[ \FY^2 \times \FY^2 ] - [\FY^1 \times \FY^3]
+$$
+whose Burnside nonnegativity does not already follow from our previous results.
+\end{remark}
+
+\subsection{Koszulity}
+
+The surjection in \eqref{multiplication-surjects} that proved a special case of Conjecture~\ref{log-concavity-conjectures}(ii) turns out to be the $2 \times 2$ special case of more general equivariant $\ell \times \ell$ Toeplitz minor inequalities for Chow rings $A(\L_\M,\G_{\max})$.
+These inequalities follow from general theory of
+{\it Koszul algebras}, along with a recent result of Maestroni and McCullough \cite{MaestroniMcCullough} showing $A(\L_\M,\G_{\max})$ is Koszul.  After reviewing these
+results, we state a conjecture generalizing Proposition~\ref{thm:2by2kos} and upgrade these Toeplitz minor inequalities from the representation ring $R_\C(\subgroup)$ to the Burnside ring $B(\subgroup)$.  As a reference for Koszul algebras, see
+Polishchuk and Positselski \cite{PP}.
+
+\begin{remark}
+    The choice of the maximal building set $\G_{\max}$ for Koszulity is important. Maestroni and McCullough  \cite[Ex.~6.2, 6.3]{MaestroniMcCullough} exhibit small matroids $\M$ with $A(\L_\M,\G)$
+    {\it not} Koszul for certain choices of non-maximal
+    building sets $\G$, including the example of 
+    $A(\L_\M,\G_{\min})$ for $\M=U_{3,4}$ mentioned in
+    Remark~\ref{PF-needs-max-building-set}.
+\end{remark}
+
+\begin{defn} \rm
+Let $\kk$ be a field, and $A$ a {\it finitely generated standard graded associative $\kk$-algebra}.  This means $A$ is a quotient $A=T/I$ where $T=\kk\langle x_1,\ldots,x_n\rangle$ is the free associative algebra on $n$ noncommuting variables $x_1,\ldots,x_n$, considered to all have
+$\deg(x_i)=1$, and $I$ is a homogeneous two-sided ideal in $T$.
+
+Writing\footnote{Apologies to the reader that we are writing subscripted $A_k$ here, not superscripted $A^k$ as we did for the Chow rings.} $A=\bigoplus_{k=0}^\infty A_k$, let 
+$A_+:=\bigoplus_{k=1}^\infty A_k$ be the maximal graded two-sided ideal of $A$.  Regard the field $\kk$ as an $A$-module via the quotient surjection $A \twoheadrightarrow A/A_+ \cong \kk$.  In other words,
+each $x_i$ acts as $0$ on $\kk$.  
+
+Say that $A$ is a {\it Koszul algebra} if the above
+surjection $A \twoheadrightarrow \kk$ extends to a {\it linear} graded free $A$-resolution of $\kk$ as an $A$-module, meaning that the $i^{th}$ resolvent $F_i = A(-i)^{\beta_i}$ for some $\beta_i \geq 0$:
+$$
+0 \leftarrow \kk 
+\leftarrow A
+\leftarrow A(-1)^{\beta_1} 
+\leftarrow A(-2)^{\beta_2} 
+\leftarrow A(-3)^{\beta_3} 
+\leftarrow \cdots
+$$
+\end{defn}
+There are several equivalent ways to say when $A$ is Koszul, such
+as requiring that the polynomial grading of $\Tor^A_i(\kk,\kk)$ is concentrated in degree $i$.  Equivalently, this means that if one starts with the {\it bar complex} $\mathcal{B}_A$ as an $A$-resolution of $\kk$, and then tensors over $A$ with $\kk$, one obtains a complex $\kk \otimes_A \mathcal{B}_A$ of graded $\kk$-vector spaces whose $i^{th}$ homology is concentrated in degree $i$.  The latter characterization leads
+to the following result of Polishchuk and Positselski.
+
+\begin{thm} \cite[Chap. 2, Prop. 8.3]{PP}
+For any Koszul algebra $A$, and any composition $(\alpha_1,\ldots,\alpha_\ell)$ of $m=\sum_i \alpha_i$, there exists a subcomplex $(C_*,d)$ of $\kk \otimes_A \mathcal{B}_A$ of the form
+%$$\begin{array}{rcccccccl}0 \rightarrow &A_{\alpha}& \rightarrow &\displaystyle\bigoplus_{i=1}^{\ell-1} A_{(\alpha_1, \ldots, \alpha_i+\alpha_{i+1},\ldots,\alpha_\ell)}& \rightarrow \cdots  \rightarrow &\displaystyle\bigoplus_{\substack{\subgroup \text{ coarsening }\alpha:\\ \ell(\subgroup)=i}}A_\subgroup& \rightarrow \cdots \rightarrow  &A_m& \rightarrow 0\\ &\Vert& & \Vert& &\Vert& &\Vert&\\ 
+$
+0\rightarrow C_\ell \rightarrow C_{\ell-1} \rightarrow \cdots \rightarrow 
+C_1 \rightarrow 0
+$
+starting with 
+$C_\ell=A_{\alpha_1} \otimes \cdots \otimes A_{\alpha_\ell}$ at left, ending with
+$C_1=A_{\alpha_1+\cdots+\alpha_\ell}=A_m$ at right,
+and with $i^{th}$ term 
+$$
+C_i=\bigoplus_\beta 
+A_{\beta_1} \otimes \cdots \otimes A_{\beta_i}
+$$
+where $\beta$ in the direct sum runs over all compositions
+with $i$ parts that coarsen $\alpha$.
+This complex $(C_*,d)$ is exact except at the left end $C_\ell$, meaning that this complex is exact:
+\begin{equation}
+\label{PP-exact=sequence}
+0 \rightarrow \ker(d_\ell) \rightarrow C_\ell \rightarrow C_{\ell-1} \rightarrow \cdots \rightarrow 
+C_1 \rightarrow 0
+\end{equation}
+The complex  $(C_*,d)$ is also
+$\subgroup$-equivariant for any group $\subgroup$ of graded $\kk$-algebra automorphisms of $A$.
+\end{thm}
+
+Taking the alternating sum of the Euler characteristics term-by-term in \eqref{PP-exact=sequence} yields the
+following, where here we conflate a $\kk \subgroup$-module $A_k$
+with its character $\chi_{A_k}$.
+
+\begin{cor}
+\label{corollary-of-P-P-exact-sequence}
+In the above setting, the character of the $\kk \subgroup$-module
+$\ker(d_\ell: C_\ell \rightarrow C_{\ell-1})$
+has this expression
+\begin{align*}
+\chi_{\ker(d_\ell)}
+=\sum_{i=1}^\ell (-1)^{\ell-i} \chi_{C_i}
+&=\sum_{i=1}^\ell (-1)^{\ell-i}
+ \sum_{\substack{\beta \colon \ell(\beta)=i \\ \beta \: {\rm      coarsens   } \: \alpha}} 
+  A_{\beta_1} \otimes \cdots \otimes A_{\beta_i}\\ 
+&=\det\left[
+\begin{matrix}
+A_{\alpha_1} & A_{\alpha_1+\alpha_2}  & A_{\alpha_1+\alpha_2+\alpha_3}  & \cdots &A_m  \\
+A_0 & A_{\alpha_2} & A_{\alpha_2+\alpha_3}  &\cdots  &A_{m-\alpha_1}    \\
+0 & A_0 & A_{\alpha_3} & \cdots & A_{m-(\alpha_1+\alpha_2)}   \\
+0 & 0 &   &   & \vdots\\
+\vdots & \vdots &  &  & A_{\alpha_{\ell-1}+\alpha_\ell}\\
+0 & 0   &   \cdots     & A_0 &A_{\alpha_\ell}
+\end{matrix}
+\right]
+\end{align*}
+as an $\ell \times \ell$ Toeplitz matrix minor for the sequence of $\kk \subgroup$-modules $(A_0,A_1,A_2,\ldots)$.  In particular, when $\kk=\C$,
+then all Toeplitz minors
+of this form are genuine characters in $R_\C(\subgroup)$.
+\end{cor}
+
+
+\begin{example}\rm
+When $\ell=2$ so that $\alpha=(j,k)$, the exact sequence \eqref{PP-exact=sequence} looks like
+$$
+0 \rightarrow \ker(d_2)
+\rightarrow A_j \otimes A_k 
+\rightarrow A_{j+k}
+\rightarrow 0
+$$
+giving this character identity 
+$$
+\det\left[
+\begin{matrix}
+A_j & A_{j+k} \\
+A_0 & A_k
+\end{matrix}
+\right]
+=\chi_{\ker(d_2)} \quad (\geq_{R_\C(\subgroup)} 0 \text{ if }\kk=\C).
+$$
+
+When $\ell=3$ so that $\alpha=(a,b,c)$ , the exact sequence \eqref{PP-exact=sequence} looks like
+$$
+0 \rightarrow \ker(d_3)
+\rightarrow A_a \otimes A_b \otimes A_c 
+\rightarrow 
+\begin{matrix}
+    A_{a+b} \otimes A_c \\
+\oplus \\
+A_a \otimes A_{b+c}
+\end{matrix}
+\rightarrow A_{a+b+c}
+\rightarrow 0
+$$
+giving this character identity 
+$$
+\det\left[
+\begin{matrix}
+A_a & A_{a+b} & A_{a+b+c}\\
+A_0 & A_b & A_{b+c}\\
+0 & A_0 & A_{c}
+\end{matrix}
+\right]
+=\chi_{\ker(d_3)} \quad (\geq_{R_\C(\subgroup)} 0 \text{ if }\kk=\C).
+$$
+
+When $\ell=4$ so that $\alpha=(a,b,c,d)$, the exact sequence \eqref{PP-exact=sequence} looks like 
+$$
+0 \rightarrow \ker(d_4)
+\rightarrow A_a \otimes A_b \otimes A_c  \otimes A_d
+\rightarrow 
+\begin{matrix}
+A_{a+b} \otimes A_c \otimes A_d\\ 
+\oplus \\
+A_a \otimes A_{b+c} \otimes A_d \\
+\oplus\\
+A_a \otimes A_b \otimes A_{c+d}
+\end{matrix}
+\rightarrow 
+\begin{matrix}
+A_{a+b+c} \otimes A_d \\
+\oplus\\
+A_{a+b} \otimes A_{c+d}\\
+\oplus\\
+A_a \otimes A_{b+c+d}
+\end{matrix}
+\rightarrow A_{a+b+c+d}
+\rightarrow 0
+$$
+giving this character identity 
+$$
+\det\left[
+\begin{matrix}
+A_a & A_{a+b} & A_{a+b+c}&A_{a+b+c+d}\\
+A_0 & A_b & A_{b+c}&A_{b+c+d}\\
+0 & A_0 & A_{c}& A_{c+d}\\
+0 & 0 & A_0 & A_d
+\end{matrix}
+\right]
+=\chi_{\ker(d_4)} \quad (\geq_{R_\C(\subgroup)} 0 \text{ if }\kk=\C).
+$$    
+\end{example}
+
+One can apply this to Chow rings of
+matroids using work of Maestroni and McCullough \cite{MaestroniMcCullough}.
+
+\begin{thm} \cite{MaestroniMcCullough}
+For simple matroids $\M$, the Chow ring $A(\L_\M,\G_{\max})$ is Koszul.
+\end{thm}
+
+This gives the following promised generalization of 
+\eqref{multiplication-surjects}.
+
+\begin{cor}
+\label{Chow-ring-Koszul-consequence}
+For a matroid $\M$ of rank $r+1$ with
+Chow ring $A(\L_\M,\G_{\max})=\bigoplus_{k=0}^r A_k$, and any composition $\alpha=(\alpha_1,\ldots,\alpha_\ell)$ with $m:=\sum_i \alpha \leq r$, the $\ell \times \ell$ Toeplitz minor determinant as shown in
+in Corollary~\ref{corollary-of-P-P-exact-sequence} is a genuine character in $R_\C(\subgroup)$ for $\subgroup=\Aut(\M)$.
+\end{cor}
+
+Here is the conjectural lift of the previous corollary to Burnside rings, whose $2\times 2$-case is
+Proposition~\ref{thm:2by2kos}.
+
+\begin{conj}
+\label{Burnside-Koszul-nonnegativity}
+In the same context as Corollary~\ref{Chow-ring-Koszul-consequence}, the analogous Toeplitz minors of $\subgroup$-sets have
+$$
+\det\left[
+\begin{matrix}
+[\FY^{\alpha_1}] & [\FY^{\alpha_1+\alpha_2}]  & [\FY^{\alpha_1+\alpha_2+\alpha_3}]  & \cdots &[\FY^m]  \\
+[\FY^0] & [\FY^{\alpha_2}] & [\FY^{\alpha_2+\alpha_3}]  &\cdots  &[\FY^{m-\alpha_1}]    \\
+0 & [\FY^0] & [\FY^{\alpha_3}] & \cdots & [\FY^{m-(\alpha_1+\alpha_2)}]   \\
+0 & 0 &   &   & \vdots\\
+\vdots & \vdots & & & [\FY^{\alpha_{\ell-1}+\alpha_\ell}]\\
+0 & 0   &   \cdots     & [\FY^0] &[\FY^{\alpha_\ell}]
+\end{matrix}
+\right] \geq_{B(\subgroup)} 0.
+$$
+\end{conj}
+
+As a bit of further evidence for Conjecture~\ref{Burnside-Koszul-nonnegativity}, we check it for the Toeplitz
+minors with $\alpha=(1,1,1)$.
+
+\begin{thm} \label{thm:3by3}
+For any matroid $\M$, the Chow ring $A(\L_\M,\G_{\max})$ has 
+    \begin{align*}
+    \det\left|\begin{matrix}
+    [\FY^1] & [\FY^2] & [\FY^3] \\
+    [\FY^0] & [\FY^1] & [\FY^2] \\
+    0 & [\FY^0] & [\FY^1]
+    \end{matrix}\right| \geq_{B(\subgroup)} 0.
+    \end{align*}
+\end{thm}
+
+\begin{proof}
+Multiplying out the determinant, one needs to 
+prove the following inequality in $B(\subgroup)$:
+$$
+[\FY^1 \times \FY^1 
+    \times \FY^1] - \left( \begin{matrix} [\FY^2 \times \FY^1]\\ +\\ [\FY^1 \times \FY^2]\end{matrix} \right)  + [\FY^3] \,\, \geq_{B(\subgroup)} 0,
+$$
+or equivalently, one must show the inequality
+$$
+[\quad (\FY^2 \times \FY^1)  \,\, \sqcup \,\, (\FY^1 \times \FY^2)\quad ]
+\,\, \leq_{B(\subgroup)} \,\, 
+[\quad (\FY^1 \times \FY^1 
+    \times \FY^1) \,\, \sqcup \,\, \FY^3\quad ].
+$$
+For this, it suffices to provide an injective $\subgroup$-equivariant map 
+\[
+(\FY^1 \times \FY^2) \sqcup (\FY^2 \times \FY^1)
+\,\, \into \,\, 
+(\FY^1 \times \FY^1 
+    \times \FY^1) \sqcup \FY^3.
+\] 
+Such a map is summarized schematically in Figures~\ref{fig: 3x3a} and \ref{fig: 3x3b}, with certain abbreviation conventions: the variables $x,y,z$ always abbreviate
+the variables $x_{F_1}, x_{F_2},x_{F_3}$ for a generic nested flag of flats $F_1 \subset F_2 \subset F_3$, while the variable $w$ abbreviates $x_F$ for a flat $F$ incomparable to any of $F_1,F_2,F_3$.
+
+The Figures \ref{fig: 3x3a} and \ref{fig: 3x3b} 
+describe for each type of element in $\FY^1 \times \FY^2$ and $\FY^2 \times \FY^1$ an appropriate image in either $\FY^1 \times \FY^1 \times \FY^1$ or $\FY^3$.
+Loosely speaking, the maps try to send elements to $\FY^3$ whenever possible, that is, whenever their product is a valid element of $\FY^3$. When this fails, we find an image in $\FY^1 \times \FY^1 \times \FY^1$, carefully trying to keep track of which images have been used by noting various conditions on the $x,y,z,$ and $w$, involving their ranks  and sometimes their {\it coranks}, denoted $\cork(F):=\rk(E)-\rk(F)$. Conditions in gray are forced by the form of the given tuple, while conditions in black are assumed to separate the map into disjoint cases.$\qedhere$
+
+\begin{figure}[ht] 
+    \centering
+\begin{tikzcd}[scale cd=0.8]
+	{\FY^1\times \FY^1\times \FY^1} &&&& {\FY^1\times \FY^2} &&&& {\FY^3} 
+    \\
+	{(x, y, z)} &&&& {(x, yz)} &&&& xyz
+	\arrow["{d(x, y) =1}"', maps to, from=2-5, to=2-1] 
+ 	\arrow["{d(x, y) \geq 2}", maps to, from=2-5, to=2-9]
+    \\
+    {(w, x, y)} &&&& {(w, xy)} &&&& 
+	\arrow[from=3-5, to=3-1]
+     \\
+     {(x, y, x)} &&&& {(x, xy)} &&&& x^2y
+	\arrow["{\rk(x) = 2}"', maps to, from=4-5, to=4-1] 
+ 	\arrow["{\rk(x)\geq 3}", maps to, from=4-5, to=4-9]
+    \\
+    {(y, x, y)} &&&& {(y, xy)} &&&& xy^2
+	\arrow["{d(x, y) = 2}"', maps to, from=5-5, to=5-1] 
+ 	\arrow["{d(x, y) \geq 3}", maps to, from=5-5, to=5-9]
+    \\
+    {(x, y, \E)} &&&& {(x, y^2)} &&&& 
+	\arrow["{\cork(y) \geq 2}"', maps to, from=6-5, to=6-1] 
+    \\
+    {(x, \E, y)} &&&&  &&&&
+	\arrow["{\cork(y) = 1}", maps to, from=6-5, to=7-1] 
+    \\
+    {(y, x, x)} &&&& {(y, x^2)} &&&& 
+	\arrow["{\color{gray} \rk(x) \geq 3}"', maps to, from=8-5, to=8-1] 
+    \\
+    {(w, x, x)} &&&& {(w, x^2)} &&&& 
+    \arrow[maps to, from=9-5, to=9-1]
+    \\
+    {(\E, x, y)} &&&& {(\E, xy)} &&&& xy\E
+    \arrow["{\cork(y) = 1}"', maps to, from=10-5, to=10-1]
+    \arrow["{\cork(y) \geq 2}", maps to, from=10-5, to=10-9]
+    \\
+    {(x, \E, y)} &&&& {(x, yE)} &&&& 
+    \arrow["{\color{gray} \cork(y) \geq 2}"', maps to, from=11-5, to=11-1]
+    \\
+    {(y, x, \E)} &&&& {(y, xE)} &&&& 
+    \arrow["{\color{gray} {\cork(x) \geq 2}}"', maps to, from=12-5, to=12-1]
+    \\
+    {(\E, w, x)} &&&& {(w, xE)} &&&& 
+    \arrow[maps to, from=13-5, to=13-1]
+    \\
+    {(x, x, x)} &&&& {(x, x^2)} &&&& x^4
+    \arrow["{\rk(x) = 3}"', maps to, from=14-5, to=14-1]
+    \arrow["{\rk(x) \geq 4}", maps to, from=14-5, to=14-9]
+    \\
+     {(x, x, \E)} &&&& {(x, xE)} &&&& xE^2
+    \arrow["{\cork(x) = 2}"', maps to, from=15-5, to=15-1]
+    \arrow["{\cork(x) \geq 3}", maps to, from=15-5, to=15-9]
+    \\
+    {(x, \E, \E)} &&&& {(x, E^2)} &&&&
+    \arrow[maps to, from=16-5, to=16-1]
+    \\
+    {(\E, x, x)} &&&& {(E, x^2)} &&&& x^2E
+    \arrow["{\cork(x) = 1}"', maps to, from=17-5, to=17-1]
+    \arrow["{\cork(x) = 2}", maps to, from=17-5, to=17-9]
+    \\
+    &&&& {(\E, \E^2)} &&&& \E^3
+    \arrow[maps to, from=18-5, to=18-9]
+    \\ \\
+\end{tikzcd}
+\caption{Part of the injective set map $\FY^1\times \FY^2\into \FY^1\times \FY^1\times \FY^1 \cup \FY^3$}
+\label{fig: 3x3a}
+\end{figure}
+
+\begin{figure}[ht] 
+    \centering
+\begin{tikzcd}[scale cd=0.5]
+	{\FY^1\times \FY^1\times \FY^1} &&&& {\FY^2\times \FY^1} &&&& {\FY^3} 
+    \\
+	{(y,z, x)} &&&& {(yz, x)} &&&& 
+	\arrow["{\color{gray}{d(y, z) \geq 2} }"', maps to, from=2-5, to=2-1] 
+    \\
+    {(x, y, w)} &&&& {(xy, w)} &&&& 
+	\arrow[from=3-5, to=3-1]
+     \\
+     {(x, y, x)} &&&& {(xy, x)} &&&& 
+	\arrow["{\rk(x)\geq 3}"', maps to, from=4-5, to=4-1] 
+    \\
+    {(x, x, y)} &&&& &&&& 
+	\arrow["{\rk(x) = 2}", maps to, from=4-5, to=5-1] 
+    \\
+    {(y, x, y)} &&&& {(xy, y)} &&&& 
+	\arrow["{d(x, y) \geq 3}"', maps to, from=6-5, to=6-1] 
+    \\
+    {(x, y, y)} &&&& &&&& 
+	\arrow["{d(x, y) = 2}", maps to, from=6-5, to=7-1] 
+    \\
+    {(y, y, x)} &&&& {(y^2, x)} &&&& 
+	\arrow["{\color{gray} \rk(y) \geq 3}"', maps to, from=8-5, to=8-1] 
+    \\
+    {(x, x, y)} &&&& {(x^2, y)} &&&& 
+	\arrow["{\color{gray} \rk(x) \geq 3}"', maps to, from=9-5, to=9-1] 
+    \\
+    {( x, x, w)} &&&& {(x^2, w)} &&&& 
+    \arrow[maps to, from=10-5, to=10-1]
+    \\
+    {(\E, y, x)} &&&& {(xy, \E)} &&&& 
+    \arrow["{\cork(y) \geq 2}"', maps to, from=11-5, to=11-1]
+    \\
+    {(x,  y, \E)} &&&&  &&&& 
+    \arrow["{\cork(y) = 1}", maps to, from=11-5, to=12-1]
+    \\
+    {(y, \E, x)} &&&& {(y\E, x)} &&&& 
+    \arrow["{\color{gray} {\cork(y) \geq 2}}"', maps to, from=13-5, to=13-1]
+    \\
+    {(\E, x, y)} &&&& {(x\E, y)} &&&& 
+    \arrow["{\color{gray} {\cork(x) \geq 2}}"', maps to, from=14-5, to=14-1]
+    \\
+    {(\E, x, w)} &&&& {(xE, w)} &&&& 
+    \arrow[maps to, from=15-5, to=15-1]
+    \\
+    {(x, x, x)} &&&& {(x^2, x)} &&&& 
+    \arrow["{\rk(x) \geq 4}"', maps to, from=16-5, to=16-1]
+    \\
+    {(E, x, E)} &&&&  &&&& 
+    \arrow["{\rk(x) = 3}", maps to, from=16-5, to=17-1]
+    \\
+     {(x, x, \E)} &&&& {(xE, x)} &&&& 
+    \arrow["{\cork(x) \geq 3}"', maps to, from=18-5, to=18-1]
+    \\
+    {(x, \E, x)} &&&&  &&&&
+    \arrow["{\cork(x) = 2}", maps to, from=18-5, to=19-1]
+    \\
+    {(\E, \E, x)} &&&& {(E^2, x)} &&&& 
+    \arrow[ maps to, from=20-5, to=20-1]
+    \\
+    {(x, x, \E)}&&&& {(x^2, E)} &&&& 
+    \arrow["{\cork(x) = 1}"', maps to, from=21-5, to=21-1]
+    \\
+    {(\E, x, x)}&&&&  &&&& 
+    \arrow["{\cork(x) \geq 2}", maps to, from=21-5, to=22-1]
+    \\
+    {(\E, \E, \E)}&&&& {(E^2, E)} &&&& 
+    \arrow[ maps to, from=23-5, to=23-1]
+    \\
+\end{tikzcd}
+    \caption{The rest of the injective set map $\FY^2\times \FY^1\into \FY^1\times \FY^1\times \FY^1 \cup \FY^3$}
+    \label{fig: 3x3b}
+\end{figure}
+\end{proof}
+
+
+\section{Further questions and conjectures}
+\label{sec: further-questions}
+In addition to Conjectures~\ref{log-concavity-conjectures}, \ref{boolean-h-log-concavity-conj}, \ref{Burnside-Koszul-nonnegativity} above,
+we collect here are a few more questions and conjectures.
+
+ 
+\subsection{Explicit formulas for Chow rings as permutation representations?}
+In \cite[Lem. 3.1]{Stembridge}, Stembridge provides a generating function for the symmetric group
+representations on each graded component of the Chow ring for all Boolean matroids; see also Liao \cite{Liao, Liao_new}.  Furthermore, Stembridge's expression exhibits them as {\it permutation representations}, whose orbit-stabilizers are all {\it Young subgroups} in the symmetric group.
+This prompts a slightly vague question.
+\begin{question}
+Can one provide similarly explicit generating function expressions as permutation representations for other families of
+matroids with symmetry?
+\end{question}
+
+
+\subsection{Equivariant $\gamma$-positivity?}
+Hilbert functions $(a_0,a_1,\ldots,a_r)$ for
+Chow rings $A(\L_\M,\G_{\max})$ of rank $r+1$ simple matroids are
+not only symmetric and unimodal, but satisfy the stronger condition of
+{\it $\gamma$-positivity}:  one has {\it nonnegativity} for all coefficients 
+$\gamma=(\gamma_0,\gamma_1,\ldots,\gamma_{\lfloor \frac{r}{2} \rfloor})$ appearing in the unique expansion
+\begin{equation}
+\label{gamma-defining-relation}
+\sum_{i=0}^r a_i t^i = \sum_{i=0}^{\lfloor\frac{r}{2}\rfloor} \gamma_i \,\, t^i(1+t)^{r-2i}.
+\end{equation}
+See Athanasiadis \cite{Athanasiadis} for a nice survey on $\gamma$-positivity.
+It has been shown, independently 
+by Ferroni, Matherne, Stevens and Vecchi \cite[Thm. 3.25]{FMSV}
+and by Wang (see \cite[p.~29]{FMSV}), that the $\gamma$-positivity for Hilbert series of Chow rings of matroids
+follows from results of Braden, Huh, Matherne, Proudfoot and Wang \cite{BHMPW} on {\it semismall decompositions}.
+The maximal building set is again important: the
+same example of $A(\L_\M,\G_{\min})$ for $\M=U_{3,4}$ from Remark~\ref{PF-needs-max-building-set} with $(a_0,a_1,a_2)=(1,1,1)$ has $\gamma=(\gamma_0,\gamma_1)=(1,-1)$.
+
+One also has the notion of {\it equivariant $\gamma$-positivity} for a sequence
+of $\gamma$-representations $(A_0,A_1,\ldots,A_r)$, 
+due originally to Shareshian and Wachs
+\cite[\S 5]{ShareshianWachs} (see also \cite[\S5.2]{Athanasiadis}, \cite[Def. 4.13]{FMSV}): upon replacing each
+$a_i$ in \eqref{gamma-defining-relation} with the element $[A_i]$ of $R_\C(\gamma)$, one
+asks that the uniquely defined coefficients $\gamma_i$ in $R_\C(\gamma)$ have $\gamma_i \geq_{R_\C(\gamma)} 0$.
+Computations suggested the next conjecture, which appeared in the first {\tt arXiv} version of this paper, and which was then proven by Hsin-Chieh Liao\footnote{Personal communication, February 2024; see also \cite[\S8]{liao-q-uniform}}.
+
+\begin{conj}
+\label{equivariant-gamma-positivity-conj}
+For any matroid $\M$ of rank $r+1$ and its Chow ring
+$A(\L_\M,\G_{\max})=\bigoplus_i A^i$,
+the sequence of $\gamma$-representations
+$(A^0_\C,A^1_\C,\ldots,A^r_\C)$ is equivariantly $\gamma$-positive.
+\end{conj}
+\noindent
+For example, \cite[Cor. 5.4]{ShareshianWachs} verifies Conjecture~\ref{equivariant-gamma-positivity-conj} for Boolean matroids.
+However, one can check that the stronger conjecture of {\it Burnside $\gamma$-nonnegativity} for $(\FY^0,\FY^1,\ldots,\FY^r)$
+would  {\it fail} already for the Boolean 
+matroid of rank $3$:  here
+$\FY^0, \FY^2$ carry the trivial $\symm_3$ permutation representation $\mathbf{1}$ , while $\FY^1$ carries the defining $\symm_3$-permutation representation on the set $X=\{1,2,3\}$, so
+$\gamma_0=[\mathbf{1}]$, but $\gamma_1=[X]-[\mathbf{1}] \not\geq_{B(\symm_3)} 0$.

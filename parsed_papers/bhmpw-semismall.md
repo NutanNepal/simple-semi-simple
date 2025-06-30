@@ -1,0 +1,3543 @@
+Advances in Mathematics 409 (2022) 108646
+
+Contents lists available at ScienceDirect
+
+Advances in Mathematics
+www.elsevier.com/locate/aim
+
+A semi-small decomposition of the Chow ring
+of a matroid ✩
+Tom Braden a , June Huh b , Jacob P. Matherne c,d,∗ ,
+Nicholas Proudfoot e , Botong Wang f
+a
+
+Department of Mathematics and Statistics, University of Massachusetts,
+Amherst, MA, United States of America
+b
+Department of Mathematics, Princeton University, Princeton, NJ, United States
+of America
+c
+Mathematical Institute, University of Bonn, Bonn, Germany
+d
+Max-Planck-Institut für Mathematik, Bonn, Germany
+e
+Department of Mathematics, University of Oregon, Eugene, OR, United States of
+America
+f
+Department of Mathematics, University of Wisconsin-Madison, Madison, WI,
+United States of America
+
+a r t i c l e
+
+i n f o
+
+Article history:
+Received 16 October 2020
+Received in revised form 11 July
+2022
+Accepted 21 July 2022
+Available online xxxx
+Communicated by Petter Brändén
+Keywords:
+Matroids
+Chow rings
+Semi-small maps
+
+a b s t r a c t
+We give a semi-small orthogonal decomposition of the Chow
+ring of a matroid M. The decomposition is used to give simple
+proofs of Poincaré duality, the hard Lefschetz theorem, and
+the Hodge–Riemann relations for the Chow ring, recovering
+the main result of [1]. We also introduce the augmented Chow
+ring of M and show that a similar semi-small orthogonal
+decomposition holds for the augmented Chow ring.
+© 2022 Elsevier Inc. All rights reserved.
+
+✩
+June Huh received support from NSF Grant DMS-1638352 and the Ellentuck Fund. Jacob Matherne
+received support from NSF Grant DMS-1638352, the Association of Members of the Institute for Advanced
+Study, the Max Planck Institute for Mathematics in Bonn, and the Deutsche Forschungsgemeinschaft (DFG)
+under Germany’s Excellence Strategy - GZ 2047/1, Projekt-ID 390685813. Nicholas Proudfoot received
+support from NSF Grants DMS-1565036, DMS-1954050, and DMS-2039316. Botong Wang received support
+from NSF Grant DMS-1701305 and the Alfred P. Sloan Foundation.
+* Corresponding author.
+E-mail addresses: braden@math.umass.edu (T. Braden), huh@princeton.edu (J. Huh),
+jacobm@math.uni-bonn.de (J.P. Matherne), njp@uoregon.edu (N. Proudfoot), wang@math.wisc.edu
+(B. Wang).
+
+https://doi.org/10.1016/j.aim.2022.108646
+0001-8708/© 2022 Elsevier Inc. All rights reserved.
+
+2
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+Decomposition theorem
+Kähler package
+
+1. Introduction
+A matroid M on a ﬁnite set E is a nonempty collection of subsets of E, called ﬂats of
+M, that satisﬁes the following properties:
+(1) The intersection of any two ﬂats is a ﬂat.
+(2) For any ﬂat F , any element in E \ F is contained in exactly one ﬂat that is minimal
+among the ﬂats strictly containing F .
+Throughout, we suppose in addition that M is a loopless matroid:
+(3) The empty subset of E is a ﬂat.
+We write L(M) for the lattice of all ﬂats of M. Every maximal ﬂag of proper ﬂats of M
+has the same cardinality d, called the rank of M. A matroid can be equivalently deﬁned
+in terms of its independent sets or the rank function. For background in matroid theory,
+we refer to [25] and [28].
+The ﬁrst aim of the present paper is to decompose the Chow ring of M as a module
+over the Chow ring of the deletion M \i (Theorem 1.2). The decomposition resembles the
+decomposition of the cohomology ring of a projective variety induced by a semi-small
+map. In Section 4, we use the decomposition to give a simple proof of the Kähler package
+for the Chow ring: Poincaré duality, the hard Lefschetz theorem, and the Hodge–Riemann
+relations. This recovers the main result of [1].
+The second aim of the present paper is to introduce the augmented Chow ring of M,
+which contains the graded Möbius algebra of M as a subalgebra. We give an analogous
+semi-small decomposition of the augmented Chow ring of M as a module over the augmented Chow ring of the deletion M \ i (Theorem 1.5), and use this to prove the Kähler
+package for the augmented Chow ring. These results play a major role in the follow-up
+paper [4], where we prove the Top-Heavy conjecture along with the nonnegativity of the
+coeﬃcients of the Kazhdan–Lusztig polynomial of a matroid.
+Remark 1.1. The main objects of study in [4] are combinatorial abstractions of intersection cohomology groups of singular algebraic varieties. In contrast, the objects of study
+in this paper are combinatorial abstractions of cohomology groups (or Chow rings) of
+smooth projective varieties.
+1.1. Let S M be the ring of polynomials with variables labeled by the nonempty
+proper ﬂats of M:
+S M := Q[xF |F is a nonempty proper ﬂat of M].
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+3
+
+The Chow ring of M, introduced by Feichtner and Yuzvinsky in [17], is the quotient
+algebra1
+CH(M) := S M /(I M + J M ),
+where I M is the ideal generated by the linear forms
+
+i1 ∈F
+
+xF −
+
+
+
+xF , for every pair of distinct elements i1 and i2 of E,
+
+i2 ∈F
+
+and J M is the ideal generated by the quadratic monomials
+xF1 xF2 , for every pair of incomparable nonempty proper ﬂats F1 and F2 of M.
+When E is nonempty, the Chow ring of M admits a degree map
+degM : CHd−1 (M) −→ Q,
+
+xF :=
+
+
+
+xF −→ 1,
+
+F ∈F
+
+where F is any complete ﬂag of nonempty proper ﬂats of M (Deﬁnition 2.15). For any
+integer k, the degree map deﬁnes the Poincaré pairing
+CHk (M) × CHd−k−1 (M) −→ Q,
+
+(η1 , η2 ) −→ degM (η1 η2 ).
+
+If M is realizable over a ﬁeld,2 then the Chow ring of M is isomorphic to the Chow ring
+of a smooth projective variety over the ﬁeld (Remark 2.16).
+Let i be an element of E, and let M \ i be the deletion of i from M. By deﬁnition,
+M \ i is the matroid on E \ i whose ﬂats are the sets of the form F \ i for a ﬂat F of M.
+The Chow rings of M and M \ i are related by the graded algebra homomorphism
+θi = θM
+i : CH(M \ i) −→ CH(M),
+
+xF −→ xF + xF ∪i ,
+
+where a variable in the target is set to zero if its label is not a ﬂat of M. As we will see
+in Section 3, this homomorphism is induced by a projection from the Bergman fan of M
+to the Bergman fan of M \ i. Let CH(i) be the image of the homomorphism θi , and let
+Si be the collection
+Si = Si (M)
+
+
+= F |F is a nonempty proper subset of E \i such that F ∈ L(M) and F ∪ i ∈ L(M) .
+1
+A slightly diﬀerent presentation for the Chow ring of M was used in [17] in a more general context. The
+present description was used in [1], where the Chow ring of M was denoted A(M). For a comparison of the
+two presentations, see [3].
+2
+We say that M is realizable over a ﬁeld F if there exists a linear subspace V ⊆ F E such that S ⊆ E is
+independent if and only if the projection from V to F S is surjective. Almost all matroids are not realizable
+over any ﬁeld [24].
+
+4
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+The element i is said to be a coloop of M if the ranks of M and M \ i are not equal. Thus,
+Si is the collection of all nonempty proper subsets F of E \ i such that F ∪ i is a ﬂat of
+M and i is a coloop in MF ∪i .
+Theorem 1.2. If i is not a coloop of M, there is a direct sum decomposition of CH(M)
+into indecomposable graded CH(M \ i)-modules
+CH(M) = CH(i) ⊕
+
+
+
+xF ∪i CH(i) .
+
+(D1 )
+
+F ∈Si
+
+All pairs of distinct summands are orthogonal for the Poincaré pairing of CH(M). If i is
+a coloop of M, there is a direct sum decomposition of CH(M) into indecomposable graded
+CH(M \ i)-modules3
+CH(M) = CH(i) ⊕ xE\i CH(i) ⊕
+
+
+
+xF ∪i CH(i) .
+
+(D2 )
+
+F ∈Si
+
+All pairs of distinct summands except for the ﬁrst two are orthogonal for the Poincaré
+pairing of CH(M).
+We write rkM : 2E → N for the rank function of M. For any proper ﬂat F of M, we
+set4
+MF := the localization of M at F , a loopless matroid on F of rank equal to rkM (F ),
+MF := the contraction of M by F , a loopless matroid on E \ F of rank equal to d − rkM (F ).
+
+The lattice of ﬂats of MF can be identiﬁed with the lattice of ﬂats of M that are contained
+in F , and the lattice of ﬂats of MF can be identiﬁed with the lattice of ﬂats of M that
+contain F . The CH(M \i)-module summands in the decompositions (D1 ) and (D2 ) admit
+isomorphisms5
+CH(i) ∼
+= CH(M \ i) and xF ∪i CH(i) ∼
+= CH(MF ∪i ) ⊗ CH(MF )[−1],
+(Propositions 3.4 and 3.5). In addition, if i is a coloop of M, then
+xE\i CH(i) ∼
+= CH(M \ i)[−1].
+When E = {i}, we treat the symbol x∅ as zero in the right-hand side of (D2 ).
+The symbols MF and MF appear inconsistently in the literature, sometimes this way and sometimes
+interchanged. The localization is frequently called the restriction. On the other hand, the contraction is
+also sometimes called the restriction, especially in the context of hyperplane arrangements, so we avoid the
+word restriction to minimize ambiguity.
+5
+For a graded vector space V , we write V [m] for the graded vector space whose degree k piece is equal
+to V k+m .
+3
+4
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+5
+
+Remark 1.3. When M is the Boolean matroid on E, the graded dimension of CH(M) is
+ 
+given by the Eulerian numbers kd , and the decomposition (D2 ) specializes to the known
+quadratic recurrence relation
+sd (t) = sd−1 (t) + t
+
+d−2
+
+d−1
+sk (t)sd−k−1 (t),
+k
+
+s0 (t) = 1,
+
+k=0
+
+where sk (t) is the k-th Eulerian polynomial [26, Theorem 1.5].
+1.2. We also give similar decompositions for the augmented Chow ring of M, which
+we now introduce. Let SM be the ring of polynomials in two sets of variables
+SM := Q[yi |i is an element of E] ⊗ Q[xF |F is a proper ﬂat of M].
+The augmented Chow ring of M is the quotient algebra
+CH(M) := SM /(IM + JM ),
+where IM is the ideal generated by the linear forms
+yi −
+
+
+
+xF , for every element i of E,
+
+i∈F
+/
+
+and JM is the ideal generated by the quadratic monomials
+xF1 xF2 , for every pair of incomparable proper ﬂats F1 and F2 of M, and
+yi xF , for every element i of E and every proper ﬂat F of M not containing i.
+The augmented Chow ring of M admits a degree map
+degM : CHd (M) −→ Q,
+
+xF :=
+
+
+
+xF −→ 1,
+
+F ∈F
+
+where F is any complete ﬂag of proper ﬂats of M (Deﬁnition 2.15). For any integer k,
+the degree map deﬁnes the Poincaré pairing
+CHk (M) × CHd−k (M) −→ Q,
+
+(η1 , η2 ) −→ degM (η1 η2 ).
+
+If M is realizable over a ﬁeld, then the augmented Chow ring of M is isomorphic to the
+Chow ring of a smooth projective variety over the ﬁeld (Remark 2.16).
+Remark 1.4. The subring of the augmented Chow ring generated by the elements yi is
+isomorphic to the graded Möbius algebra H(M) (Proposition 2.18), and we have isomorphisms
+
+6
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+CH(M) ∼
+= CH(M)/ideal(yi )i∈E ∼
+= CH(M) ⊗H(M) Q.
+The H(M)-module structure of CH(M) will be studied in detail in the forthcoming paper
+[4]. In this paper, the graded Möbius algebra will not appear outside of Proposition 2.18.
+As before, we write M \ i for the matroid obtained from M by deleting the element i.
+The augmented Chow rings of M and M \ i are related by the graded algebra homomorphism
+θi = θiM : CH(M \ i) −→ CH(M),
+
+xF −→ xF + xF ∪i ,
+
+where a variable in the target is set to zero if its label is not a ﬂat of M. As we will
+see in Section 3, this homomorphism is induced by a projection from the augmented
+Bergman fan of M to the augmented Bergman fan of M \ i. Let CH(i) be the image of
+the homomorphism θi , and let Si be the collection
+
+
+Si = Si (M) := F |F is a proper subset of E \ i such that F ∈ L(M) and F ∪ i ∈ L(M) .
+Equivalently, Si can be deﬁned as the collection of all proper subsets F of E \ i such that
+F ∪ i is a ﬂat of M and i is a coloop in MF ∪i .
+Theorem 1.5. If i is not a coloop of M, there is a direct sum decomposition of CH(M)
+into indecomposable graded CH(M \ i)-modules
+CH(M) = CH(i) ⊕
+
+
+
+xF ∪i CH(i) .
+
+(D1 )
+
+F ∈Si
+
+All pairs of distinct summands are orthogonal for the Poincaré pairing of CH(M). If i is
+a coloop of M, there is a direct sum decomposition of CH(M) into indecomposable graded
+CH(M \ i)-modules
+CH(M) = CH(i) ⊕ xE\i CH(i) ⊕
+
+
+
+xF ∪i CH(i) .
+
+(D2 )
+
+F ∈Si
+
+All pairs of distinct summands except for the ﬁrst two are orthogonal for the Poincaré
+pairing of CH(M).
+The CH(M \ i)-module summands in the decompositions (D1 ) and (D2 ) admit isomorphisms
+CH(i) ∼
+= CH(M \ i) and xF ∪i CH(i) ∼
+= CH(MF ∪i ) ⊗ CH(MF )[−1],
+(Propositions 3.4 and 3.5). In addition, if i is a coloop of M,
+xE\i CH(i) ∼
+= CH(M \ i)[−1].
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+7
+
+1.3. Let B be the Boolean matroid on E. By deﬁnition, every subset of E is a
+ﬂat of B. The Chow rings of B and M are related by the surjective graded algebra
+homomorphism
+CH(B) −→ CH(M),
+
+xS −→ xS ,
+
+where a variable in the target is set to zero if its label is not a ﬂat of M. Similarly, we
+have a surjective graded algebra homomorphism
+CH(B) −→ CH(M),
+
+xS −→ xS ,
+
+where a variable in the target is set to zero if its label is not a ﬂat of M. As in [1, Section
+4], we may identify the Chow ring CH(B) with the ring of piecewise polynomial functions
+modulo linear functions on the normal fan ΠB of the standard permutohedron in RE .
+Similarly, the augmented Chow ring CH(B) can be identiﬁed with the ring of piecewise
+polynomial functions modulo linear functions of the normal fan ΠB of the stellahedron
+in RE (Deﬁnition 2.4). A convex piecewise linear function on a complete fan is said to
+be strictly convex if there is a bijection between the cones in the fan and the faces of the
+graph of the function.
+In Section 4, we use Theorems 1.2 and 1.5 to give simple proofs of Poincaré duality,
+the hard Lefschetz theorem, and the Hodge–Riemann relations for CH(M) and CH(M).
+Theorem 1.6. Let  be a strictly convex piecewise linear function on ΠB , viewed as an
+element of CH1 (M).
+(1) (Poincaré duality theorem) For every nonnegative integer k < d2 , the bilinear pairing
+CHk (M) × CHd−k−1 (M) −→ Q,
+
+(η1 , η2 ) −→ degM (η1 η2 )
+
+is nondegenerate.
+(2) (Hard Lefschetz theorem) For every nonnegative integer k < d2 , the multiplication
+map
+CHk (M) −→ CHd−k−1 (M),
+
+η −→ d−2k−1 η
+
+is an isomorphism.
+(3) (Hodge–Riemann relations) For every nonnegative integer k < d2 , the bilinear form
+CHk (M) × CHk (M) −→ Q,
+
+(η1 , η2 ) −→ (−1)k degM (d−2k−1 η1 η2 )
+
+is positive deﬁnite on the kernel of multiplication by d−2k .
+Let  be a strictly convex piecewise linear function on ΠB , viewed as an element of
+CH1 (M).
+
+8
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+(4) (Poincaré duality theorem) For every nonnegative integer k ⩽ d2 , the bilinear pairing
+CHk (M) × CHd−k (M) −→ Q,
+
+(η1 , η2 ) −→ degM (η1 η2 )
+
+is nondegenerate.
+(5) (Hard Lefschetz theorem) For every nonnegative integer k ⩽ d2 , the multiplication
+map
+CHk (M) −→ CHd−k (M),
+
+η −→ d−2k η
+
+is an isomorphism.
+(6) (Hodge–Riemann relations) For every nonnegative integer k ⩽ d2 , the bilinear form
+CHk (M) × CHk (M) −→ Q,
+
+(η1 , η2 ) −→ (−1)k degM (d−2k η1 η2 )
+
+is positive deﬁnite on the kernel of multiplication by d−2k+1 .
+Theorem 1.6 holds non-vacuously, as there are strictly convex piecewise linear functions on ΠB and ΠB (Proposition 2.6). The ﬁrst part of Theorem 1.6 on CH(M) recovers
+the main result of [1].6 The second part of Theorem 1.6 on CH(M) is new.
+Remark 1.7. By Remark 2.10 and Proposition 2.12, we can reformulate Theorem 1.6 as
+follows: Both the Bergman fan and the augmented Bergman fan satisfy Poincaré duality,
+and they satisfy the hard Lefschetz theorem and the Hodge–Riemann relations with
+respect to any strictly convex piecewise linear function.
+1.4. In Section 5, we use Theorems 1.2 and 1.5 to obtain decompositions of CH(M)
+and CH(M) related to those appearing in [1, Theorem 6.18]. Let Hα (M) be the subalgebra
+of CH(M) generated by the element
+αM :=
+
+
+
+xG ∈ CH1 (M),
+
+i∈G
+
+where the sum is over all nonempty proper ﬂats G of M containing a given element i in
+E, and let Hα (M) be the subalgebra of CH(M) generated by the element
+αM :=
+
+
+
+xG ∈ CH1 (M),
+
+G
+
+where the sum is over all proper ﬂats G of M. We deﬁne graded subspaces Jα (M) and
+Jα (M) by
+6
+Independent proofs of Poincaré duality for CH(M) were given in [3] and [2]. The authors of [3] also prove
+the degree 1 Hodge–Riemann relations for CH(M).
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+Jkα (M) :=
+
+Hkα (M)
+
+if k = d − 1,
+
+0
+
+if k = d − 1,
+
+Jkα (M) :=
+
+9
+
+Hkα (M)
+
+if k = d,
+
+0
+
+if k = d.
+
+d
+A degree computation shows that the elements αd−1
+and αM
+are nonzero (PropoM
+sition 2.32). We will construct an injective CH(M)-module homomorphism (Propositions 2.25 and 2.27)
+
+ψF
+: CH(MF ) ⊗ CH(MF ) −→ CH(M),
+M
+
+
+
+xF  \F ⊗
+
+F
+
+
+
+xF  −→ xF
+
+F 
+
+
+
+xF 
+
+F
+
+
+
+xF  ,
+
+F 
+
+and an injective CH(M)-module homomorphism (Propositions 2.21 and 2.23)
+F
+ψM
+: CH(MF ) ⊗ CH(MF ) −→ CH(M),
+
+
+
+xF  \F ⊗
+
+F
+
+
+
+xF  −→ xF
+
+F 
+
+
+F
+
+xF 
+
+
+
+xF  .
+
+F 
+
+Theorem 1.8. Let Q = Q(M) be the set of all nonempty proper ﬂats of M, and let Q =
+Q(M) be the set of all proper ﬂats of M with rank at least two.
+(1) We have a decomposition of Hα (M)-modules
+CH(M) = Hα (M) ⊕
+
+
+F ∈Q
+
+ψF
+CH(MF ) ⊗ Jα (MF ).
+M
+
+(D3 )
+
+All pairs of distinct summands are orthogonal for the Poincaré pairing of CH(M).
+(2) We have a decomposition of Hα (M)-modules
+CH(M) = Hα (M) ⊕
+
+
+
+F
+ψM
+CH(MF ) ⊗ Jα (MF ).
+
+(D3 )
+
+F ∈Q
+
+All pairs of distinct summands are orthogonal for the Poincaré pairing of CH(M).
+Remark 1.9. The decomposition (D3 ) and the decomposition induced by [1, Theorem
+6.18] are isomorphic as decompositions of graded vector spaces, but the latter one is not
+an orthogonal decomposition. In each case, applying the decomposition to MF for all
+F , we get a basis of CH(M) that is permuted by any automorphism of M. For example,
+when M is a matroid of rank 5, the decomposition (D3 ) in degree 3 gives
+CH3 (M) = Qα3M ⊕
+
+
+
+Q ψF
+(α2MF ⊗ 1) ⊕
+M
+
+rk F =2
+
+⊕
+
+
+
+
+rk F =3
+
+Q ψF
+(1 ⊗ α2MF )
+M
+
+rk F =4
+
+while the decomposition [1, Theorem 6.18] reads
+
+,
+
+Q ψF
+(αMF ⊗ αMF )
+M
+
+10
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+CH3 (M) = Qα3M ⊕
+
+
+
+Q ψF
+(α2MF ⊗ 1) ⊕
+M
+
+rk F =2
+
+⊕
+
+
+
+
+
+Q xF ψ F
+(1 ⊗ αMF )
+M
+
+rk F =3
+
+Q x2F ψ F
+(1 ⊗ 1) .
+M
+
+rk F =4
+
+Only the former is orthogonal to the common decomposition in the complimentary degree
+CH1 (M) = QαM ⊕
+
+
+rk F =2
+
+QxF ⊕
+
+
+rk F =3
+
+QxF ⊕
+
+
+
+QxF .
+
+rk F =4
+
+In general, the basis of CH(M) given by the decomposition (D3 ) is diﬀerent from the
+ones in [17, Corollary 1] and [3, Corollary 3.3.3].
+Remark 1.10. When M is the Boolean matroid on E, the decomposition (D3 ) specializes
+to a linear recurrence relation for the Eulerian polynomials
+
+0=1+
+
+d
+
+d t − td−k
+sk (t),
+k
+1−t
+
+s0 (t) = 1.
+
+k=0
+
+1.5. For realizable matroids, the Chow ring, the augmented Chow ring, and the
+Möbius algebra are indeed Chow rings (or cohomology rings when realized over C) of
+certain algebraic varieties. We explain the geometric motivations of the paper in the
+remaining part of the introduction.
+First, we recall the deﬁnition and some relevant properties of semi-small maps. Let
+f : X → Y be a map between smooth complex projective varieties. For every integer
+k, we say that the map f is semi-small if there is no irreducible subvariety T ⊆ X
+such that 2 dim T − dim f (T ) > dim X. For example, if f is the blowup along a smooth
+center Z, then f is semi-small if and only if Z ⊆ Y is of codimension at most two.
+Semi-small maps play an essential role in the proof of the decomposition theorem by
+de Cataldo and Migliorini [10,11]. Using the language of the decomposition theorem, a
+map f : X → Y of smooth projective varieties is semi-small if and only if the derived
+pushforward Rf∗ (QX [dim X]) is a perverse sheaf on Y . If f is semi-small, then for any
+ample class A in H 2 (Y ; Q), its pullback f ∗ (A) behaves like an ample class on X [10,
+Propositions 2.2.7 and 2.3.1]. More precisely, the cohomology ring H • (X; Q) satisﬁes the
+hard Lefschetz theorem and the Hodge–Riemann relations with respect to f ∗ (A).
+When M is realized by a hyperplane arrangement A = {Hi }i∈E in the projectivization
+of a d-dimensional vector space V over a ﬁeld F , there are smooth projective varieties
+XA and X A over F whose Chow rings are isomorphic to CH(M) and CH(M) respectively,
+and we call them the wonderful model and the augmented wonderful model of A. The
+wonderful model X A was used in [19] to prove the log-concavity of the coeﬃcients of the
+characteristic polynomial of realizable matroids.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+11
+
+Let us recall the construction of X A . For any nonempty proper subset S ⊆ E, we set
+HS =
+
+
+
+Hi
+
+and HS◦ = HS \
+
+i∈S
+
+
+
+HT .
+
+ST
+
+Then HS◦ is nonempty if and only if S is a nonempty proper ﬂat of M, and in this case,
+
+the dimension of HS◦ is equal to crk(S) − 1. The divisor i∈E Hi admits a stratiﬁcation
+
+◦
+F HF , where the disjoint union is over all nonempty proper ﬂats F of M.
+i∈E Hi =
+To construct the wonderful model X A , we ﬁrst blow up the points HF in P (V ) for all
+corank one ﬂats F , then we blow up the strict transforms of HF for corank two ﬂats
+F , and so on. The resulting smooth projective variety is X A . See Remark 2.16 for an
+alternative description of the wonderful model.
+Denote by A \ i the hyperplane arrangement obtained from A by deleting the hyperplane Hi . Then there is regular map X A → X A\i , which models the decompositions (D1 )
+and (D2 ). When i is not a coloop of M, the map is semi-small because it can be written
+as a sequence of blowups of smooth subvarieties of codimension two parametrized by Si .
+In fact, for any F in Si , when the strict transform of HF is blown up in the construction
+of X A\i , the preimage of HF◦ ∪i is of codimension two. The wonderful model X A can be
+obtained from X A\i by blowing up the closure of the preimage of HF◦ ∪i for all F in Si .
+When i is a coloop, the map X A → X A\i is generically a P 1 bundle, which corresponds
+to the ﬁrst two summands CH(i) and xE\i CH(i) in the decomposition (D2 ).
+The decomposition (D3 ) is modeled by the composition of all the blowup maps X A →
+P (V ) in the construction of X A . Moreover, the class α in CH1 (MA ) is equal to the
+pullback of the hyperplane class of P (V ), via the identiﬁcation of CH(MA ) and the
+Chow ring of X A . For each i in E, choose a linear form fi that deﬁnes the hyperplane
+Hi . Then the rational map
+1
+fi i∈E
+
+: P (V )  P (F E )
+
+extends to a regular map X A → P (F E ). The pullback of the hyperplane class of P (F E )
+is equal to the class β, which will be deﬁned in Section 2.6. The image of X A in P (F E )
+is the projective reciprocal plane, which is singular in general, and its intersection cohomology groups are closely related to the Kazhdan–Lusztig polynomial of M (see [14]).
+The decomposition of CH(M) as a module over the subalgebra Q[β] involves intersection
+cohomology groups of singular projective varieties and will be studied in [4].
+To construct the augmented wonderful model XA , we start with the projective space
+P (V ⊕ F ) = V ∪ P (V ).
+For any nonempty proper ﬂat F , we consider the previously deﬁned HF as a linear
+subspace of P (V ). Similar to the construction of X A , we ﬁrst blow up all HF in P (V )
+for all corank one ﬂats F , then we blow up the strict transforms of HF for all corank
+
+12
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+two ﬂats F . We continue this process until we blow up HF for all rank one ﬂats F . Since
+all the blowup centers are in the hyperplane at inﬁnity, the aﬃne space V remains an
+open subset of XA . Moreover, the strict transform of the hyperplane at inﬁnity is exactly
+isomorphic to X A , which explains the pullback map ϕ∅
+M : CH(M) → CH(M) and the
+∅
+pushforward map ψM : CH(M) → CH(M).
+For any i in E, there is a regular map XA → XA\i which models the decompositions
+(D1 ) and (D2 ). Moreover, when i is not a coloop, the map XA → XA\i is semi-small. The
+decomposition (D3 ) is modeled by the composition of all blowup maps XA → P (V ⊕ F ),
+and the class α is equal to the pullback of the hyperplane class, via identifying CH(M)
+with the Chow ring of XA .7 There is a natural map XA → (P 1 )E , which induces the
+classes yi for i in E. In fact, the linear map
+(fi )i∈E : V → F E
+extends to a regular map XA → (P 1 )E . The image of the map XA → (P 1 )E is the
+variety YA in [20], now called the Schubert variety of A. The operational Chow ring of
+YA is isomorphic to H(M). The decomposition of CH(M) as an H(M)-module involves
+the intersection cohomology groups of singular varieties, and will be studied in [4].
+The decomposition theorem for proper toric maps was studied in [12], and the combinatorial generalization to fans was studied in [21]. Since the Bergman fan and the
+augmented Bergman fan are not complete, our results are of a diﬀerent nature.
+Acknowledgments. We thank Christopher Eur and Matthew Stevens for useful discussions. We also thank the referees for carefully reading the paper and making many helpful
+suggestions.
+2. The Chow ring and the augmented Chow ring of a matroid
+In this section, we collect the various properties of the algebras CH(M) and CH(M)
+that we will need in order to prove Theorems 1.2–1.8. In Section 2.1, we review the
+deﬁnition and basic properties of the Bergman fan and introduce the closely related
+augmented Bergman fan of a matroid. Section 2.2 is devoted to understanding the stars
+of the various rays in these two fans, while Section 2.3 is where we compute the space
+of balanced top-dimensional weights on each fan. Feichtner and Yuzvinsky showed that
+the Chow ring of a matroid coincides with the Chow ring of the toric variety associated
+with its Bergman fan [17, Theorem 3], and we establish the analogous result for the
+augmented Chow ring in Section 2.4. Section 2.5 is where we show that the augmented
+Chow ring contains the graded Möbius algebra. In Section 2.6, we use the results of
+Section 2.2 to construct various homomorphisms that relate the Chow and augmented
+Chow rings of diﬀerent matroids.
+7
+There is no natural map from XA to P (F E ) or to P (F E ⊕ F), and hence the symbol βM will not be
+deﬁned.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+13
+
+Remark 2.1. It is worth noting why we need to interpret CH(M) and CH(M) as Chow
+rings of toric varieties. First, the study of balanced weights on the Bergman fan and
+augmented Bergman fan allow us to show that CHd−1 (M) and CHd (M) are nonzero,
+which is not easy to prove directly from the deﬁnitions. The deﬁnition of the pullback
+and pushforward maps in Section 2.6 is made cleaner by thinking about fans, though it
+would also be possible to deﬁne these maps by taking Propositions 2.20, 2.21, 2.24, 2.25,
+2.28, and 2.29 as deﬁnitions. Finally, and most importantly, the fan perspective will be
+essential for understanding the ample classes that appear in Theorem 1.6.
+2.1. Fans
+Let E be a ﬁnite set, and let M be a loopless matroid of rank d on the ground set E.
+We write rkM for the rank function of M, and write clM for the closure operator of M,
+which for a set S returns the smallest ﬂat containing S. The independence complex IM
+of M is the simplicial complex of independent sets of M. A set I ⊆ E is independent if
+and only if the rank of clM (I) is |I|. The vertices of IM are the elements of the ground
+set E, and a collection of vertices is a face of IM when the corresponding set of elements
+is an independent set of M. The Bergman complex ΔM of M is the order complex of the
+poset of nonempty proper ﬂats of M. The vertices of ΔM are the nonempty proper ﬂats
+of M, and a collection of vertices is a face of ΔM when the corresponding set of ﬂats is
+a ﬂag. The independence complex of M is pure of dimension d − 1, and the Bergman
+complex of M is pure of dimension d − 2. For a detailed study of the simplicial complexes
+IM and ΔM , we refer to [5]. We introduce the augmented Bergman complex ΔM of M
+as a simplicial complex that interpolates between the independence complex and the
+Bergman complex of M.
+Deﬁnition 2.2. Let I be an independent set of M, and let F be a ﬂag of proper ﬂats
+of M. When I is contained in every ﬂat in F, we say that I is compatible with F and
+write I ⩽ F. The augmented Bergman complex ΔM of M is the simplicial complex of all
+compatible pairs I ⩽ F, where I is an independent set of M and F is a ﬂag of proper
+ﬂats of M.
+A vertex of the augmented Bergman complex ΔM is either a singleton subset of E or
+a proper ﬂat of M. More precisely, the vertices of ΔM are the compatible pairs either of
+the form {i} ⩽ ∅ or of the form ∅ ⩽ {F }, where i is an element of E and F is a proper
+ﬂat of M. The augmented Bergman complex contains both the independence complex IM
+and the Bergman complex ΔM as subcomplexes. In fact, ΔM contains the order complex
+of the poset of proper ﬂats of M, which is the cone over the Bergman complex with the
+cone point corresponding to the empty ﬂat. It is straightforward to check that ΔM is
+pure of dimension d − 1.
+
+14
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+Proposition 2.3. The Bergman complex and the augmented Bergman complex of M are
+both connected in codimension 1.
+Proof. The statement about the Bergman complex is a direct consequence of its shellability [5]. We prove the statement about the augmented Bergman complex using the
+statement about the Bergman complex.
+The claim is that, given any two facets of ΔM , one may travel from one facet to the
+other by passing through faces of codimension at most 1. Since the Bergman complex of
+M is connected in codimension 1, the subcomplex of ΔM consisting of faces of the form
+∅ ⩽ F is connected in codimension 1. Thus it suﬃces to show that any facet of ΔM can
+be connected to a facet of the form ∅ ⩽ F through codimension 1 faces.
+Let I ⩽ F be a facet of ΔM . If I is nonempty, choose any element i of I, and consider
+the ﬂag of ﬂats G obtained by adjoining the closure of I \ i to F. The independent set
+I \ i is compatible with the ﬂag G, and the facet I ⩽ F is adjacent to the facet I \ i ⩽ G.
+Repeating the procedure, we can connect the given facet to a facet of the desired form
+through codimension 1 faces. 
+Let RE be the vector space spanned by the standard basis vectors ei corresponding
+to the elements i ∈ E. For an arbitrary subset S ⊆ E, we set
+eS :=
+
+
+
+ei .
+
+i∈S
+
+For an element i ∈ E, we write ρi for the ray generated by the vector ei in RE . For
+a subset S ⊆ E, we write ρS for the ray generated by the vector −eE\S in RE , and
+write ρS for the image of this ray in RE / eE , which is generated by the image of eS .8
+Using these rays, we construct fan models of the Bergman complex and the augmented
+Bergman complex as follows.
+Deﬁnition 2.4. The Bergman fan ΠM of M is a simplicial fan in the quotient space
+RE / eE with rays ρF for nonempty proper ﬂats F of M. The cones of ΠM are of the
+form
+σ F := cone{eF }F ∈F = cone{−eE\F }F ∈F ,
+where F is a ﬂag of nonempty proper ﬂats of M.
+The augmented Bergman fan ΠM of M is a simplicial fan in RE with rays ρi for
+elements i in E and ρF for proper ﬂats F of M. The cones of the augmented Bergman
+fan are of the form
+σI⩽F := cone{ei }i∈I + cone{−eE\F }F ∈F ,
+8
+
+The reason why ρS is the correct lift of ρS for our purposes will become clear in Section 2.2.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+15
+
+{2} ⩽ ∅
+
+{2} ⩽ {{2}}
+
+∅ ⩽ {{2}}
+
+{1, 2} ⩽ ∅
+
+∅⩽∅
+
+∅ ⩽ {∅, {2}}
+
+{1} ⩽ ∅
+
+{1} ⩽ {{1}}
+∅ ⩽ {∅, {1}}
+
+∅ ⩽ {∅}
+
+∅ ⩽ {{1}}
+
+Fig. 1. The augmented Bergman fan of the rank 2 Boolean matroid on {1, 2}.
+
+where F is a ﬂag of proper ﬂats of M and I is an independent set of M compatible with
+F. We write σI for the cone σI⩽F when F is the empty ﬂag of ﬂats of M (see Fig. 1).
+Remark 2.5. If E is nonempty, then the Bergman fan ΠM is the star of the ray ρ∅ in the
+augmented Bergman fan ΠM . If E is empty, then ΠM and ΠM both consist of a single
+0-dimensional cone.
+Let N be another loopless matroid on E. The matroid M is said to be a quotient of
+N if every ﬂat of M is a ﬂat of N. The condition implies that every independent set of
+M is an independent set of N [22, Proposition 8.1.6]. Therefore, when M is a quotient of
+N, the augmented Bergman fan of M is a subfan of the augmented Bergman fan of N,
+and the Bergman fan of M is a subfan of the Bergman fan of N. In particular, we have
+inclusions of fans ΠM ⊆ ΠB and ΠM ⊆ ΠB , where B is the Boolean matroid on E deﬁned
+by the condition that E is an independent set of B.
+Proposition 2.6. The Bergman fan and the augmented Bergman fan of B are each normal
+fans of convex polytopes. In particular, there are strictly convex piecewise linear functions
+on ΠB and ΠB .
+The above proposition can be used to show that the augmented Bergman fan and the
+Bergman fan of M are, in fact, fans.
+Proof. The statement for the Bergman fan is well-known: The Bergman fan of B is the
+E
+normal fan of the standard permutohedron in e⊥
+E ⊆ R . See, for example, [1, Section 2].
+
+16
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+The statement for the augmented Bergman fan ΠB follows from the fact that it is an
+iterated stellar subdivision of the normal fan of the simplex
+conv{ei , eE }i∈E ⊆ RE .
+More precisely, ΠB is isomorphic to the fan ΣP in [1, Deﬁnition 2.3], where P is the order
+ﬁlter of all subsets of E ∪ 0 containing the new element 0, via the linear isomorphism
+RE −→ RE∪0 / eE + e0 ,
+
+ej −→ ej .
+
+It is shown in [1, Proposition 2.4] that ΣP is an iterated stellar subdivision of the normal
+fan of the simplex.9 
+A direct inspection shows that ΠM is a unimodular fan; that is, the set of primitive
+ray generators in any cone in ΠM is a subset of a basis of the free abelian group ZE . It
+follows that ΠM is also a unimodular fan; that is, the set of primitive ray generators in
+any cone in ΠM is a subset of a basis of the free abelian group ZE / eE .
+2.2. Stars
+For any element i of E, we write cl(i) for the closure of i in M, and write ιi for the
+injective linear map
+ιi : RE\cl(i) −→ RE / ei ,
+
+ej −→ ej .
+
+For any proper ﬂat F of M, we write ιF for the linear isomorphism
+ιF : RE\F / eE\F
+
+⊕ RF −→ RE / eE\F ,
+
+ej −→ ej .
+
+For any nonempty proper ﬂat F of M, we write ιF for the linear isomorphism
+ιF : RE\F / eE\F
+
+⊕ RF / eF −→ RE / eE , eE\F ,
+
+ej −→ ej .
+
+Let MF be the localization of M at F , and let MF be the contraction of M by F .
+Proposition 2.7. The following are descriptions of the stars of the rays in ΠM and ΠM
+using the three linear maps above.
+9
+In fact, the augmented Bergman fan ΠB is the normal fan of the stellahedron in RE , the graph associahedron of the star graph with |E| endpoints. We refer to [7] and [13] for detailed discussions of graph
+associahedra and their realizations. An explicit description of their normal fans that motivated Deﬁnition 2.4
+can be found in [15, Theorem 3.14] and [27, Theorem 7.4].
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+17
+
+(1) For any element i ∈ E, the linear map ιi identiﬁes the augmented Bergman fan of
+Mcl(i) with the star of the ray ρi in the augmented Bergman fan of M:
+ΠMcl(i) ∼
+= starρi ΠM .
+(2) For any proper ﬂat F of M, the linear map ιF identiﬁes the product of the Bergman
+fan of MF and the augmented Bergman fan of MF with the star of the ray ρF in the
+augmented Bergman fan of M:
+Π MF × Π MF ∼
+= starρF ΠM .
+(3) For any nonempty proper ﬂat F of M, the linear map ιF identiﬁes the product of
+the Bergman fan of MF and the Bergman fan of MF with the star of the ray ρF in
+the Bergman fan of M:
+Π MF × Π MF ∼
+= starρF ΠM .
+Repeated applications of the ﬁrst statement show that, for any independent set I of
+M, the star of the cone σI in ΠM can be identiﬁed with the augmented Bergman fan of
+Mcl(I) , where cl(I) is the closure of I in M.
+Proof. The ﬁrst statement follows from the following facts: A ﬂat of M contains i if
+and only if it contains cl(i), and an independent set of M containing i does not contain
+any other element in cl(i). The second and third statements follow directly from the
+deﬁnitions. 
+2.3. Weights
+For any simplicial fan Σ, we write Σk for the set of k-dimensional cones in Σ. If τ is
+a codimension 1 face of a cone σ, we write
+eσ/τ := the primitive generator of the unique ray in σ that is not in τ .
+A k-dimensional balanced weight on Σ is a Q-valued function ω on Σk that satisﬁes the
+balancing condition: For every (k − 1)-dimensional cone τ in Σ,
+
+
+ω(σ)eσ/τ is contained in the subspace spanned by τ ,
+
+τ ⊂σ
+
+where the sum is over all k-dimensional cones σ containing τ . We write MWk (Σ) for the
+group of k-dimensional balanced weights on Σ.
+Proposition 2.8. The Bergman fan and the augmented Bergman fan of M have the following unique balancing property.
+
+18
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+(1) A (d − 1)-dimensional weight on ΠM is balanced if and only if it is constant.
+(2) A d-dimensional weight on ΠM is balanced if and only if it is constant.
+Proof. The ﬁrst statement is [1, Proposition 5.2]. We prove the second statement.
+Let σI⩽F be a codimension 1 cone of ΠM , and let F be the smallest ﬂat in F ∪ {E}.
+We analyze the primitive generators of the rays in the star of the cone σI⩽F in ΠM . Let
+cl(I) be the closure of I in M. There are two cases.
+When the closure of I is not F , the primitive ray generators in question are −eE\cl(I)
+and ei , for elements i in F not in the closure of I. The primitive ray generators satisfy
+the relation
+−eE\cl(I) +
+
+
+
+ei = −eE\F ,
+
+i∈F \cl(I)
+
+which is zero modulo the span of σI⩽F . As the ei ’s are independent modulo the span of
+σI⩽F , any relation between the primitive generators must be a multiple of the displayed
+one.
+When the closure of I is F , the fact that σI⩽F has codimension 1 implies that there
+is a unique integer k with rk F < k < rk M such that F does not include a ﬂat of rank
+k. Let F◦ be the unique ﬂat in F of rank k − 1, and let F ◦ be the unique ﬂat in F ∪ {E}
+of rank k + 1. The primitive ray generators in question are −eE\G for the ﬂats G in G,
+where G is the set of ﬂats of M covering F◦ and covered by F ◦ . By the ﬂat partition
+property of matroids [25, Section 1.4], the primitive ray generators satisfy the relation
+
+
+−eE\G = −(|G| − 1)eE\F◦ − eE\F ◦ ,
+
+G∈G
+
+which is zero modulo the span of σI⩽F . Since any proper subset of the primitive generators −eE\G for G in G is independent modulo the span of σI⩽F , any relation between
+the primitive generators must be a multiple of the displayed one.
+The local analysis above shows that any constant d-dimensional weight on ΠM is
+balanced. Since ΠM is connected in codimension 1 by Proposition 2.3, it also shows that
+any d-dimensional balanced weight on ΠM must be constant. 
+Remark 2.9. The deﬁnition of Bergman fan and augmented Bergman fan generalizes
+to any atomic lattice. The above balancing condition is equivalent to the ﬂat partition
+property: For any ﬂat F , any element in E \ F is contained in exactly one ﬂat that is
+minimal among the ﬂats strictly containing F .
+2.4. Chow rings
+Any unimodular fan Σ in RE deﬁnes a graded commutative algebra CH(Σ), which is
+the Chow ring of the associated smooth toric variety XΣ over C with rational coeﬃcients.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+19
+
+Equivalently, CH(Σ) is the ring of continuous piecewise polynomial functions on Σ with
+rational coeﬃcients modulo the ideal generated by globally linear functions [6, Section
+3.1]. We write CHk (Σ) for the Chow group of codimension k cycles in XΣ , so that
+CH(Σ) =
+
+
+
+CHk (Σ).
+
+k
+
+The group of k-dimensional balanced weights on Σ is related to CHk (Σ) by the isomorphism
+MWk (Σ) −→ HomQ (CHk (Σ), Q),
+
+ω −→ (xσ −→ ω(σ)),
+
+where xσ is the class of the torus orbit closure in XΣ corresponding to a k-dimensional
+cone σ in Σ. See [1, Section 5] for a detailed discussion. For general facts on toric varieties
+and Chow rings, and for any undeﬁned terms, we refer to [9] and [16].
+Remark 2.10. For any simplicial fan Σ, we will say that Σ satisﬁes the hard Lefschetz
+theorem or the Hodge–Riemann relations with respect to some piecewise linear function
+on Σ if the ring CH(Σ) satisﬁes the hard Lefschetz theorem or the Hodge–Riemann
+relations with respect to the corresponding element of CH1 (Σ).
+In Proposition 2.12 below, we show that the Chow ring of M coincides with CH(ΠM )
+and that the augmented Chow ring of M coincides with CH(ΠM ).
+Lemma 2.11. The following identities hold in the augmented Chow ring CH(M).
+(1) For any element i of E, we have yi2 = 0.
+
+
+(2) For any two bases I1 and I2 of a ﬂat F of M, we have i∈I1 yi = i∈I2 yi .
+
+(3) For any dependent set J of M, we have j∈J yj = 0.
+Proof. The ﬁrst identity is a straightforward consequence of the relations in IM and JM :
+yi2 = yi
+
+
+
+xF
+
+= 0.
+
+i∈F
+/
+
+For the second identity, we may assume that I1 \ I2 = {i1 } and I2 \ I1 = {i2 }, by
+the basis exchange property of matroids and an induction on the size of the symmetric
+diﬀerence between I1 and I2 . Since a ﬂat of M contains I1 if and only if it contains I2 ,
+we have
+
+i1 ∈G
+
+xG
+
+
+
+yi =
+
+i∈I1 ∩I2
+
+
+
+xG
+
+
+
+i2 ∈G
+
+yi =
+
+i∈I1 ∩I2
+
+I1 ⊆G
+
+=
+
+
+
+xG
+
+
+
+i∈I1 ∩I2
+
+
+I2 ⊆G
+
+yi .
+
+xG
+
+
+i∈I1 ∩I2
+
+yi
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+20
+
+This immediately implies that we also have
+
+
+
+
+xG
+
+
+
+yi =
+
+i∈I1 ∩I2
+
+i1 ∈G
+/
+
+
+
+xG
+
+yi ,
+
+i∈I1 ∩I2
+
+i2 ∈G
+/
+
+which tells us that
+
+
+yi = yi1
+
+
+
+yi =
+
+i∈I1 ∩I2
+
+i∈I1
+
+= yi2
+
+
+
+
+
+
+
+xG
+
+i∈I1 ∩I2
+
+i1 ∈G
+/
+
+yi =
+
+i∈I1 ∩I2
+
+
+
+yi =
+
+
+
+
+
+xG
+
+i2 ∈G
+/
+
+yi
+
+i∈I1 ∩I2
+
+yi .
+
+i∈I2
+
+For the third identity, we may suppose that J is a circuit, that is, a minimal dependent
+set. Since M is a loopless matroid, we may choose distinct elements j1 and j2 from J.
+Note that the independent sets J \ j1 and J \ j2 have the same closure because J is a
+circuit. Therefore, by the second identity, we have
+
+
+
+
+yj =
+
+j∈J\j1
+
+yj .
+
+j∈J\j2
+
+Combining the above with the ﬁrst identity, we get
+
+j∈J
+
+yj = yj1
+
+
+
+
+
+yj = yj1
+
+j∈J\j1
+
+
+
+yj = yj21
+
+yj = 0.
+
+
+
+j∈J\{j1 ,j2 }
+
+j∈J\j2
+
+By the second identity in Lemma 2.11, we may deﬁne
+yF :=
+
+
+
+yi in CH(M)
+
+i∈I
+
+for any ﬂat F of M and any basis I of F . The element yE will play the role of the
+fundamental class for the augmented Chow ring of M.
+Proposition 2.12. We have isomorphisms
+CH(M) ∼
+= CH(ΠM )
+
+and
+
+CH(M) ∼
+= CH(ΠM ).
+
+Proof. The ﬁrst isomorphism is proved in [17, Theorem 3]; see also [1, Section 5.3].
+
+Let KM be the ideal of SM generated by the monomials j∈J yj for every dependent
+set J of M. The ring of continuous piecewise polynomial functions on ΠM is isomorphic
+to the Stanley–Reisner ring of ΔM , which is equal to
+SM /(JM + KM ).
+The ring CH(ΠM ) is obtained from this ring by killing the linear forms that generate the
+ideal IM . In other words, we have a surjective homomorphism
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+21
+
+CH(M) := SM /(IM + JM ) −→ SM /(IM + JM + KM ) ∼
+= CH(ΠM ).
+The fact that this is an isomorphism follows from the third part of Lemma 2.11. 
+Remark 2.13. By Proposition 2.12, the graded dimension of the Chow ring of the rank d
+Boolean matroid CH(B) is given by the h-vector of the permutohedron in RE . In other
+words, we have
+dim CHk (B) = the Eulerian number
+
+ 
+d
+.
+k
+
+See [26, Section 9.1] for more on permutohedra and Eulerian numbers.
+Remark 2.14. If E is nonempty, we have the balanced weight
+1 ∈ MWd−1 (ΠM ) ∼
+= HomQ (CHd−1 (M), Q),
+which can be used to deﬁne a degree map on the Chow ring of M. Similarly, for any E,
+1 ∈ MWd (ΠM ) ∼
+= HomQ (CHd (M), Q)
+can be used to deﬁne a degree map on the augmented Chow ring of M.
+Deﬁnition 2.15. Consider the following degree maps for the Chow ring and the augmented
+Chow ring of M.
+(1) If E is nonempty, the degree map for CH(M) is the linear map
+degM : CHd−1 (M) −→ Q,
+
+xF −→ 1,
+
+where xF is any monomial corresponding to a maximal cone σF of ΠM .
+(2) For any E, the degree map for CH(M) is the linear map
+degM : CHd (M) −→ Q,
+
+xI⩽F −→ 1,
+
+where xI⩽F is any monomial corresponding to a maximal cone σI⩽F of ΠM .
+By Proposition 2.8, the degree maps are well-deﬁned and are isomorphisms. It follows
+that, for any two maximal cones σ F1 and σ F2 of the Bergman fan of M,
+xF1 = xF2 in CHd−1 (M).
+Similarly, for any two maximal cones σI1 ⩽F1 and σI2 ⩽F2 of the augmented Bergman fan
+of M,
+
+22
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+yF1 xF1 = yF2 xF2 in CHd (M),
+where F1 is the closure of I1 in M and F2 is the closure of I2 in M. Proposition 2.12
+shows that
+CHk (M) = 0 for k ⩾ d and CHk (M) = 0 for k > d.
+Remark 2.16. Let F be a ﬁeld, and let V be a d-dimensional linear subspace of F E . We
+suppose that the subspace V is not contained in F S ⊆ F E for any proper subset S of E.
+Let B be the Boolean matroid on E, and let M be the loopless matroid on E deﬁned by
+S is an independent set of M ⇐⇒ the restriction to V of the projection F E → F S is surjective.
+
+Let P (F E ) be the projective space of lines in F E , and let T E be its open torus. For any
+proper ﬂat F of M, we write HF for the projective subspace
+
+
+HF := p ∈ P (V )|pi = 0 for all i ∈ F .
+The wonderful variety X V is obtained from P (V ) by ﬁrst blowing up HF for every corank
+1 ﬂat F , then blowing up the strict transforms of HF for every corank 2 ﬂat F , and so
+on. Equivalently,
+X V = the closure of P (V ) ∩ T E in the toric variety X M deﬁned by ΠM
+= the closure of P (V ) ∩ T E in the toric variety X B deﬁned by ΠB .
+When E is nonempty, the inclusion X V ⊆ X M induces an isomorphism between their
+Chow rings,10 and hence the Chow ring of X V is isomorphic to CH(M) [17, Corollary 2].
+Let P (F E ⊕ F ) be the projective completion of F E , and let TE be its open torus. The
+projective completion P (V ⊕ F ) contains a copy of P (V ) as the hyperplane at inﬁnity,
+and it therefore contains a copy of HF for every nonempty proper ﬂat F . The augmented
+wonderful variety XV is obtained from P (V ⊕ F 1 ) by ﬁrst blowing up HF for every
+corank 1 ﬂat F , then blowing up the strict transforms of HF for every corank 2 ﬂat F ,
+and so on. Equivalently,
+XV = the closure of P (V ⊕ F ) ∩ TE in the toric variety XM deﬁned by ΠM
+= the closure of P (V ⊕ F ) ∩ TE in the toric variety XB deﬁned by ΠB .
+The inclusion XV ⊆ XM induces an isomorphism between their Chow rings, and hence
+the Chow ring of XV is isomorphic to CH(M).11
+10
+In general, the inclusion X V ⊆ X M does not induce an isomorphism between their singular cohomology
+rings.
+11
+This can be proved using the interpretation of CH(M) in the last sentence of Remark 4.1.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+23
+
+2.5. The graded Möbius algebra
+For any nonnegative integer k, we deﬁne a vector space
+
+
+Hk (M) :=
+
+Q yF ,
+
+F ∈Lk (M)
+
+where the direct sum is over the set Lk (M) of rank k ﬂats of M.
+Deﬁnition 2.17. The graded Möbius algebra of M is the graded vector space
+H(M) :=
+
+
+
+Hk (M).
+
+k⩾0
+
+The multiplication in H(M) is deﬁned by the rule
+
+yF1 yF2 =
+
+yF1 ∨F2
+
+if rkM (F1 ) + rkM (F2 ) = rkM (F1 ∨ F2 ),
+
+0
+
+if rkM (F1 ) + rkM (F2 ) > rkM (F1 ∨ F2 ),
+
+where ∨ stands for the join operation in the lattice of ﬂats L(M) of M.
+Our double use of the symbol yF is justiﬁed by the following proposition, whose proof
+is essentially identical to that of [20, Proposition 9].
+Proposition 2.18. The graded linear map
+H(M) −→ CH(M),
+
+yF −→ yF
+
+is an injective homomorphism of graded algebras.
+Proof. We ﬁrst show that the linear map is injective. It is enough to check that the
+subset
+{yF }F ∈Lk (M) ⊆ CHk (M)
+is linearly independent for every nonnegative integer k < d. Suppose that
+
+
+cF yF = 0 for some cF ∈ Q.
+
+F ∈Lk (M)
+
+For any given rank k ﬂat G, we choose a saturated ﬂag of proper ﬂats G whose smallest
+member is G. By the deﬁning relations of CH(M), we have yF xG = 0 for any rank k ﬂat
+F other than G, therefore
+
+24
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+
+
+cG yG xG =
+
+cF yF xG = 0.
+
+F ∈Lk (M)
+
+Since the degree of yG xG is 1, this implies that cG must be zero.
+We next check that the linear map is an algebra homomorphism using Lemma 2.11.
+Let I1 be a basis of a ﬂat F1 , and let I2 be a basis of a ﬂat F2 . If the rank of F1 ∨ F2 is
+the sum of the ranks of F1 and F2 , then I1 and I2 are disjoint and their union is a basis
+of F1 ∨ F2 . Therefore, in the augmented Chow ring of M,
+yF1 yF2 =
+
+
+
+yi
+
+i∈I1
+
+
+
+yi =
+
+
+
+yi = yF1 ∨F2 .
+
+i∈I1 ∪I2
+
+i∈I2
+
+If the rank of F1 ∨ F2 is less than the sum of the ranks of F1 and F2 , then either I1 and
+I2 intersect or the union of I1 and I2 is dependent in M. Therefore, in the augmented
+Chow ring of M,
+yF1 yF2 =
+
+
+
+yi
+
+i∈I1
+
+
+
+yi = 0. 
+
+i∈I2
+
+Remark 2.19. Consider the torus TE , the toric variety XB , and the augmented wonderful
+variety XV in Remark 2.16. The identity of TE uniquely extends to a toric map
+pB : XB −→ (P 1 )E .
+Let pV be the restriction of pB to the augmented wonderful variety XV . If we identify
+the Chow ring of XV with CH(M) as in Remark 2.16, the image of the pullback p∗V is
+the graded Möbius algebra H(M) ⊆ CH(M).
+2.6. Pullback and pushforward maps
+Let Σ be a unimodular fan, and let σ be a k-dimensional cone in Σ. The torus orbit
+closure in the smooth toric variety XΣ corresponding to σ can be identiﬁed with the toric
+variety of the fan starσ Σ. Its class in the Chow ring of XΣ is the monomial xσ , which
+is the product of the divisor classes xρ corresponding to the rays ρ in σ. The inclusion ι
+of the torus orbit closure in XΣ deﬁnes the pullback ι∗ and the pushforward ι∗ between
+the Chow rings, whose composition is multiplication by the monomial xσ :
+xσ
+
+CH(Σ)
+ι∗
+
+CH(Σ)
+ι∗
+
+CH(starσ Σ)
+The pullback ι∗ is a surjective graded algebra homomorphism, while the pushforward ι∗
+is a degree k homomorphism of CH(Σ)-modules.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+25
+
+We give an explicit description of the pullback ι∗ and the pushforward ι∗ when Σ is
+the augmented Bergman fan ΠM and σ is the ray ρF of a proper ﬂat F of M. Recall
+from Proposition 2.7 that the star of ρF admits the decomposition
+starρF ΠM ∼
+= ΠMF × ΠMF .
+Thus we may identify the Chow ring of the star of ρF with CH(MF ) ⊗ CH(MF ). We
+denote the pullback to the tensor product by ϕF
+M and the pushforward from the tensor
+F
+product by ψM
+:
+xF
+
+CH(M)
+ϕF
+M
+
+CH(M)
+F
+ψM
+
+CH(MF ) ⊗ CH(MF )
+To describe the pullback and the pushforward, we introduce Chow classes αM , αM , and
+β M . They are deﬁned as the sums
+αM :=
+
+
+
+xG ∈ CH1 (M),
+
+G
+
+where the sum is over all proper ﬂats G of M;
+αM :=
+
+
+
+xG ∈ CH1 (M),
+
+i∈G
+
+where the sum is over all nonempty proper ﬂats G of M containing a given element i in
+E; and
+β M :=
+
+
+
+xG ∈ CH1 (M),
+
+i∈G
+/
+
+where the sum is over all nonempty proper ﬂats G of M not containing a given element
+i in E. The linear relations deﬁning CH(M) show that αM and β M do not depend on the
+choice of i.
+Proposition 2.20. The pullback ϕF
+M is the unique graded algebra homomorphism
+CH(M) −→ CH(MF ) ⊗ CH(MF )
+that satisﬁes the following properties:
+• If G is a proper ﬂat of M incomparable to F , then ϕF
+M (xG ) = 0.
+• If G is a proper ﬂat of M properly contained in F , then ϕF
+M (xG ) = 1 ⊗ xG .
+
+26
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+• If G is a proper ﬂat of M properly containing F , then ϕF
+M (xG ) = xG\F ⊗ 1.
+F
+• If i is an element of F , then ϕM (yi ) = 1 ⊗ yi .
+• If i is an element of E \ F , then ϕF
+M (yi ) = 0.
+Moreover, the above ﬁve properties imply the following additional properties of ϕF
+M:
+• The equality ϕF
+M (xF ) = −1 ⊗ αMF − β MF ⊗ 1 holds.
+• The equality ϕF
+M (αM ) = αMF ⊗ 1 holds.
+Proof. The ﬁrst ﬁve properties follow immediately from the pullback formula for toric
+varieties. To show the last two properties, we ﬁx an element i ∈ E \ F . Recall that
+
+yi = i∈G
+/ xG . Thus, by the ﬁrst three and the ﬁfth properties, we have
+
+xF + yi −
+
+F
+ϕF
+M (xF ) = ϕM
+
+=−
+
+
+
+⎛
+
+
+xG
+
+⎝−
+= ϕF
+M
+
+i∈G
+/
+
+
+
+
+
+1 ⊗ xG −
+
+i∈G,F
+/
+G
+
+GF
+
+
+
+⎞
+
+
+
+xG −
+
+xG ⎠
+
+i∈G,F
+/
+G
+
+GF
+
+xG\F ⊗ 1 = −1 ⊗ αMF − β M ⊗ 1,
+F
+
+which gives the second to last property. By the ﬁrst and third properties, we have
+
+F
+ϕF
+M (αM ) = ϕM
+
+
+
+⎛
+
+
+xG
+
+⎝
+= ϕF
+M
+
+⎞
+
+
+
+xG ⎠ =
+
+i∈G,F G
+
+i∈G
+
+
+
+xG\F ⊗ 1 = αMF ⊗ 1,
+
+i∈G,F G
+
+which gives the last property. 
+The next proposition follows immediately from the pushforward formula for toric
+F
+varieties. The projection formula shows that the pushforward ψM
+is a CH(M)-module
+homomorphism.
+F
+Proposition 2.21. The pushforward ψM
+is the unique CH(M)-module homomorphism12
+F
+ψM
+: CH(MF ) ⊗ CH(MF ) −→ CH(M)
+
+that satisﬁes, for any collection S of proper ﬂats of M strictly containing F and any
+collection S of proper ﬂats of M strictly contained in F ,
+
+F
+ψM
+
+
+F  ∈S
+
+12
+
+xF  \F ⊗
+
+
+F  ∈S
+
+
+xF 
+
+= xF
+
+
+F  ∈S
+
+
+
+xF 
+
+F  ∈S
+
+F
+We make ψM
+into a CH(M)-module homomorphism via the pullback ϕF
+M.
+
+xF  .
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+27
+
+F
+The composition ψM
+◦ ϕF
+M is multiplication by the element xF , and the composition
+F
+F
+ϕM ◦ ψM is multiplication by the element ϕF
+M (xF ).
+F
+Remark 2.22. Proposition 2.21 shows that the pushforward ψM
+commutes with the degree
+maps:
+F
+degM ⊗ degMF = degM ◦ ψM
+.
+F
+
+Proposition 2.23. If CH(MF ) and CH(MF ) satisfy the Poincaré duality part of TheoF
+rem 1.6, then ψM
+is injective.
+In other words, assuming Poincaré duality for the Chow rings, the graded CH(M)module CH(MF ) ⊗ CH(MF )[−1] is isomorphic to the principal ideal of xF in CH(M). In
+particular,
+CH(M)[−1] ∼
+= ideal(x∅ ) ⊆ CH(M).
+Proof. We will use the symbol degF to denote the degree function degM ⊗ degMF . For
+F
+F
+contradiction, suppose that ψM
+(η) = 0 for η = 0. By the two Poincaré duality statements
+in Theorem 1.6, there is an element ν such that degF (νη) = 1. By surjectivity of the
+F
+F
+pullback ϕF
+M , there is an element μ such that ν = ϕM (μ). Since ψM is a CH(M)-module
+homomorphism that commutes with the degree maps, we have
+F
+F
+F
+1 = degF (νη) = degM (ψM
+(νη)) = degM (ψM
+(ϕF
+M (μ)η)) = degM (μψM (η)) = degM (0) = 0,
+
+which is a contradiction. 
+We next give an explicit description of the pullback ι∗ and the pushforward ι∗ when
+Σ is the Bergman fan ΠM and σ is the ray ρF of a nonempty proper ﬂat F of M. Recall
+from Proposition 2.7 that the star of ρF admits the decomposition
+starρF ΠM ∼
+= ΠMF × ΠMF .
+Thus we may identify the Chow ring of the star of ρF with CH(MF ) ⊗ CH(MF ). We
+denote the pullback to the tensor product by ϕF
+and the pushforward from the tensor
+M
+F
+product by ψ M :
+xF
+
+CH(M)
+ϕF
+M
+
+CH(M)
+
+CH(MF ) ⊗ CH(M )
+F
+
+ψF
+M
+
+28
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+The following analogues of Propositions 2.20 and 2.21 can be proved by similar
+straightforward computations.
+Proposition 2.24. The pullback ϕF
+is the unique graded algebra homomorphism
+M
+CH(M) −→ CH(MF ) ⊗ CH(MF )
+that satisﬁes the following properties:
+• If G is a nonempty proper ﬂat of M incomparable to F , then ϕF
+(x ) = 0.
+M G
+• If G is a nonempty proper ﬂat of M properly contained in F , then ϕF
+(x ) = 1 ⊗ xG .
+M G
+F
+• If G is a nonempty proper ﬂat of M properly containing F , then ϕM
+(xG ) = xG\F ⊗ 1.
+The above three properties imply the following additional properties of ϕF
+:
+M
+• The equality ϕF
+(x ) = −1 ⊗ αMF − β M ⊗ 1 holds.
+M F
+F
+F
+• The equality ϕM (αM ) = αMF ⊗ 1 holds.
+• The equality ϕF
+(β M ) = 1 ⊗ β MF holds.
+M
+Proposition 2.25. The pushforward ψ F
+is the unique CH(M)-module homomorphism
+M
+CH(MF ) ⊗ CH(MF ) −→ CH(M)
+that satisﬁes, for any collection S of proper ﬂats of M strictly containing F and any
+collection S of nonempty proper ﬂats of M strictly contained in F ,
+
+ψF
+M
+
+
+F  ∈S
+
+
+
+xF  \F ⊗
+
+F  ∈S
+
+
+xF 
+
+= xF
+
+
+
+xF 
+
+F  ∈S
+
+
+
+xF  .
+
+F  ∈S
+
+The composition ψ F
+◦ ϕF
+is multiplication by the element xF , and the composition
+M
+M
+F
+ϕF
+◦
+ψ
+is
+multiplication
+by
+the element ϕF
+(x ).
+M
+M
+M F
+Remark 2.26. Proposition 2.25 shows that the pushforward ψ F
+commutes with the deM
+gree maps:
+degM ⊗ degMF = degM ◦ ψ F
+.
+M
+F
+
+Proposition 2.27. If CH(MF ) and CH(MF ) satisfy the Poincaré duality part of Theois injective.
+rem 1.6, then ψ F
+M
+In other words, assuming Poincaré duality for the Chow rings, the graded CH(M)module CH(MF ) ⊗ CH(MF )[−1] is isomorphic to the principal ideal of xF in CH(M).
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+Proof. The proof is essentially identical to that of Proposition 2.23.
+
+29
+
+
+
+Last, we give an explicit description of the pullback ι∗ and the pushforward ι∗ when
+Σ is the augmented Bergman fan ΠM and σ is the cone σI of an independent set I of M.
+By Proposition 2.7, we have
+starσI ΠM ∼
+= Π MF ,
+where F is the closure of I in M. Thus we may identify the Chow ring of the star of σI
+with CH(MF ). We denote the corresponding pullback by ϕM
+F and the pushforward by
+ψFM :
+yF
+
+CH(M)
+
+CH(M)
+
+ϕM
+F
+
+M
+ψF
+
+CH(MF )
+Note that the pullback and the pushforward only depend on F and not on I.
+The following analogues of Propositions 2.20 and 2.21 are straightforward.
+Proposition 2.28. The pullback ϕM
+F is the unique graded algebra homomorphism
+CH(M) −→ CH(MF )
+that satisﬁes the following properties:
+• If G is a proper ﬂat of M that contains F , then ϕM
+F (xG ) = xG\F .
+• If G is a proper ﬂat of M that does not contain F , then ϕM
+F (xG ) = 0.
+The above two properties imply the following additional properties of ϕM
+F:
+• If i is an element of F , then ϕM
+F (yi ) = 0.
+• If i is an element of E \ F , then ϕM
+F (yi ) = yi .
+• The equality ϕM
+(α
+)
+=
+α
+holds.
+M
+M
+F
+F
+Proposition 2.29. The pushforward ψFM is the unique CH(M)-module homomorphism
+CH(MF ) −→ CH(M)
+that satisﬁes, for any collection S of proper ﬂats of M containing F ,
+
+ψFM
+
+
+F  ∈S
+
+
+xF  \F
+
+= yF
+
+
+F  ∈S
+
+xF  .
+
+30
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+M
+The composition ψFM ◦ ϕM
+F is multiplication by the element yF , and the composition ϕF ◦
+ψFM is zero.
+
+Remark 2.30. Proposition 2.29 shows that the pushforward ψFM commutes with the degree maps:
+degMF = degM ◦ ψFM .
+Proposition 2.31. If CH(MF ) satisﬁes the Poincaré duality part of Theorem 1.6, then
+ψFM is injective.
+In other words, assuming Poincaré duality for the Chow rings, the graded CH(M)module CH(MF )[− rkM (F )] is isomorphic to the principal ideal of yF in CH(M).
+Proof. The proof is essentially identical to that of Proposition 2.23. 
+The basic properties of the pullback and the pushforward maps can be used to describe
+the fundamental classes of CH(M) and CH(M) in terms of αM and αM .
+d
+Proposition 2.32. The degree of αd−1
+is 1, and the degree of αM
+is 1.
+M
+
+Proof. We prove the ﬁrst statement by induction on d ⩾ 1. Note that, for any nonempty
+proper ﬂat F of rank k, we have
+
+ F d−k 
+ d−k
+xF αd−k
+= ψF
+ϕM (αM ) = ψ F
+αMF ⊗ 1 = 0,
+M
+M
+M
+since CHd−k (MF ) = 0. Therefore, for any proper ﬂat a of rank 1 and any element i in
+a, we have
+αd−1
+M =
+
+
+
+d−2
+xF αd−2
+M = xa α M .
+
+i∈F
+
+By the induction hypothesis applied to the matroid Ma of rank d − 1, we have
+d−2
+degM (αd−2
+Ma ) = 1, or equivalently, αMa = xF for any maximal ﬂag F of nonempty
+a
+proper ﬂats of Ma . Thus, we have
+ a d−2 
+ d−2
+
+a
+a
+d−2
+αd−1
+M = xa αM = ψ M ϕM (αM ) = ψ M αMa ⊗ 1 = xF  ,
+where F is any maximal ﬂag of nonempty proper ﬂats of M that starts from a.
+For the second statement, note that, for any proper ﬂat F of rank k,
+ F d−k 
+ d−k
+
+d−k
+F
+F
+xF αM
+= ψM
+ϕM (αM ) = ψM
+αMF ⊗ 1 = 0.
+Using the ﬁrst statement, we get the conclusion from the identity
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+d
+αM
+=
+
+
+
+31
+
+ ∅ d−1 
+ d−1 
+∅
+∅
+d−1
+d−1
+xF αM
+= x∅ αM
+= ψM
+ϕM (αM ) = ψM
+αM . 
+
+F
+d−k k
+More generally, the degree of αM
+β M is the k-th coeﬃcient of the reduced characteristic polynomial of M [1, Proposition 9.5].
+
+3. Proofs of the semi-small decompositions and the Poincaré duality theorems
+In this section, we prove Theorems 1.2 and 1.5 together with the two Poincaré duality
+statements in Theorem 1.6. For an element i of E, we write πi and π i for the coordinate
+projections
+πi : RE −→ RE\i and π i : RE / eE −→ RE\i / eE\i .
+Note that πi (ρi ) = 0 and π i (ρ{i} ) = 0. In addition, πi (ρS ) = ρS\i and π i (ρS ) = ρS\i
+for S ⊆ E. Here we recall from Deﬁnition 2.4 that ρi and ρS denote the rays generated
+by the vectors ei and −eE\S in RE , respectively, and ρS denotes the image of ρS in
+RE / eE .
+Proposition 3.1. Let M be a loopless matroid on E, and let i be an element of E.
+(1) The projection πi maps any cone of ΠM onto a cone of ΠM\i .
+(2) The projection π i maps any cone of ΠM onto a cone of ΠM\i .
+Recall that a linear map deﬁnes a morphism of fans Σ1 → Σ2 if it maps any cone
+of Σ1 into a cone of Σ2 [9, Chapter 3]. Thus the above proposition is stronger than the
+statement that πi and π i induce morphisms of fans.
+Proof of Proposition 3.1. The projection πi maps σI⩽F onto σI\i⩽F\i , where F \ i is the
+ﬂag of ﬂats of M \ i obtained by removing i from the members of F. Similarly, π i maps
+σ F onto σ F\i . 
+By Proposition 3.1, the projection πi deﬁnes a map from the toric variety XM of ΠM
+to the toric variety XM\i of ΠM\i , and hence the pullback homomorphism CH(M \ i) →
+CH(M). Explicitly, the pullback is the graded algebra homomorphism
+θi = θiM : CH(M \ i) −→ CH(M),
+
+xF −→ xF + xF ∪i ,
+
+where a variable in the target is replaced with zero if its label is not a ﬂat of M. Similarly,
+π i deﬁnes a map from the toric variety X M of ΠM to the toric variety X M\i of ΠM\i ,
+and hence an algebra homomorphism
+θi = θM
+i : CH(M \ i) −→ CH(M),
+
+xF −→ xF + xF ∪i ,
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+32
+
+where a variable in the target is set to zero if its label is not a ﬂat of M.
+Remark 3.2. We use the notations introduced in Remark 2.16. Let V \i be the image of V
+under the i-th projection F E → F E\i . We have the commutative diagrams of wonderful
+varieties and their Chow rings
+XB
+pB
+i
+
+X B\i
+
+XV
+
+CH(B)
+
+CH(M)
+
+CH(B \ i)
+
+CH(M \ i).
+
+pV
+i
+
+X V \i ,
+
+The map pVi is birational if and only if i is not a coloop of M. By Proposition 3.1, the
+ﬁbers of pB
+are at most one-dimensional, and hence the ﬁbers of pVi are at most onei
+dimensional. It follows that pVi is semi-small in the sense of Goresky–MacPherson when
+i is not a coloop of M.
+Similarly, we have the diagrams of augmented wonderful varieties and their Chow
+rings
+XB
+pB
+i
+
+XB\i
+
+XV
+
+CH(B)
+
+CH(M)
+
+CH(B \ i)
+
+CH(M \ i).
+
+pV
+i
+
+XV \i ,
+
+The map pVi is birational if and only if i is not a coloop of M. By Proposition 3.1, the
+V
+ﬁbers of pB
+i are at most one-dimensional, and hence pi is semi-small when i is not a
+coloop of M.
+Numerically, the semi-smallness of pVi is reﬂected in the identity
+k−1
+d−k−2
+dim xF ∪i CH(i)
+= dim xF ∪i CH(i)
+.
+
+Similarly, the semi-smallness of pVi is reﬂected in the identity13
+d−k−1
+dim xF ∪i CHk−1
+.
+(i) = dim xF ∪i CH(i)
+
+For a detailed discussion of semi-small maps in the context of Hodge theory and the
+decomposition theorem, see [10] and [11].
+We show that the pullbacks θi and θi are compatible with the degree maps of M and
+M \ i.
+13
+
+The displayed identities follow from Proposition 3.5 and the Poincaré duality parts of Theorem 1.6.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+33
+
+Lemma 3.3. Suppose that E \ i is nonempty.
+(1) If i is not a coloop of M, then θi commutes with the degree maps:
+degM\i = degM ◦ θi .
+(2) If i is not a coloop of M, then θi commutes with the degree maps:
+degM\i = degM ◦ θi .
+(3) If i is a coloop of M, we have
+degM\i = degM ◦ xE\i ◦ θi = degM ◦ αM ◦ θi ,
+where the middle maps are multiplications by the elements xE\i and αM .
+(4) If i is a coloop of M, we have
+degM\i = degM ◦ xE\i ◦ θi = degM ◦ αM ◦ θi ,
+where the middle maps are multiplications by the elements xE\i and αM .
+Proof. If i is not a coloop of M, we may choose a basis B of M \ i that is also a basis
+of M. By Proposition 2.8 and Remark 2.14, the top degree components CHd (M \ i) and
+CHd (M) are both one-dimensional, so we have
+CHd (M \ i) = span(yB ) and CHd (M) = span(yB ).
+Since θi (yj ) = yj for all j, the ﬁrst identity follows. Similarly, by Proposition 2.32,
+d−1
+CHd−1 (M \ i) = span(αd−1
+(M) = span(αd−1
+M ).
+M\i ) and CH
+
+Since θi (αM\i ) = αM when i is not a coloop, the second identity follows.
+Suppose now that i is a coloop of M. In this case, E \ i is a ﬂat and M \ i = ME\i .
+Hence
+E\i
+
+E\i
+ϕM ◦ θi = identity of CH(M \ i) and ϕM
+◦ θi = identity of CH(M \ i).
+E\i
+
+Using the compatibility of the pushforward ψM
+E\i
+
+E\i
+
+with the degree maps, we have
+E\i
+
+degM\i = degM ◦ ψM = degM ◦ ψM ◦ ϕM ◦ θi = degM ◦ xE\i ◦ θi .
+Since θi (αM\i ) = αM − xE\i , when i is a coloop of M, the above implies
+
+
+degM\i = degM ◦ xE\i ◦ θi = degM ◦ αM − θi (αM\i ) ◦ θi = degM ◦ αM ◦ θi ,
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+34
+
+where the last equality follows from the fact that the images of θi have degree at most
+d − 1. The identities for degM\i can be obtained in a similar way. 
+Proposition 3.4. If CH(M \ i) satisﬁes the Poincaré duality part of Theorem 1.6, then θi
+is injective. Also, if CH(M \ i) satisﬁes the Poincaré duality part of Theorem 1.6, then
+θi is injective.
+Proof. The proof is essentially identical to that of Proposition 2.23. 
+For a ﬂat F in Si , we write θiF ∪i for the pullback map between the augmented Chow
+rings obtained from the deletion of i from the localization MF ∪i :
+θiF ∪i : CH(MF ) → CH(MF ∪i ).
+∪i
+Similarly, for a ﬂat F in Si , we write θF
+for the pullback map between the Chow rings
+i
+obtained from the deletion of i from the localization MF ∪i :
+∪i
+θF
+: CH(MF ) → CH(MF ∪i ).
+i
+
+Note that i is a coloop of MF ∪i in these cases.
+Proposition 3.5. The summands appearing in Theorems 1.2 and 1.5 can be described as
+follows.
+
+
+F ∪i
+(1) If F ∈ Si , then xF ∪i CH(i) = ψM
+CH(MF ∪i ) ⊗ θiF ∪i CH(MF ) .
+
+
+∪i
+∪i
+(2) If F ∈ Si , then xF ∪i CH(i) = ψ F
+CH(MF ∪i ) ⊗ θF
+CH(MF ) .
+i
+M
+E\i
+
+(3) If i is a coloop of M, then xE\i CH(i) = ψM CH(M \i) and xE\i CH(i) = ψ E\i
+CH(M \
+M
+i).
+Remark 3.6. Assuming Poincaré duality for all of our Chow rings, Propositions 2.23,
+2.27, and 3.4 imply that
+xF ∪i CH(i) ∼
+= CH(MF ∪i ) ⊗ CH(MF )[−1] and xF ∪i CH(i) ∼
+= CH(MF ∪i ) ⊗ CH(MF )[−1],
+and therefore
+k−1
+d−k−2
+d−k−1
+dim xF ∪i CH(i)
+= dim xF ∪i CH(i)
+and dim xF ∪i CHk−1
+.
+(i) = dim xF ∪i CH(i)
+
+Proof of Proposition 3.5. We prove the ﬁrst statement. The proof of the second statement is essentially identical. The third statement is a straightforward consequence of the
+E\i
+E\i
+fact that ϕM ◦ θi and ϕM ◦ θi are the identity maps when i is a coloop.
+Let F be a ﬂat in Si . It is enough to show that
+
+
+∪i
+ϕF
+CH(i) = CH(MF ∪i ) ⊗ θiF ∪i CH(MF ),
+M
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+35
+
+F ∪i
+since the result will then follow by applying ψM
+. The projection πi maps the ray ρF ∪i
+to the ray ρF , and hence πi deﬁnes morphisms of fans
+
+starρF ∪i ΠM
+
+ιF ∪i
+
+ΠMF ∪i × ΠMF ∪i
+
+πi
+
+starρF ΠM\i
+
+Π(M/i)F × ΠMF ∪i
+
+πi
+ιF
+
+πi
+
+Π(M\i)F × Π(M\i)F
+
+Π(M\i)F × ΠMF ,
+
+where ιF ∪i and ιF are the isomorphisms in Proposition 2.7. The main point is that
+the matroid (M/i)F is a quotient of (M \ i)F . In other words, we have the inclusion of
+Bergman fans
+Π(M/i)F ⊆ Π(M\i)F .
+Therefore, the morphism πi admits the factorization
+Π(M/i)F × ΠMF ∪i
+
+Π(M/i)F × ΠMF
+
+Π(M\i)F × ΠMF ,
+
+where the second map induces a surjective pullback map q between the Chow rings.
+By the equality (M/i)F = MF ∪i , we have the commutative diagram of pullback maps
+between the Chow rings
+θi
+
+CH(M \ i)
+
+CH(M)
+F ∪i
+ϕM
+
+ϕF
+M\i
+
+CH((M \ i)F ) ⊗ CH((M \ i)F )
+
+q
+
+CH(MF ∪i ) ⊗ CH(MF )
+
+1⊗θiF ∪i
+
+CH(MF ∪i ) ⊗ CH(MF ∪i ).
+
+The conclusion follows from the surjectivity of the pullback maps ϕF
+M\i and q. 
+Remark 3.7. Since i is a coloop in MF ∪i when F ∈ Si or F ∈ Si , Proposition 3.5 implies
+that
+d−2
+xF ∪i CHd−1
+(i) = 0 for F ∈ Si and xF ∪i CH(i) = 0 for F ∈ Si .
+
+Proposition 3.8. The Poincaré pairing on the summands appearing in Theorems 1.2 and
+1.5 can be described as follows.
+(1) If F ∈ Si , then for any μ1 , μ2 ∈ CH(MF ∪i ) ⊗ CH(MF ) of complementary degrees,
+ F ∪i 
+ F ∪i 
+
+degM ψM
+1 ⊗ θiF ∪i (μ1 ) · ψM
+1 ⊗ θiF ∪i (μ2 ) = −degM
+
+F ∪i
+
+⊗ degMF (μ1 μ2 ).
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+36
+
+(2) If F ∈ Si , then for any ν1 , ν2 ∈ CH(MF ∪i ) ⊗ CH(MF ) of complementary degrees,
+ ∪i 
+
+
+
+∪i
+∪i
+∪i
+degM ψ F
+1 ⊗ θF
+(ν1 ) · ψ F
+1 ⊗ θF
+(ν2 ) = −degM
+i
+i
+M
+M
+
+F ∪i
+
+⊗ degMF (ν1 ν2 ).
+
+It follows, assuming Poincaré duality for the Chow rings, that the restriction of the
+Poincaré pairing of CH(M) to the subspace xF ∪i CH(i) is nondegenerate, and the restriction of the Poincaré pairing of CH(M) to the subspace xF ∪i CH(i) is nondegenerate.
+Proof. We prove the ﬁrst equality. The second equality can be proved in the same way.
+F ∪i
+Since the pushforward ψM
+is a CH(M)-module homomorphism (Proposition 2.21),
+the left-hand side is
+ F ∪i  F ∪i F ∪i 
+ 
+
+degM ψM
+ϕM ψM 1 ⊗ θiF ∪i (μ1 ) · 1 ⊗ θiF ∪i (μ2 ) .
+The pushforward commutes with the degree maps (Remark 2.22), so the above is equal
+to
+degM
+
+F ∪i
+
+ 
+
+ ∪i F ∪i 
+⊗ degMF ∪i ϕF
+1 ⊗ θiF ∪i (μ1 ) · 1 ⊗ θiF ∪i (μ2 ) .
+M ψM
+
+∪i F ∪i
+F ∪i
+Using that the composition ϕF
+M ψM is multiplication by ϕM (xF ∪i ) (Proposition 2.21),
+we get
+
+−degM
+
+F ∪i
+
+⊗ degMF ∪i
+
+
+1 ⊗ αMF ∪i + β M
+
+F ∪i
+
+ 
+ 
+
+⊗ 1 · 1 ⊗ θiF ∪i (μ1 ) · 1 ⊗ θiF ∪i (μ2 ) .
+
+Since i is a coloop of MF ∪i and θiF ∪i is a graded ring homomorphism, the product
+(1 ⊗ θiF ∪i (μ1 )) · (1 ⊗ θiF ∪i (μ2 )) = 1 ⊗ θiF ∪i (μ1 · μ2 ) ∈ CH(MF ∪i ) ⊗ CH(MF ∪i )
+does not involve the top degree component of CH(MF ∪i ). Thus,
+−degM
+
+F ∪i
+
+⊗ degMF ∪i
+
+
+
+βM
+
+F ∪i
+
+ 
+ 
+
+⊗ 1 · 1 ⊗ θiF ∪i (μ1 ) · 1 ⊗ θiF ∪i (μ2 ) = 0,
+
+and the left-hand side of the desired equality further simpliﬁes to
+−degM
+
+F ∪i
+
+⊗ degMF ∪i
+
+
+ 
+ 
+
+1 ⊗ αMF ∪i · 1 ⊗ θiF ∪i (μ1 ) · 1 ⊗ θiF ∪i (μ2 ) .
+
+Now the third part of Lemma 3.3 shows that the above quantity is the right-hand side
+of the desired equality. 
+Lemma 3.9. If ﬂats F1 , F2 are in Si and F1 is a proper subset of F2 , then
+xF1 ∪i xF2 ∪i ∈ xF1 ∪i CH(i) .
+Similarly, if F1 , F2 are in Si and F1 is a proper subset of F2 , then
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+37
+
+xF1 ∪i xF2 ∪i ∈ xF1 ∪i CH(i) .
+Proof. Since F1 ∪ i is not comparable to F2 , we have
+xF1 ∪i xF2 ∪i = xF1 ∪i (xF2 + xF2 ∪i ) = xF1 ∪i θi (xF2 ).
+The second part follows from the same argument. 
+Proof of Theorem 1.2, Theorem 1.5, and parts (1) and (4) of Theorem 1.6. All the summands in the proposed decompositions are cyclic, and therefore indecomposable in the
+category of graded modules.14 We prove the decompositions by induction on the cardinality of the ground set E. If E is empty, then Theorem 1.2, Theorem 1.5, and part (1)
+of Theorem 1.6 are vacuous, while part (4) of Theorem 1.6 is trivial. Furthermore, all of
+these results are trivial when E is a singleton. Thus, we may assume that i is an element
+of E, that E \ i is nonempty, and that all the results hold for loopless matroids whose
+ground set is a proper subset of E.
+First we assume that i is not a coloop. Let us show that the terms in the right-hand
+side of the decomposition (D1 ) are orthogonal. Multiplying CH(i) and xF ∪i CH(i) lands
+in xF ∪i CH(i) , and this ideal vanishes in degree d by Remark 3.7, so they are orthogonal.
+On the other hand, the product of xF1 ∪i CH(i) and xF2 ∪i CH(i) vanishes if F1 , F2 ∈ Si are
+not comparable, while if F1 < F2 or F2 < F1 , the product is contained in xF1 ∪i CH(i) or
+xF2 ∪i CH(i) respectively, by Lemma 3.9. So these terms are also orthogonal.
+It follows from the induction hypothesis and Lemma 3.3 that the restriction of the
+Poincaré pairing of CH(M) to CH(i) is nondegenerate. By Proposition 3.5, Proposition 3.8, and the induction hypothesis, the restriction of the Poincaré pairing of CH(M)
+to any other summand xF ∪i CH(i) is also nondegenerate. Therefore, we can conclude that
+the sum on the right-hand side of (D1 ) is a direct sum with a nondegenerate Poincaré
+pairing.
+To complete the proof of the decomposition (D1 ) and the Poincaré duality theorem
+for CH(M), we must show that the direct sum
+CH(i) ⊕
+
+
+
+xF ∪i CH(i)
+
+F ∈Si
+
+is equal to all of CH(M). This is obvious in degree 0. To see that it holds in degree 1, it
+is enough to check that xG is contained in the direct sum for any proper ﬂat G of M. If
+G\i ∈
+/ Si , then xG = θi (xG\i ) is in CH(i) . If G \ i ∈ Si , then either i ∈ G or i ∈
+/ G. In
+the ﬁrst case, xG = x(G\i)∪i is an element of the summand indexed by F = G \ i. In the
+second case, we have xG = θi (xG ) − xG∪i , which lies in CH(i) + xG∪i CH(i) .
+14
+By [8, Corollary 2] or [18, Theorem 3.2], the indecomposability of the summands in the category of
+graded modules implies the indecomposability of the summands in the category of modules.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+38
+
+Since our direct sum is a sum of CH(M \ i)-modules and it includes the degree 0 and
+1 parts of CH(M), it will suﬃce to show that CH(M) is generated in degrees 0 and 1 as
+a graded CH(M \ i)-module. In other words, we need to show that
+CH1(i) · CHk (M) = CHk+1 (M) for any k ⩾ 1.
+We ﬁrst prove the equality when k = 1. Since we have proved that the decomposition
+(D1 ) holds in degree 1, we know that
+
+CH (M) = CH (M) · CH (M) =
+2
+
+1
+
+CH1(i) ⊕
+
+1
+
+
+
+ 
+QxF ∪i
+
+·
+
+CH1(i) ⊕
+
+F ∈Si
+
+
+
+
+QxF ∪i
+
+.
+
+F ∈Si
+
+Using Lemma 3.9, we may reduce the problem to showing that
+x2F ∪i ∈ CH1(i) · CH1 (M) for any F ∈ Si .
+We can rewrite the relation 0 = xF yi in the augmented Chow ring of M as
+0 = (θi (xF ) − xF ∪i )
+= θi (xF )
+
+
+
+
+
+xG
+
+i∈G
+/
+
+xG − xF ∪i
+
+i∈G
+/
+
+= θi (xF )
+
+
+
+
+i∈G
+/
+
+xG ,
+
+G⩽F
+
+xG − (θi (xF ) − xF )
+
+i∈G
+/
+
+= θi (xF )
+
+
+
+xG −
+
+
+
+
+
+xG − xF ∪i xF
+
+G<F
+
+xG + xF
+
+G<F
+
+
+
+xG − xF ∪i θi (xF ) + x2F ∪i ,
+
+G<F
+
+thus reducing the problem to showing that
+xF xG ∈ CH1(i) · CH1 (M) for any G < F ∈ Si .
+The collection Si is downward closed, meaning that if G < F ∈ Si , then G ∈ Si ; therefore,
+xF xG = (θi (xF ) − xF ∪i )(θi (xG ) − xG∪i ).
+Lemma 3.9 tells us that xF ∪i xG∪i ∈ CH1(i) · CH1 (M), thus so is xF xG .
+We next prove the equality when k ≥ 2. In this case, we use the result for k = 1 along
+with the fact that the algebra CH(M) is generated in degree 1 to conclude that
+CH1(i) · CHk (M) = CH1(i) · CH1 (M) · CHk−1 (M) = CH2 (M) · CHk−1 (M) = CHk+1 (M).
+This completes the proof of the decomposition (D1 ) and the Poincaré duality theorem
+for CH(M) when there is an element i that is not a coloop of M.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+39
+
+The proof when i is a coloop is almost the same; we explain the places where something
+diﬀerent must be said. The orthogonality of xE\i CH(i) and xF ∪i CH(i) for F ∈ Si follows
+because E \ i and F ∪ i are incomparable. To show that the right-hand side of (D2 ) spans
+CH(M), one extra statement we need to check is that
+x2E\i ∈ CH1(i) · CH1 (M).
+Since i is a coloop, Si is the set of all ﬂats properly contained in E \ i, and we have
+0 = xE\i yi =
+
+
+
+xF xE\i = x2E\i +
+
+
+F ∈Si
+
+i∈F
+/
+
+xE\i xF = x2E\i +
+
+
+
+xE\i θi (xF ),
+
+F ∈Si
+
+where the last equality follows because E \ i and F ∪ i are not comparable. Thus
+x2E\i = −
+
+
+
+xE\i θi (xF ) ∈ CH1(i) · CH1 (M).
+
+F ∈Si
+
+By the induction hypothesis, we know CH(M\i) satisﬁes the Poincaré duality theorem.
+By the coloop case of Lemma 3.3, the Poincaré pairing on CH(M) restricts to a perfect
+pairing between CH(i) and xE\i CH(i) . Since CH(i) is a subring of CH(M) and is zero in
+degree d, the restriction of the Poincaré pairing on CH(M) to CH(i) is zero. Therefore,
+the subspaces CH(i) and xE\i CH(i) intersect trivially, and the restriction of the Poincaré
+pairing on CH(M) to CH(i) ⊕ xE\i CH(i) is nondegenerate. This completes the proof of
+the theorems about CH(M) when i is a coloop.
+Now, we show the statements about the decomposition (D1 ). By an argument identical
+to the one used for (D1 ), we know that the sum on the right-hand side of (D1 ) is a direct
+sum with a nondegenerate Poincaré pairing. Next, we observe that the surjectivity of
+the pullback ϕ∅
+M gives the equality
+CH1(i) · CHk (M) = CHk+1 (M) for any k ⩾ 1.
+Thus, the direct sum decomposition (D1 ) and the Poincaré duality theorem for CH(M)
+follow when i is not a coloop. When i is a coloop, we can prove (D2 ) and the Poincaré duality theorem by making the same adjustments as the ones in the proof about CH(M). 
+4. Proofs of the hard Lefschetz theorems and the Hodge–Riemann relations
+In this section, we prove Theorem 1.6. Parts (1) and (4) have already been proved in
+the previous section. We will ﬁrst prove parts (2) and (3) by induction on the cardinality
+of E. The proof of parts (5) and (6) is nearly identical to the proof of parts (2) and (3),
+with the added nuance that we use parts (2) and (3) for the matroid M in the proof of
+parts (5) and (6) for the matroid M.
+
+40
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+Proof of Theorem 1.6, parts (2) and (3). The statements are trivial when the cardinality of E is 0 or 1, so we will assume throughout the proof that the cardinality of E is at
+least 2.
+Let B be the Boolean matroid on E. By the induction hypothesis, we know that for
+every nonempty proper ﬂat F of M, the fans ΠMF and ΠMF satisfy the hard Lefschetz
+theorem and the Hodge–Riemann relations with respect to any strictly convex piecewise
+linear functions on ΠBF and ΠBF , respectively. By [1, Proposition 7.7], this implies that
+for every nonempty proper ﬂat F of M, the product ΠMF × ΠMF satisﬁes the hard
+Lefschetz theorem and the Hodge–Riemann relations with respect to any strictly convex
+piecewise linear function on ΠBF × ΠBF . In other words, ΠM satisﬁes the local Hodge–
+Riemann relations [1, Deﬁnition 7.14]:
+The star of any ray in ΠM satisﬁes the Hodge–Riemann relations.
+This in turn implies that ΠM satisﬁes the hard Lefschetz theorem with respect to any
+strictly convex piecewise linear function on ΠB [1, Proposition 7.15]. It remains to prove
+only that ΠM satisﬁes the Hodge–Riemann relations with respect to any strictly convex
+piecewise linear function on ΠB .
+Let  be a piecewise linear function on ΠB , and let HRk (M) be the Hodge–Riemann
+form
+HRk (M) : CHk (M) × CHk (M) −→ Q,
+
+(η1 , η2 ) −→ (−1)k degM (d−2k−1 η1 η2 ).
+
+By [1, Proposition 7.6], the fan ΠM satisﬁes the Hodge–Riemann relations with respect
+to  if and only if, for all k < d2 , the Hodge–Riemann form HRk (M) is nondegenerate
+and has the signature
+k
+
+(−1)k−j dim CHj (M) − dim CHj−1 (M) .
+j=0
+
+Since ΠM satisﬁes the hard Lefschetz theorem with respect to any strictly convex piecewise linear function on ΠB and signature is a locally constant function on the space of
+nonsingular forms, the following statements are equivalent:
+(i) The fan ΠM satisﬁes the Hodge–Riemann relations with respect to any strictly convex piecewise linear function on ΠB .
+(ii) The fan ΠM satisﬁes the Hodge–Riemann relations with respect to some strictly
+convex piecewise linear function on ΠB .
+Furthermore, since satisfying the Hodge–Riemann relations with respect to a given piecewise linear function is an open condition on the function, statement (ii) is equivalent to
+the following:
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+41
+
+(iii) The fan ΠM satisﬁes the Hodge–Riemann relations with respect to some convex
+piecewise linear function on ΠB .
+We show that statement (iii) holds using the semi-small decomposition in Theorem 1.2.15
+If M is the Boolean matroid B, then CH(M) can be identiﬁed with the cohomology ring
+of the smooth complex projective toric variety XΠB . Therefore, in this case, Theorem 1.6
+is a special case of the usual hard Lefschetz theorem and the Hodge–Riemann relations
+for smooth complex projective varieties.16
+If M is not the Boolean matroid B, then it has some element i ∈ E that is not a
+coloop. Consider the morphism of fans
+π i : ΠM −→ ΠM\i .
+By induction, we know that ΠM\i satisﬁes the Hodge–Riemann relations with respect to
+any strictly convex piecewise linear function  on ΠB\i . We will show that ΠM satisﬁes the
+Hodge–Riemann relations with respect to the pullback i :=  ◦ πi , which is a piecewise
+linear function on ΠB that is convex but not necessarily strictly convex.
+By Theorem 1.2, we have the orthogonal decomposition of CH(M) into CH(M \ i)modules
+CH(M) = CH(i) ⊕
+
+
+
+xF ∪i CH(i) .
+
+F ∈Si
+
+By orthogonality, it is enough to show that each summand of CH(M) satisﬁes the Hodge–
+Riemann relations with respect to i :
+(iv) For every nonnegative integer k < d2 , the bilinear form
+CHk(i) × CHk(i) −→ Q,
+
+(η1 , η2 ) −→ (−1)k degM (id−2k−1 η1 η2 )
+
+is positive deﬁnite on the kernel of multiplication by d−2k
+.
+i
+d
+(v) For every nonnegative integer k < 2 , the bilinear form
+k−1
+k−1
+xF ∪i CH(i)
+× xF ∪i CH(i)
+−→ Q,
+
+(η1 , η2 ) −→ (−1)k degM (id−2k−1 η1 η2 )
+
+is positive deﬁnite on the kernel of multiplication by d−2k
+.
+i
+By Proposition 3.4, the homomorphism θi restricts to an isomorphism of CH(M \ i)modules
+15
+This inductive paradigm of [1] goes back to [23], where it was used to prove the hard Lefschetz theorem
+for simple polytopes.
+16
+It is not diﬃcult to directly prove the hard Lefschetz theorem and the Hodge–Riemann relations for
+CH(B) using the coloop case of Theorem 1.2. Alternatively, we may apply McMullen’s hard Lefschetz
+theorem and Hodge–Riemann relations for polytope algebras [23] to the standard permutohedron in RE .
+
+42
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+CH(M \ i) ∼
+= CH(i) .
+Thus, statement (iv) follows from Lemma 3.3 and the induction hypothesis applied to
+∪i
+∪i
+M \ i. By Propositions 2.27, 3.4, and 3.5, the homomorphisms θF
+and ψ F
+give a
+i
+M
+CH(M \ i)-module isomorphism
+∪i
+CH(MF ∪i ) ⊗ CH(MF ) ∼
+CH(MF ) ∼
+= CH(MF ∪i ) ⊗ θF
+= xF ∪i CH(i) [1].
+i
+
+Note that the pullback of a strictly convex piecewise linear function on ΠB\i to the star
+Π(B\i)F × Π(B\i)F = ΠBF ∪i × ΠBF
+is the class of a strictly convex piecewise linear function. Therefore, statement (v) follows
+from Proposition 3.8 and the induction applied to MF ∪i and MF . 
+Proof of Theorem 1.6, parts (5) and (6). This proof is nearly identical to the proof of
+parts (2) and (3). In that argument, we used the fact that rays of ΠM are indexed by
+nonempty proper ﬂats of M and the star of the ray ρF is isomorphic to ΠMF ×ΠMF , which
+we can show satisﬁes the hard Lefschetz theorem and the Hodge–Riemann relations using
+the induction hypothesis. When dealing instead with the augmented Bergman fan ΠM ,
+we have rays indexed by elements of E and rays indexed by proper ﬂats of M, with
+starρi ΠM ∼
+= ΠMcl(i)
+
+and
+
+starρF ΠM ∼
+= Π MF × Π MF .
+
+Thus the stars of ρi and ρF for nonempty F can be shown to satisfy the hard Lefschetz
+theorem and the Hodge–Riemann relations using the induction hypothesis. However, the
+star of ρ∅ is isomorphic to ΠM , so we need to use parts (2) and (3) of Theorem 1.6 for
+M itself. 
+Remark 4.1. It is possible to deduce Poincaré duality, the hard Lefschetz theorem, and
+the Hodge–Riemann relations for CH(M) using [1, Theorem 6.19 and Theorem 8.8], where
+the three properties are proved for generalized Bergman fans ΣN,P in [1, Deﬁnition 3.2].
+We sketch the argument here, leaving details to the interested readers. Consider the
+direct sum M ⊕ 0 of M and the rank 1 matroid on the singleton {0} and the order ﬁlter
+P(M) of all proper ﬂats of M ⊕ 0 that contain 0. The symbols B ⊕ 0 and P(B) are deﬁned
+in the same way for the Boolean matroid B on E. It is straightforward to check that the
+linear isomorphism
+RE −→ RE∪0 / eE + e0 ,
+
+ej −→ ej
+
+identiﬁes the complete fan ΠB with the complete fan ΣB ⊕ 0,P(B) , and the augmented
+Bergman fan ΠM with a subfan of ΣM ⊕ 0,P(M) . The third identity in Lemma 2.11 shows
+that the inclusion of the augmented Bergman fan ΠM into the generalized Bergman fan
+ΣM ⊕ 0,P(M) induces an isomorphism between their Chow rings.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+43
+
+5. Proof of Theorem 1.8
+In this section, we prove the decomposition (D3 ) by induction on the cardinality of E.
+The decomposition (D3 ) can be proved using the same argument. The results are trivial
+when E has at most one element. Thus, we may assume that i is an element of E, that
+E \ i is nonempty, and that all the results hold for loopless matroids whose ground set
+is a proper subset of E.
+We ﬁrst prove that the summands appearing in the right-hand side of (D3 ) are orthogonal to each other.
+Lemma 5.1. Let F and G be distinct nonempty proper ﬂats of M.
+(1) The spaces ψ F
+CH(MF ) ⊗ Jα (MF ) and Hα (M) are orthogonal in CH(M).
+M
+(2) The spaces ψ F
+CH(MF ) ⊗ Jα (MF ) and ψ G
+CH(MG ) ⊗ Jα (MG ) are orthogonal in
+M
+M
+CH(M).
+Proof. The ﬁfth bullet point in Proposition 2.24, together with the fact that ψ F
+M
+is a CH(M)-module homomorphism via ϕF
+(Proposition 2.25), implies that both
+M
+ψF
+CH(MF ) ⊗Jα (MF ) and Hα (M) are Hα (M)-submodules of CH(M). Thus, the product
+M
+of μ ∈ ψ F
+CH(MF ) ⊗ Jα (MF ) and ν ∈ Hα (M) of complimentary degree lands in the
+M
+degree d − 1 component of ψ F
+CH(MF ) ⊗ Jα (MF ), which is zero. The ﬁrst orthogonality
+M
+follows.
+For the second orthogonality, we may suppose that F is a proper subset of G. Since ψ G
+M
+is a CH(M)-module homomorphism commuting with the degree maps (Proposition 2.29
+and Remark 2.30), it is enough to show that
+ϕG
+ψ F CH(MF ) ⊗ Jα (MF ) and CH(MG ) ⊗ Jα (MG ) are orthogonal in CH(MG ) ⊗ CH(MG ).
+M M
+For this, we use the commutative diagram of pullback and pushforward maps
+
+CH(MF ) ⊗ CH(MF )
+
+ψF
+M
+
+ϕG\F
+⊗ 1
+M
+
+ϕG
+M
+
+F
+
+F
+CH(MG ) ⊗ CH(MG
+F ) ⊗ CH(M )
+
+CH(M)
+
+1 ⊗ ψF
+MG
+
+CH(MG ) ⊗ CH(MG ),
+
+which further reduces to the assertion that
+F
+G
+G
+ψF
+CH(MG
+F ) ⊗ Jα (M ) and Jα (M ) are orthogonal in CH(M ).
+MG
+
+Since Jα (MG ) ⊆ Hα (MG ), the above follows from the ﬁrst orthogonality for MG .
+
+
+
+44
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+We next show that the restriction of the Poincaré pairing of CH(M) to each summand
+appearing in the right-hand side of (D3 ) is nondegenerate.
+Lemma 5.2. Let F be a nonempty proper ﬂat of M, and let k = rkM (F ).
+(1) The restriction of the Poincaré pairing of CH(M) to Hα (M) is nondegenerate.
+(2) The restriction of the Poincaré pairing of CH(M) to ψ F
+CH(MF ) ⊗ Jα (MF ) is nonM
+degenerate.
+Proof. The ﬁrst statement follows from Proposition 2.32. We prove the second statement.
+Let N = CH(MF ) ⊗ Jα (MF ) and Ni = CH(MF ) ⊗ Jiα (MF ). Notice that
+Jiα (MF ) ∼
+=
+
+Q,
+
+0 ⩽ i ⩽ k − 2;
+
+0,
+
+otherwise.
+
+Therefore, the total dimensions of Ni are the same for 0 ⩽ i ⩽ k − 2. For the second
+statement, we need to show the nondegeneracy of the bilinear form on N = CH(MF ) ⊗
+Jα (MF ) deﬁned by
+
+
+μ1 ⊗ ν1 , μ2 ⊗ ν2 = degM ψ F
+(μ ⊗ ν1 ) · ψ F
+(μ ⊗ ν2 ) .
+M 1
+M 2
+Since the pushfoward ψF
+is a CH(M)-module homomorphism (Proposition 2.24) and
+M
+commutes with the degree maps (Remark 2.26), we have
+
+
+  F F
+
+degM ψ F
+(μ ⊗ ν1 ) · ψ F
+(μ ⊗ ν2 ) = degM ψ F
+ϕM ψ M (μ1 ⊗ ν1 ) · (μ2 ⊗ ν2 )
+M 1
+M 2
+M
+
+
+= degM ⊗ degMF ϕF
+ψ F (μ ⊗ ν1 ) · (μ2 ⊗ ν2 ) .
+M M 1
+F
+
+Since the composition ϕF
+ψ F is multiplication by ϕF
+(x ) (Proposition 2.25), the above
+M M
+M F
+becomes
+
+
+−degM ⊗ degMF (1 ⊗ αMF + β M ⊗ 1) · (μ1 ⊗ ν1 ) · (μ2 ⊗ ν2 ) .
+F
+
+F
+
+k2
+Assuming that ν1 ∈ Jkα1 (MF ) and ν2 ∈ Jα
+(MF ), the above expression vanishes unless
+k1 + k2 = k − 1 or k − 2. In other words, the subspaces Ni and Nk−2−j are orthogonal
+with respect to the bilinear form on N , unless i = j or i = j + 1. So the bilinear form can
+be represented by a block lower-triangular matrix, and its nondegeneracy is equivalent
+to the nondegeneracy of each diagonal block. Thus, it suﬃces to show that the induced
+pairing between Ni and Nk−2−i is nondegenerate.
+k−2−i
+For this, assume that ν1 ∈ Jiα (MF ) and ν2 ∈ Jα
+(MF ). By the above arguments,
+we have
+
+
+
+μ1 ⊗ ν1 , μ2 ⊗ ν2 = −degM ⊗ degMF (1 ⊗ αMF + β M ⊗ 1) · (μ1 μ2 ⊗ ν1 ν2 ) .
+F
+
+F
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+45
+
+
+
+Since ν1 ν2 ∈ CHk−2 (MF ), we have degM ⊗ degMF β M μ1 μ2 ⊗ ν1 ν2 = 0, and hence
+F
+
+
+
+F
+
+
+
+μ1 ⊗ν1 , μ2 ⊗ν2 = −degM ⊗degMF μ1 μ2 ⊗αMF ν1 ν2 = −degM (μ1 μ2 )degMF (αMF ν1 ν2 ).
+F
+
+F
+
+Notice that for any nonzero ν1 ∈ Jiα (MF ) and nonzero ν2 ∈ Jk−2−i
+(MF ), we have
+α
+degMF (αMF ν1 ν2 ) = 0. The nondegeneracy of the pairing between Ni and Nk−2−i follows
+from the nondegeneracy of the Poincaré pairing of CH(MF ). 
+To complete the proof, we only need to show that the graded vector spaces on both
+sides of (D3 ) have the same dimension, which is the next proposition.
+Proposition 5.3. There exists an isomorphism of graded vector spaces
+
+
+CH(M) ∼
+= Hα (M) ⊕
+
+CH(MF ) ⊗ Jα (MF )[−1],
+
+(D3 )
+
+F ∈Q(M)
+
+where the sum is over the set Q(M) of proper ﬂats of M with rank at least two.
+Proof. We prove the proposition using induction on the cardinality of E. Suppose the
+proposition holds for any matroid whose ground set is a proper subset of E. Suppose
+that there exists an element i ∈ E that is not a coloop.
+By Remark 3.6, for any G in Si , we have xG∪i CH(i) ∼
+= CH(MG∪i ) ⊗ CH(MG )[−1] as
+graded vector spaces. Thus, the decomposition (D1 ) implies
+
+
+CH(M) ∼
+= CH(M \ i) ⊕
+
+CH(MG∪i ) ⊗ CH(MG )[−1].
+
+G∈Si (M)
+
+By applying the induction hypothesis to the matroids M \ i and MG , we see that the
+left-hand side of (D3 ) is isomorphic to the graded vector space
+Hα (M \ i) ⊕
+
+
+
+
+
+
+
+CH (M \ i)G ⊗ Jα (M \ i)G [−1]
+
+G∈Q(M\i)
+
+⊕
+
+
+
+G∈Si (M)
+
+⊕
+
+
+
+CH(MG∪i ) ⊗ Hα (MG )[−1]
+
+
+F
+CH(MG∪i ) ⊗ CH(MG
+F ) ⊗ Jα (M )[−2].
+
+G∈Si (M) F ∈Q(MG )
+
+Since i is not a coloop, we may replace Hα (M \ i) by Hα (M).
+Now, we further decompose the right-hand side of (D3 ) to match the displayed expression. For this, we split the index set Q(M) into three groups:
+(1) F ∈ Q(M), i ∈ F, F \ i ∈ Si (M),
+(2) F ∈ Q(M), i ∈ F, F \ i ∈
+/ Si (M), and
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+46
+
+(3) F ∈ Q(M), i ∈
+/ F.
+Suppose F belongs to the ﬁrst group. In this case, we have Jα (MF ) ∼
+= Hα (MF \i ) as
+graded vector spaces, because they both have one-dimensional component from degree
+0 to rk(F ) − 2 by Proposition 2.32. Therefore, we have
+
+
+
+
+CH(MF ) ⊗ Jα (MF )[−1] ∼
+=
+
+F ∈Q(M)
+i∈F,F \i∈Si (M)
+
+CH(MG∪i ) ⊗ Hα (MG )[−1].
+
+G∈Si (M)
+
+Suppose F belongs to the second group. In this case, MF = (M \ i)F \i , and the
+matroids MF and (M \ i)F \i have the same rank. Therefore, we have
+
+
+
+
+CH(MF ) ⊗ Jα (MF )[−1] ∼
+=
+
+F ∈Q(M)
+i∈F,F \i∈S
+/ i (M)
+
+
+
+
+
+CH (M \ i)G ⊗ Jα (M \ i)G [−1].
+
+G∈Q(M\i)\Q(M)
+
+Suppose F belongs to the third group. In this case, we apply (D1 ) to MF and get
+
+
+CH(MF ) ⊗ Jα (MF )[−1]
+
+F ∈Q(M),i∈F
+/
+
+∼
+=
+
+
+
+
+
+CH MF \ i ⊕
+
+F ∈Q(M),i∈F
+/
+
+∼
+=
+
+
+
+
+
+F
+CH(MG∪i ) ⊗ CH(MG
+F )[−1] ⊗ Jα (M )[−1]
+
+G∈Si (MF )
+
+
+
+CH MF \ i ⊗ Jα (MF )[−1]
+
+F ∈Q(M),i∈F
+/
+
+
+
+⊕
+
+F
+CH(MG∪i ) ⊗ CH(MG
+F ) ⊗ Jα (M )[−2]
+
+G∈Si (M)
+F ∈Q(MG )
+
+∼
+=
+
+
+
+
+
+
+
+CH (M \ i)G ⊗ Jα (M \ i)G [−1]
+
+G∈Q(M\i)∩Q(M)
+
+⊕
+
+
+
+F
+CH(MG∪i ) ⊗ CH(MG
+F ) ⊗ Jα (M )[−2].
+
+G∈Si (M)
+F ∈Q(MG )
+
+The decomposition (D3 ) follows.
+Suppose now that every element of E is a coloop of M, that is, M is a Boolean matroid.
+We ﬁx an element i ∈ E. The decomposition (D2 ) and Remark 3.6 imply
+CH(M) ∼
+= CH(M \ i) ⊕ CH(M \ i)[−1] ⊕
+
+
+
+CH(MG∪i ) ⊗ CH(MG )[−1].
+
+G∈Si (M)
+
+The assumption that i is a coloop implies that Si (M) ∩ Q(M) = Q(M \ i). The induction
+hypothesis applies to the matroids M \ i and MG , and hence the left-hand side of (D3 )
+is isomorphic to
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+
+
+Hα (M \ i) ⊕
+
+
+
+
+
+CH (M \ i)G ⊗ Jα (M \ i)G [−1]
+
+G∈Q(M\i)
+
+⊕ Hα (M \ i)[−1] ⊕
+⊕
+
+
+
+
+
+
+
+CH (M \ i)G ⊗ Jα (M \ i)G [−2]
+
+G∈Q(M\i)
+
+
+
+47
+
+
+
+CH(MG∪i ) ⊗ Hα (MG ) ⊕
+
+F
+CH(MG
+F ) ⊗ Jα (M )[−1] [−1].
+
+F ∈Q(MG )
+
+G∈Si (M)
+
+Now, we further decompose the right-hand side of (D3 ) to match the displayed expression. For this, we split the index set Q(M) into three groups:
+(1) F ∈ Q(M), i ∈ F ,
+(2) F ∈ Q(M), F = E \ i, and
+(3) F ∈ Q(M), F ∈ Si (M).
+If F belongs to the ﬁrst group, then Jα (MF ) ∼
+= Hα (MF \i ), and hence
+
+
+
+
+CH(MF ) ⊗ Jα (MF )[−1] ∼
+=
+
+F ∈Q(M),i∈F
+
+CH(MG∪i ) ⊗ Hα (MG )[−1].
+
+G∈Si (M)
+
+If F is the ﬂat E \ i, Hα (M) has one-dimensional component from degree 0 to d − 1;
+Hα (M \ i) has one-dimensional component from degree 0 to d − 2; and Jα (ME\i ) has
+one-dimensional component from degree 0 to d − 3. Thus, we have
+Hα (M) ⊕ CH(ME\i ) ⊗ Jα (ME\i )[−1] ∼
+= Hα (M \ i) ⊕ Hα (M \ i)[−1].
+If F belongs to the third group, we apply (D2 ) to MF and get
+
+
+CH(MF ) ⊗ Jα (MF )[−1]
+
+F ∈Q(M)
+F ∈Si (M)
+
+∼
+=
+
+
+
+CH(MF \ i) ⊕ CH(MF \ i)[−1]
+
+F ∈Q(M)
+F ∈Si (M)
+
+⊕
+∼
+=
+
+
+
+
+
+F
+CH(MG∪i ) ⊗ CH(MG
+F )[−1] ⊗ Jα (M )[−1]
+
+G∈Si (MF )
+
+CH(MG \ i) ⊗ Jα (MG )[−1] ⊕
+
+G∈Q(M)
+G∈Si (M)
+
+
+
+
+G∈Q(M)
+G∈Si (M)
+
+F
+CH(MG∪i ) ⊗ CH(MG
+F ) ⊗ Jα (M )[−2].
+
+G∈Si (M)
+F ∈Q(MG )
+
+The decomposition (D3 ) follows. 
+
+CH(MG \ i) ⊗ Jα (MG )[−2] ⊕
+
+48
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+Remark 5.4. The decomposition of graded vector spaces appearing in [1, Theorem 6.18]
+specializes to decompositions of CH(M) and of CH(M), where the latter goes through
+Remark 4.1. At the level of Poincaré polynomials, these decompositions coincide with
+those of Theorem 1.8. However, the subspaces appearing in the decompositions are not
+the same. In particular, the decompositions in [1, Theorem 6.18] are not orthogonal, and
+they are not compatible with the Hα (M)-module structure on CH(M) or the Hα (M)module structure on CH(M).
+References
+[1] K. Adiprasito, J. Huh, E. Katz, Hodge theory for combinatorial geometries, Ann. Math. (2) 188
+(2018) 381–452, MR3862944.
+[2] C. Bibby, G. Denham, E.M. Feichtner, A Leray model for the Orlik-Solomon algebra, Int. Math.
+Res. Not. (2021) rnab131, https://doi.org/10.1093/imrn/rnab131.
+[3] S. Backman, C. Eur, C. Simpson, Simplicial generation of Chow rings of matroids, arXiv:1905.07114.
+[4] T. Braden, J. Huh, J.P. Matherne, N. Proudfoot, B. Wang, Singular Hodge theory for combinatorial
+geometries, arXiv:2010.06088.
+[5] A. Björner, The homology and shellability of matroids and geometric lattices, in: Matroid Applications, 1992, pp. 226–283, MR1165544.
+[6] M. Brion, Piecewise polynomial functions, convex polytopes and enumerative geometry, in: Parameter Spaces, Warsaw, 1994, 1996, pp. 25–44, MR1481477.
+[7] M.P. Carr, S.L. Devadoss, Coxeter complexes and graph-associahedra, Topol. Appl. 153 (12) (2006)
+2155–2168, MR2239078.
+[8] V.P. Camillo, K.R. Fuller, On graded rings with ﬁniteness conditions, Proc. Am. Math. Soc. 86
+(1982) 1–5, MR663852.
+[9] D.A. Cox, J.B. Little, H.K. Schenck, Toric Varieties, Graduate Studies in Mathematics, vol. 124,
+American Mathematical Society, Providence, RI, 2011, MR2810322.
+[10] M.A.A. de Cataldo, L. Migliorini, The hard Lefschetz theorem and the topology of semismall maps,
+Ann. Sci. Éc. Norm. Supér. (4) 35 (5) (2002) 759–772, MR1951443.
+[11] M.A.A. de Cataldo, L. Migliorini, The decomposition theorem, perverse sheaves and the topology
+of algebraic maps, Bull. Am. Math. Soc. (N.S.) 46 (4) (2009) 535–633, MR2525735.
+[12] M.A. de Cataldo, L. Migliorini, M. Mustaţă, Combinatorics and topology of proper toric maps, J.
+Reine Angew. Math. 744 (2018) 133–163, MR3871442.
+[13] S.L. Devadoss, A realization of graph associahedra, Discrete Math. 309 (1) (2009) 271–276,
+MR2479448.
+[14] B. Elias, N. Proudfoot, M. Wakeﬁeld, The Kazhdan-Lusztig polynomial of a matroid, Adv. Math.
+299 (2016) 36–70, MR3519463.
+[15] E.M. Feichtner, B. Sturmfels, Matroid polytopes, nested sets and Bergman fans, Port. Math. (N.S.)
+62 (4) (2005) 437–468, MR2191630.
+[16] W. Fulton, Intersection Theory, second, Ergebnisse der Mathematik und ihrer Grenzgebiete. 3.
+Folge, A Series of Modern Surveys in Mathematics [Results in Mathematics and Related Areas.
+3rd Series. A Series of Modern Surveys in Mathematics], vol. 2, Springer-Verlag, Berlin, 1998,
+MR1644323.
+[17] E.M. Feichtner, S. Yuzvinsky, Chow rings of toric varieties deﬁned by atomic lattices, Invent. Math.
+155 (3) (2004) 515–536, MR2038195.
+[18] R. Gordon, E.L. Green, Graded Artin algebras, J. Algebra 76 (1) (1982) 111–137, MR659212.
+[19] J. Huh, E. Katz, Log-concavity of characteristic polynomials and the Bergman fan of matroids,
+Math. Ann. 354 (3) (2012) 1103–1116, MR2983081.
+[20] J. Huh, B. Wang, Enumeration of points, lines, planes, etc, Acta Math. 218 (2017) 297–317,
+MR3733101.
+[21] K. Karu, Relative hard Lefschetz theorem for fans, Adv. Math. 347 (2019) 859–903, MR3920841.
+[22] J.P.S. Kung, Strong maps, in: Theory Matroids, 1986, pp. 224–253, MR849397.
+[23] P. McMullen, On simple polytopes, Invent. Math. 113 (2) (1993) 419–444, MR1228132.
+[24] P. Nelson, Almost all matroids are nonrepresentable, Bull. Lond. Math. Soc. 50 (2) (2018) 245–248,
+MR3830117.
+
+T. Braden et al. / Advances in Mathematics 409 (2022) 108646
+
+49
+
+[25] J. Oxley, Matroid Theory, second, Oxford Graduate Texts in Mathematics, vol. 21, Oxford University Press, Oxford, 2011, MR2849819.
+[26] T.K. Petersen, Eulerian Numbers, Birkhäuser Advanced Texts: Basler Lehrbücher [Birkhäuser Advanced Texts: Basel Textbooks], Birkhäuser/Springer, New York, 2015, With a foreword by Richard
+Stanley. MR3408615.
+[27] A. Postnikov, Permutohedra, associahedra, and beyond, Int. Math. Res. Not. 6 (2009) 1026–1106,
+MR2487491.
+[28] D.J.A. Welsh, Matroid Theory, L. M. S. Monographs, vol. 8, Academic Press [Harcourt Brace
+Jovanovich, Publishers], London-New York, 1976, MR0427112.
+
+
