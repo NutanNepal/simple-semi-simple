@@ -13,12 +13,13 @@ Main modules:
 
 from .core import cmp_elements_key, characteristic_polynomial, whitney_numbers
 from .polynomials import (
-    uniformQpoly, uniformKLpoly, inverse_kazhdan_lustig_polynomial, invkl,
-    kazhdan_lusztig_inverse_uniform, kl_inverse_paving, kl_inverse_copaving
+    inverse_kazhdan_lustig_uniform, kazhdan_lustig_uniform, inverse_kazhdan_lustig_polynomial, invkl,
+    kl_inverse_paving, kl_inverse_copaving
 )
 from .chow_polynomials import (
     chow_polynomial, get_chow_polynomial, reduced_characteristic_polynomial,
-    poincare_polynomial_from_chow, clear_chow_cache, get_chow_cache_info,
+    poincare_polynomial_of_minor,
+    clear_chow_cache, get_chow_cache_info,
     save_chow_cache, export_chow_cache_to_csv
 )
 from .extensions import is_graphic, is_paving
@@ -28,12 +29,13 @@ __all__ = [
     'cmp_elements_key', 'characteristic_polynomial', 'whitney_numbers',
     
     # Polynomial functions
-    'uniformQpoly', 'uniformKLpoly', 'inverse_kazhdan_lustig_polynomial', 'invkl',
-    'kazhdan_lusztig_inverse_uniform', 'kl_inverse_paving', 'kl_inverse_copaving',
+    'inverse_kazhdan_lustig_uniform', 'kazhdan_lustig_uniform', 'inverse_kazhdan_lustig_polynomial', 'invkl',
+    'kl_inverse_paving', 'kl_inverse_copaving',
     
     # Chow polynomial functions
     'chow_polynomial', 'get_chow_polynomial', 'reduced_characteristic_polynomial',
-    'poincare_polynomial_from_chow', 'clear_chow_cache', 'get_chow_cache_info',
+    'poincare_polynomial_of_minor',
+    'clear_chow_cache', 'get_chow_cache_info',
     'save_chow_cache', 'export_chow_cache_to_csv',
     
     # Extension functions

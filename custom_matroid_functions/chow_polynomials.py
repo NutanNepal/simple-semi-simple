@@ -62,27 +62,19 @@ def _save_cache(cache):
 
 def _get_matroid_key(M):
     """
-    Get a unique string representation of a matroid for caching.
-    
-    INPUT:
-    - M: a matroid
-    
-    OUTPUT:
-    - String representation suitable for caching
+    Get a unique, canonical string representation of a matroid for caching.
+    Uses Sage's canonical form for matroids if available, otherwise falls back to sorted bases.
     """
-    # Use a combination of rank, size, and isomorphism class
     rank = M.rank()
     size = len(M.groundset())
-    
-    # For small matroids, include more details
-    if size <= 8:
-        # Include the ground set and bases for small matroids
-        bases = sorted([tuple(sorted(basis)) for basis in M.bases()])
-        return f"matroid_{rank}_{size}_{hash(str(bases))}"
-    else:
-        # For larger matroids, use a more compact representation
-        # This might miss some isomorphism classes but is much faster
-        return f"matroid_{rank}_{size}_{M.is_simple()}_{M.is_3connected()}"
+    try:
+        # Use Sage's canonical form (returns a tuple of sorted bases)
+        can = M.canonical_form()
+        return f"matroid_{rank}_{size}_{str(can)}"
+    except AttributeError:
+        # Fallback: sorted tuple of sorted bases
+        bases = tuple(sorted(tuple(sorted(b)) for b in M.bases()))
+        return f"matroid_{rank}_{size}_{str(bases)}"
 
 # Initialize cache from file
 _chow_poly_cache = _load_cache()
@@ -110,11 +102,25 @@ def get_chow_polynomial(M):
     # Cache it
     _chow_poly_cache[matroid_key] = cpoly
     
-    # Save to file periodically (every 10 new entries)
-    if len(_chow_poly_cache) % 10 == 0:
-        _save_cache(_chow_poly_cache)
+    _save_cache(_chow_poly_cache)
     
     return cpoly
+
+def poincare_polynomial_of_minor(M, F, G):
+    """
+    Compute the Poincaré polynomial of the contraction of M at F.
+    
+    INPUT:
+    - M: a matroid or algebra with underlying matroid
+    - F: set of elements to delete
+    - G: set of elements to contract
+    
+    OUTPUT:
+    - Poincaré polynomial of the minor
+    """
+
+    return get_chow_polynomial(M.delete(M.groundset() - F).contract(G))
+
 
 def reduced_characteristic_polynomial(M):
     """
@@ -170,31 +176,6 @@ def chow_polynomial(M):
             chow_poly += term_poly
     
     return chow_poly
-
-def poincare_polynomial_from_chow(chow_poly, rank):
-    """
-    Convert Chow polynomial to Poincaré polynomial.
-    
-    The Poincaré polynomial H_M(t) is related to the Chow polynomial
-    through a change of variables and scaling.
-    
-    INPUT:
-    - chow_poly: Chow polynomial
-    - rank: rank of the matroid
-    
-    OUTPUT:
-    - Poincaré polynomial in variable t
-    """
-    R = PolynomialRing(QQ, 't')
-    t = R.gen()
-    
-    # Convert from x to t variable
-    # This is the relationship between Chow and Poincaré polynomials
-    poincare_poly = R(0)
-    for i, coeff in enumerate(chow_poly.coefficients()):
-        poincare_poly += coeff * t**i
-    
-    return poincare_poly
 
 def clear_chow_cache():
     """

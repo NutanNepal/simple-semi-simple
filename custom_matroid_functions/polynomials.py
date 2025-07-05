@@ -8,40 +8,156 @@ and Q-polynomials.
 
 from sage.all import *
 from .core import characteristic_polynomial
+import json
+import os
 
 # Global polynomial ring
 R = PolynomialRing(QQ, 't')
+S = PolynomialRing(ZZ, 't')
 t = R.gen()
 
-def uniformQpoly(r, n):
+KL_POLY_CACHE_FILE = "kl_polynomial_cache.json"
+KL_INV_POLY_CACHE_FILE = "kl_inverse_polynomial_cache.json"
+
+def _load_cache(filename):
+    if os.path.exists(filename):
+        try:
+            with open(filename, 'r') as f:
+                cache_data = json.load(f)
+                cache = {}
+                for matroid_repr, poly_str in cache_data.items():
+                    cache[matroid_repr] = S(poly_str)
+                return cache
+        except Exception as e:
+            print(f"Warning: Could not load cache file {filename}: {e}")
+            return {}
+    return {}
+
+def _save_cache(cache, filename):
+    cache_data = {k: str(v) for k, v in cache.items()}
+    try:
+        with open(filename, 'w') as f:
+            json.dump(cache_data, f, indent=2)
+    except Exception as e:
+        print(f"Warning: Could not save cache file {filename}: {e}")
+
+def _get_matroid_key(M):
+    rank = M.rank()
+    size = len(M.groundset())
+    try:
+        can = M.canonical_form()
+        return f"matroid_{rank}_{size}_{str(can)}"
+    except AttributeError:
+        bases = tuple(sorted(tuple(sorted(b)) for b in M.bases()))
+        return f"matroid_{rank}_{size}_{str(bases)}"
+
+# KL polynomial cache
+_kl_poly_cache = _load_cache(KL_POLY_CACHE_FILE)
+_kl_inv_poly_cache = _load_cache(KL_INV_POLY_CACHE_FILE)
+
+def get_kl_polynomial(M):
+    global _kl_poly_cache
+    matroid_key = _get_matroid_key(M)
+    if matroid_key in _kl_poly_cache:
+        return _kl_poly_cache[matroid_key]
+    # Compute the polynomial
+    if hasattr(M, 'is_uniform') and M.is_uniform():
+        r, n = M.rank(), M.size()
+        poly = kazhdan_lustig_uniform(r, n)
+    else:
+        # For non-uniform, use the general KL polynomial if implemented
+        raise NotImplementedError("KL polynomial for non-uniform matroids not implemented.")
+    _kl_poly_cache[matroid_key] = poly
+    _save_cache(_kl_poly_cache, KL_POLY_CACHE_FILE)
+    return poly
+
+def get_kl_inverse_polynomial(M):
+    global _kl_inv_poly_cache
+    matroid_key = _get_matroid_key(M)
+    if matroid_key in _kl_inv_poly_cache:
+        return _kl_inv_poly_cache[matroid_key]
+    poly = inverse_kazhdan_lustig_polynomial(M)
+    _kl_inv_poly_cache[matroid_key] = poly
+    _save_cache(_kl_inv_poly_cache, KL_INV_POLY_CACHE_FILE)
+    return poly
+
+def clear_kl_polynomial_cache():
+    global _kl_poly_cache
+    _kl_poly_cache = {}
+    if os.path.exists(KL_POLY_CACHE_FILE):
+        os.remove(KL_POLY_CACHE_FILE)
+
+def clear_kl_inverse_polynomial_cache():
+    global _kl_inv_poly_cache
+    _kl_inv_poly_cache = {}
+    if os.path.exists(KL_INV_POLY_CACHE_FILE):
+        os.remove(KL_INV_POLY_CACHE_FILE)
+
+def save_kl_polynomial_cache():
+    _save_cache(_kl_poly_cache, KL_POLY_CACHE_FILE)
+
+def save_kl_inverse_polynomial_cache():
+    _save_cache(_kl_inv_poly_cache, KL_INV_POLY_CACHE_FILE)
+
+def get_kl_polynomial_cache_info():
+    cache_size = len(_kl_poly_cache)
+    return {
+        'cache_size': cache_size,
+        'cache_file': KL_POLY_CACHE_FILE,
+        'file_exists': os.path.exists(KL_POLY_CACHE_FILE),
+        'sample_keys': list(_kl_poly_cache.keys())[:5] if _kl_poly_cache else []
+    }
+
+def get_kl_inverse_polynomial_cache_info():
+    cache_size = len(_kl_inv_poly_cache)
+    return {
+        'cache_size': cache_size,
+        'cache_file': KL_INV_POLY_CACHE_FILE,
+        'file_exists': os.path.exists(KL_INV_POLY_CACHE_FILE),
+        'sample_keys': list(_kl_inv_poly_cache.keys())[:5] if _kl_inv_poly_cache else []
+    }
+
+def export_kl_polynomial_cache_to_csv(filename="kl_polynomials_database.csv"):
+    import csv
+    with open(filename, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Matroid_Key', 'KL_Polynomial'])
+        for key, poly in _kl_poly_cache.items():
+            writer.writerow([key, str(poly)])
+
+def export_kl_inverse_polynomial_cache_to_csv(filename="kl_inverse_polynomials_database.csv"):
+    import csv
+    with open(filename, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Matroid_Key', 'KL_Inverse_Polynomial'])
+        for key, poly in _kl_inv_poly_cache.items():
+            writer.writerow([key, str(poly)])
+
+def inverse_kazhdan_lustig_uniform(r, n):
     """
-    Compute the Q-polynomial for uniform matroid U(r,n).
-    
+    Compute the inverse Kazhdan-Lusztig polynomial for uniform matroid U(r,n).
     INPUT:
     - r: rank of the uniform matroid
     - n: size of the groundset
-    
     OUTPUT:
-    - Q-polynomial as a polynomial in t
+    - Inverse Kazhdan-Lusztig polynomial as a polynomial in t (integer coefficients)
     """
     m, d = n-r, r
     upper_bound = (d-1)//2
     sum = R(0)
-    for j in range(0, upper_bound + 1):
-        coeff = m * (d - 2 * j)/((m + j) * (m + d - j)) * (binomial(d, j))
+    for j in range (0, upper_bound + 1):
+        coeff = binomial(m+d, d) * m * (d - 2 * j)/((m + j) * (m + d - j)) * (binomial(d, j))
         sum = sum + coeff * t**(j)
-    return binomial(m+d, d) * sum
+    return S(sum)
 
-def uniformKLpoly(r, n):
+def kazhdan_lustig_uniform(r, n):
     """
     Compute the Kazhdan-Lusztig polynomial for uniform matroid U(r,n).
-    
     INPUT:
     - r: rank of the uniform matroid
     - n: size of the groundset
-    
     OUTPUT:
-    - Kazhdan-Lusztig polynomial as a polynomial in t
+    - Kazhdan-Lusztig polynomial as a polynomial in t (integer coefficients)
     """
     m, d = n - r, r
     upper_bound = (d-1)//2
@@ -52,27 +168,7 @@ def uniformKLpoly(r, n):
             s = s + binomial(d - i + h, h + i + 1) * binomial(i - 1 + h, h)
         s = s * binomial(m + d, i)/(d - i)
         sum = sum + s * t**(i)
-    return sum
-
-def kazhdan_lusztig_inverse_uniform(k, n):
-    """
-    Compute the inverse Kazhdan-Lusztig polynomial for uniform matroid U(k,n).
-    
-    INPUT:
-    - k: rank of the uniform matroid
-    - n: size of the groundset
-    
-    OUTPUT:
-    - Inverse Kazhdan-Lusztig polynomial as a polynomial in t
-    """
-    if k == n:
-        return R(1)
-    d = k
-    m = n - d
-    ans = 0
-    for j in range((d-1)//2 + 1):
-        ans = ans + m * (d-2*j)/((m+j) * (m+d-j)) * binomial(d, j) * t**j
-    return ans * binomial(m+d, d)
+    return S(sum)
 
 def q_kl(k, h):
     """
@@ -85,7 +181,7 @@ def q_kl(k, h):
     OUTPUT:
     - Difference of inverse KL polynomials
     """
-    return kazhdan_lusztig_inverse_uniform(k, h+1) - kazhdan_lusztig_inverse_uniform(k-1, h)
+    return inverse_kazhdan_lustig_uniform(k, h+1) - inverse_kazhdan_lustig_uniform(k-1, h)
 
 def inverse_kazhdan_lustig_polynomial(M):
     """
@@ -98,20 +194,20 @@ def inverse_kazhdan_lustig_polynomial(M):
     - M: a matroid
     
     OUTPUT:
-    - Inverse KL polynomial as a polynomial in t
+    - Inverse KL polynomial as a polynomial in t with integer coefficients
     """
     if M.loops(): 
-        return R(0)
+        return S(0)
     k, n = M.rank(), M.size()
     if k == n or k == 0: 
-        return R(1)
+        return S(1)
     if not M.is_connected():
-        ans = R(1)
+        ans = S(1)
         CC = M.components()
         for N in CC:
             res = M.delete(M.groundset() - N)
             ans = ans * inverse_kazhdan_lustig_polynomial(res)
-        return ans
+        return S(ans)
 
     from .extensions import is_paving
     if is_paving(M):
@@ -130,7 +226,8 @@ def inverse_kazhdan_lustig_polynomial(M):
             ans = ans + chi * PPP
     assert (t**k * ans(1/t)).numerator() == -ans(t)
     ans = ans.numerator() * (-1)**(k+1)
-    return ans.truncate((k+1)//2)
+    result = ans.truncate((k+1)//2)
+    return S(result)
 
 # Alias for backward compatibility and convenience
 invkl = inverse_kazhdan_lustig_polynomial
@@ -149,12 +246,12 @@ def kl_inverse_paving(M):
     assert is_paving(M)
     n = M.size()
     k = M.rank()
-    ans = kazhdan_lusztig_inverse_uniform(k, n)
+    ans = inverse_kazhdan_lustig_uniform(k, n)
     for H in M.hyperplanes():
         h = len(H)
         if h >= k:
             ans = ans - q_kl(k, h)
-    return ans
+    return S(ans)
 
 def kl_inverse_copaving(M):
     """
@@ -170,12 +267,12 @@ def kl_inverse_copaving(M):
     assert is_paving(M.dual())
     n = M.size()
     k = M.rank()
-    ans = kazhdan_lusztig_inverse_uniform(k, n)
+    ans = inverse_kazhdan_lustig_uniform(k, n)
     for H in M.dual().hyperplanes():
         h = len(H)
         if h >= n-k:
-            ans = ans - kli_vtilde_dual(n-k, h, n) + kazhdan_lusztig_inverse_uniform(h-n+k+1, h) * kazhdan_lusztig_inverse_uniform(n-h-1, n-h)
-    return ans
+            ans = ans - kli_vtilde_dual(n-k, h, n) + inverse_kazhdan_lustig_uniform(h-n+k+1, h) * inverse_kazhdan_lustig_uniform(n-h-1, n-h)
+    return S(ans)
 
 def kli_vtilde_dual(k, h, n):
     """
@@ -188,9 +285,9 @@ def helper1(k, h, n):
     Helper function for KL inverse computations.
     """
     c = n - h
-    ans1 = kazhdan_lusztig_inverse_uniform(k, n)
+    ans1 = inverse_kazhdan_lustig_uniform(k, n)
     ans2 = helper2(c, k, n)
-    ans3 = kazhdan_lusztig_inverse_uniform(k-c+1, h) * kazhdan_lusztig_inverse_uniform(c-1, c)
+    ans3 = inverse_kazhdan_lustig_uniform(k-c+1, h) * inverse_kazhdan_lustig_uniform(c-1, c)
     return ans1 - ans2 + ans3
 
 def helper2(c, k, n):
@@ -200,7 +297,7 @@ def helper2(c, k, n):
     h = n - c
     ans = 0
     for j in range(k-c+1):
-        ans = ans + binomial(n-c, j) * (-1)**(c-1+j) * kazhdan_lusztig_inverse_uniform(c-1, c) * t**(k-c-j+1) * chuly(k-c-j+1, n-c-j)(1/t)
+        ans = ans + binomial(n-c, j) * (-1)**(c-1+j) * inverse_kazhdan_lustig_uniform(c-1, c) * t**(k-c-j+1) * chuly(k-c-j+1, n-c-j)(1/t)
     for i in range(c-1):
         for j in range(k-i):
             ans = ans + binomial(c, i) * binomial(n-c, j) * (-1)**(i+j) * t**(k-i-j) * helper4(c, k, n, i, j)(1/t)
@@ -215,7 +312,7 @@ def helper3(c, k, n):
     """
     ans = 0
     for j in range(k-c+1):
-        ans = ans + binomial(n-c, j) * uniformKLpoly(c-1, c) * (-1)**(k-c-j+1) * kazhdan_lusztig_inverse_uniform(k-c-j+1, n-c-j)
+        ans = ans + binomial(n-c, j) * kazhdan_lustig_uniform(c-1, c) * (-1)**(k-c-j+1) * inverse_kazhdan_lustig_uniform(k-c-j+1, n-c-j)
     for i in range(c-1):
         for j in range(k-i):
             ans = ans + binomial(c, i) * binomial(n-c, j) * (-1)**(k-i-j) * helper2(c-i, k-i-j, n-i-j)
@@ -255,6 +352,6 @@ def lorenzo(k, h, n):
     Helper function for KL inverse computations.
     """
     c = n - h
-    ans1 = uniformKLpoly(k, n) + uniformKLpoly(k-c+1, h) * uniformKLpoly(c-1, c)
+    ans1 = kazhdan_lustig_uniform(k, n) + kazhdan_lustig_uniform(k-c+1, h) * kazhdan_lustig_uniform(c-1, c)
     ans2 = helper3(c, k, n)
     return ans1 - ans2 

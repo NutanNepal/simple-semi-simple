@@ -4,6 +4,35 @@ This file lists ALL functions available in the SageMath matroids module, organiz
 
 ---
 
+## Custom vs. Standard Functions
+
+- **Standard functions** are part of the official SageMath matroids module.
+- **[Custom]** functions are provided by the `custom_matroid_functions` package in this project. These extend, fix, or supplement SageMath's built-in functionality.
+
+---
+
+## Custom Matroid Functions ([Custom])
+
+The following functions are implemented in `custom_matroid_functions/` and are not part of standard SageMath. Only user-facing mathematical functions are listed here:
+
+- `cmp_elements_key(x)` - Comparison key for elements (fixes SageMath issues)
+- `characteristic_polynomial(M, la=None)` - Fixed characteristic polynomial computation
+- `whitney_numbers(M)` - Whitney numbers of the second kind
+- `no_broken_circuits_sets_iterator(M, ordering=None)` - Iterator for no broken circuits sets
+- `chow_polynomial(M)` - Compute the Chow polynomial of a matroid
+- `get_chow_polynomial(M)` - Chow polynomial with persistent caching
+- `reduced_characteristic_polynomial(M)` - Reduced characteristic polynomial
+- `kazhdan_lustig_uniform(r, n)` - Kazhdan-Lusztig polynomial for uniform matroid U(r,n)
+- `inverse_kazhdan_lustig_polynomial(M)` - Inverse Kazhdan-Lusztig polynomial for a matroid
+- `invkl(M)` - Alias for inverse Kazhdan-Lusztig polynomial
+- `kl_inverse_paving(M)` - Inverse KL polynomial for paving matroids
+- `kl_inverse_copaving(M)` - Inverse KL polynomial for copaving matroids
+- `is_graphic(matroid)` - Reliable check if matroid is graphic
+- `is_paving(M)` - Check if matroid is paving
+- `inverse_kazhdan_lustig_uniform(r, n)` - Inverse Kazhdan-Lusztig polynomial for uniform matroid U(r,n)
+
+---
+
 ## 1. Main Matroid Class Methods (from matroid.pxd)
 
 ### Core Properties and Oracle Methods
@@ -57,10 +86,10 @@ This file lists ALL functions available in the SageMath matroids module, organiz
 - `coflats(k)`
 - `hyperplanes()`
 - `f_vector()`
-- `whitney_numbers()`
+- `whitney_numbers()` **[Custom: see also custom version]**
 - `whitney_numbers2()`
 - `broken_circuits(ordering=*)`
-- `no_broken_circuits_sets(ordering=*)`
+- `no_broken_circuits_sets(ordering=*)` **[Custom: see also custom version]**
 
 ### Polytopes
 - `matroid_polytope()`
@@ -101,7 +130,7 @@ This file lists ALL functions available in the SageMath matroids module, organiz
 - `link(S, T)`
 - `is_3connected(certificate=*, algorithm=*)`
 - `is_4connected(certificate=*, algorithm=*)`
-- `is_paving()`
+- `is_paving()` **[Custom: see also custom version]**
 - `is_sparse_paving()`
 - `girth()`
 
@@ -111,7 +140,7 @@ This file lists ALL functions available in the SageMath matroids module, organiz
 - `ternary_matroid(randomized_tests=*, verify=*)`
 - `is_ternary(randomized_tests=*)`
 - `is_regular()`
-- `is_graphic()`
+- `is_graphic()` **[Custom: see also custom version]**
 
 ### Chordality and k-closed
 - `is_k_closed(k)`
@@ -130,7 +159,7 @@ This file lists ALL functions available in the SageMath matroids module, organiz
 
 ### Invariants and Polynomials
 - `tutte_polynomial(x=*, y=*)`
-- `characteristic_polynomial(la=*)`
+- `characteristic_polynomial(la=*)` **[Custom: see also custom version]**
 - `flat_cover(solver=*, verbose=*, integrality_tolerance=*)`
 
 ### Miscellaneous
@@ -194,7 +223,7 @@ This file lists ALL functions available in the SageMath matroids module, organiz
 - `lift_map(target)` - Create lift map
 
 ### Comparison
-- `cmp_elements_key(x)` - Comparison key for elements
+- `cmp_elements_key(x)` - Comparison key for elements **[Custom]**
 
 ---
 
@@ -280,54 +309,4 @@ This file lists ALL functions available in the SageMath matroids module, organiz
 ## 7. Plotting Functions (from matroids_plot_helpers.py)
 
 ### Visualization
-- `plot()` - Plot matroid
-- `show()` - Show matroid plot
-- `_fix_positions()` - Fix plot positions
-
----
-
-## 8. Database Functions (from database_matroids.py)
-
-### All Individual Matroid Constructors
-All the individual matroid functions listed in section 4 above are implemented in this file.
-
----
-
-## Usage Examples
-
-### Basic Construction
-```python
-# Using main constructor
-M = Matroid(bases=[[1,2], [1,3], [2,3]])
-M = Matroid(circuits=[[1,2,3]])
-M = Matroid(flats={1: [[1]], 2: [[1,2], [1,3], [2,3]], 3: [[1,2,3]]})
-
-# Using catalog
-F = matroids.catalog.Fano()
-U = matroids.Uniform(2, 4)
-W = matroids.Wheel(4)
-```
-
-### Advanced Usage
-```python
-from sage.matroids.advanced import *
-
-# Direct class construction
-M = BasisMatroid(bases=[[1,2], [1,3], [2,3]])
-M = CircuitsMatroid(circuits=[[1,2,3]])
-M = FlatsMatroid(flats={1: [[1]], 2: [[1,2], [1,3], [2,3]], 3: [[1,2,3]]})
-
-# Utility functions
-setprint(M.bases())
-new_label = newlabel(M.groundset())
-```
-
----
-
-## Notes
-
-- This list covers all functions available in the SageMath matroids module
-- Functions are organized by their source file and category
-- Some functions may have additional parameters not shown here
-- For detailed documentation, use `help(function_name)` in SageMath
-- The module is actively developed, so new functions may be added in future versions 
+- `

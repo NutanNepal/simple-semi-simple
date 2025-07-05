@@ -225,8 +225,4 @@ references/*.tmp
 references/*.temp
 
 # Ignore the matroids folder (copied from source)
-matroids/
-
-# Chow polynomial cache database
-chow_polynomial_cache.json
-chow_polynomials_database.csv 
+matroids/ 

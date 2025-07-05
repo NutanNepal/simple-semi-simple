@@ -21,12 +21,22 @@ Core utility functions and polynomial computations:
 
 ### polynomials.py
 Polynomial-specific functions:
-- `uniformQpoly(r, n)` - Q-polynomial for uniform matroid U(r,n)
-- `uniformKLpoly(r, n)` - Kazhdan-Lusztig polynomial for uniform matroid U(r,n)
-- `kazhdan_lusztig_inverse_uniform(k, n)` - Inverse KL polynomial for uniform matroid
+- `inverse_kazhdan_lustig_uniform(r, n)` - Inverse KL polynomial for uniform matroid U(r,n)
+- `kazhdan_lustig_uniform(r, n)` - Kazhdan-Lusztig polynomial for uniform matroid U(r,n)
 - `kl_inverse_fast(M)` - Fast inverse KL polynomial computation
 - `kl_inverse_paving(M)` - Inverse KL polynomial for paving matroids
 - `kl_inverse_copaving(M)` - Inverse KL polynomial for copaving matroids
+
+### chow_polynomials.py
+Chow polynomial computations essential for Poincaré polynomial research:
+- `chow_polynomial(M)` - Compute the Chow polynomial of a matroid
+- `get_chow_polynomial(M)` - Get Chow polynomial with persistent caching
+- `reduced_characteristic_polynomial(M)` - Compute reduced characteristic polynomial (divided by x-1)
+- `poincare_polynomial_of_minor(M, F, G)` - Compute Poincaré polynomial of contraction M/F
+- `clear_chow_cache()` - Clear the Chow polynomial cache
+- `get_chow_cache_info()` - Get cache statistics
+- `save_chow_cache()` - Explicitly save cache to file
+- `export_chow_cache_to_csv(filename)` - Export cache to CSV for analysis
 
 ### extensions.py
 Extended functionality:
@@ -47,7 +57,7 @@ chi = characteristic_polynomial(M)
 print(f"Characteristic polynomial: {chi}")
 
 # Compute Q-polynomial for uniform matroid
-Q = uniformQpoly(2, 4)
+Q = inverse_kazhdan_lustig_uniform(2, 4)
 print(f"Q-polynomial: {Q}")
 
 # Check if matroid is graphic
@@ -57,6 +67,20 @@ print(f"Is graphic: {is_g}")
 # Fast inverse KL polynomial computation
 ikl = kl_inverse_fast(M)
 print(f"Inverse KL polynomial: {ikl}")
+
+# Example usage
+KL = kazhdan_lustig_uniform(2, 4)
+print(f"KL-polynomial: {KL}")
+
+# Chow polynomial computations
+chow = get_chow_polynomial(M)
+print(f"Chow polynomial: {chow}")
+
+# Poincaré polynomial of a minor
+F = frozenset([0, 1])
+G = frozenset([2])
+poincare = poincare_polynomial_of_minor(M, F, G)
+print(f"Poincaré polynomial of minor: {poincare}")
 ```
 
 ## Why Custom Functions?
