@@ -35,13 +35,12 @@ class ChowBasis(BasisAbstract):
         E = M.E()
         q = M._q
         rank = L.rank_function()
-
-        matroid = Matroid(L)
+        matroid = M._matroid
         R = M.base_ring()
         # For each G ≤ F, get the Poincaré polynomial of the contraction M^F_G
         return E.sum_of_terms(
-            (G, q**(2 * (rank(F) - rank(G))) *
-            R(poincare_polynomial_of_minor(matroid, F, G)(q)))
+            (G, q**(1 * (rank(F) - rank(G))) *
+            R(poincare_polynomial_of_minor(matroid, F, G)(q**-2)))
             for G in L.order_ideal([F])
         )
 
@@ -81,17 +80,24 @@ class ZetaBasis(BasisAbstract):
 class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
     """
     A class representing the Deformed Möbius Algebra with the Zeta basis.
+    Can be constructed from either a matroid or a lattice of flats.
     """
-    def __init__(self, L, base_ring=None):
+    def __init__(self, matroid, base_ring=None):
         """
-        Initialize the Deformed Möbius Algebra.
+        Initialize the Deformed Möbius Algebra from a matroid.
+        The lattice of flats is automatically extracted from the matroid.
         """
         if base_ring is None:
             self._R = LaurentPolynomialRing(ZZ, 'x')
         else:
             self._R = base_ring
         x = self._R.gen()
-        super().__init__(L, x)
+
+        # Store the matroid and get its lattice of flats
+        self._matroid = matroid
+        self._lattice = matroid.lattice_of_flats()
+
+        super().__init__(self._lattice, x)
         self._chow_basis = ChowBasis(self)
         self._zeta_basis = ZetaBasis(self)
 
@@ -119,6 +125,8 @@ class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
         
         The Hodge-Poincaré space H_p consists of elements that satisfy
         certain palindromic conditions with respect to the lattice structure.
+        For perverse elements, we check that the coefficients are palindromic
+        with respect to the rank differences.
         """
         E = self.E()
         L = self._lattice
@@ -126,7 +134,6 @@ class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
         rank_func = L.rank_function()
         
         alpha_dict = E(alpha).monomial_coefficients()
-        print(alpha_dict)
         
         for F in alpha_dict.keys():
             for G in L.order_filter([F]):
@@ -144,9 +151,10 @@ class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
                 coeff_G = alpha_dict.get(G, 0) # Get coefficient alpha_G, default to 0
                 if coeff_G != 0:
                     rank_G = rank_func(G)
-                    term = coeff_G * (t**(rank_F - rank_G))
+                    term = coeff_G * (t**(1 * (rank_F - rank_G)))
                     sum_S_F += term
             try:
+                # Check if the sum is palindromic (invariant under t -> 1/t)
                 if sum_S_F != sum_S_F.subs({t: 1/t}):
                     print(f"Palindromic check failed for F={F}")
                     print(f"Sum = {sum_S_F}")
@@ -170,10 +178,7 @@ def create_deformed_algebra(matroid, base_ring=None):
     OUTPUT:
     - DeformedMoebiusAlgebra instance
     """
-    L = matroid.lattice_of_flats()
-    if base_ring is None:
-        base_ring = LaurentPolynomialRing(ZZ, 'x')
-    return DeformedMoebiusAlgebra(L, base_ring=base_ring)
+    return DeformedMoebiusAlgebra(matroid, base_ring=base_ring)
 
 def create_deformed_algebra_from_lattice(lattice, base_ring=None):
     """
@@ -186,9 +191,8 @@ def create_deformed_algebra_from_lattice(lattice, base_ring=None):
     OUTPUT:
     - DeformedMoebiusAlgebra instance
     """
-    if base_ring is None:
-        base_ring = LaurentPolynomialRing(ZZ, 'x')
-    return DeformedMoebiusAlgebra(lattice, base_ring=base_ring)
+    matroid = Matroid(lattice)
+    return DeformedMoebiusAlgebra(matroid, base_ring=base_ring)
 
 # Define what should be imported when using "from HM_module import *"
 __all__ = [

@@ -121,7 +121,6 @@ def poincare_polynomial_of_minor(M, F, G):
 
     return get_chow_polynomial(M.delete(M.groundset() - F).contract(G))
 
-
 def reduced_characteristic_polynomial(M):
     """
     Compute the reduced characteristic polynomial (divided by x-1).
@@ -134,8 +133,16 @@ def reduced_characteristic_polynomial(M):
     """
     x = var('x')
     R = PolynomialRing(QQ, 'x')
+    if M.rank() == 0:
+        return -R(1)
     char_poly = characteristic_polynomial(M)
     return R(char_poly) // (x - 1)
+
+def reduced_characteristic_polynomial_of_minor(M, F, G):
+    """
+    Compute the reduced characteristic polynomial of the contraction of M at F.
+    """
+    return reduced_characteristic_polynomial(M.delete(M.groundset() - F).contract(G))
 
 def chow_polynomial(M):
     """

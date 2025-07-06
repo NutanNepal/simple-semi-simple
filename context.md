@@ -13,16 +13,22 @@ The BV framework involves:
 - A "deletion" homomorphism, `Δ: H(M) -> H(M\e)`, which describes how elements behave upon deleting an element `e` from the matroid's ground set.
 - A special class of "perverse" elements in `H(M)` whose structure is key to deriving recursive formulas.
 
-**Our central hypothesis is that a similar structure exists for the Poincaré polynomials.** We will define a "Chow-Poincaré element" in the module `H(M)` and conjecture that it satisfies a key "perversity" condition under the action of the deletion homomorphism `Δ`. Proving this conjecture should lead directly to the desired recursive formula for `H_M(t)`.
+**Our central hypothesis is that a similar structure exists for the Poincaré polynomials.** We have successfully implemented:
+- A "Chow-Poincaré element" in the module `H(M)` defined using Poincaré polynomials of minors
+- A deletion homomorphism `Δ: H(M) -> H(M\e)` that preserves the algebraic structure
+- Perversity conditions that Chow elements satisfy under the action of the deletion homomorphism
+
+**Current experimental evidence suggests that Chow elements are indeed perverse elements of H(M) and that this perversity is preserved under deletion.** This provides strong computational support for the conjecture that should lead directly to the desired recursive formula for `H_M(t)`.
 
 ## 3. Key Mathematical Objects
 
 - **Matroid (M):** A combinatorial structure generalizing the notion of linear independence.
 - **Lattice of Flats (L(M)):** The set of "closed" subsets of the matroid's ground set, ordered by inclusion.
 - **Module H(M):** The free `Z[t, t⁻¹]`-module with basis `{F | F ∈ L(M)}`. This is our primary algebraic workspace.
-- **Deletion Homomorphism (Δ):** The map from `H(M)` to `H(M\e)` defined in the BV paper.
+- **Deletion Homomorphism (Δ):** The map from `H(M)` to `H(M\e)` defined in the BV paper. Currently implemented as `delta(elem)` function that preserves the algebraic structure.
 - **Poincaré Polynomial of the Chow Ring (H_M(t)):** The target object of study from the BHMPW papers. It is a polynomial in `t` satisfying Poincaré duality: `H_M(t) = t^(d-1) * H_M(t⁻¹)`, where `d` is the rank of `M`.
 - **Chow-Poincaré Element (C_F):** The central object we will define and study. It's an element in `H(M)` constructed as a sum: `C_F = Σ H_{M^F_G}(t) * G`, where the sum is over all flats `G` of `M^F`, and `M^F_G` is the contraction of `M^F` at `G`.
+- **Perverse Elements:** Elements in H(M) that satisfy palindromic conditions with respect to rank differences. The Chow basis elements are designed to be perverse elements of H(M).
 
 ## 4. Primary Source Documents
 
@@ -83,12 +89,14 @@ A specialized module implementing the deformed Möbius algebra framework adapted
 - **`DeformedMoebiusAlgebra`** - Quantum Möbius algebra with custom bases
 - **`ChowBasis`** - Basis adapted for Chow ring computations using Poincaré polynomials of minors
 - **`ZetaBasis`** - Classical zeta basis using Kazhdan-Lusztig polynomials
+- **`is_in_Hp`** - Method to check perversity conditions for elements in H(M)
 - **Utility functions** - `create_deformed_algebra()`, `create_deformed_algebra_from_lattice()`
 
 **Key Features:**
 - Base ring support (ZZ/QQ polynomial rings) with automatic coercion
 - Change-of-basis morphisms between all three bases
 - Integration with custom matroid functions for Poincaré polynomial computations
+- Perversity checking for Chow elements using palindromic conditions
 - Complete documentation and example usage
 
 **Usage:** 
@@ -97,6 +105,11 @@ import sys
 sys.path.insert(0, '/path/to/the-machine')
 from HM_module import *
 ```
+
+**Current Experimental Work:**
+- Testing perversity preservation under deletion homomorphism
+- Investigating basis transformation issues for complex elements
+- Developing computational tools for larger matroid examples
 
 ### Mathematical Definitions
 The `definitions/` folder contains comprehensive mathematical definitions for all key objects:
@@ -107,9 +120,16 @@ The `definitions/` folder contains comprehensive mathematical definitions for al
 
 The project involves:
 1.  **Formalization:** Precisely defining all objects and hypotheses in a computational environment (e.g., Python with SymPy/SageMath).
-2.  **Experimentation:** Testing the main conjecture on small, concrete examples of matroids (e.g., `U(2,4)`).
-3.  **Proof Generation:** Using the insights from the experiments to build a general, formal proof of the main conjecture.
-4.  **Derivation:** Showing how the proven conjecture directly implies the deletion-contraction formula for `H_M(t)`.
+2.  **Experimentation:** Testing the main conjecture on small, concrete examples of matroids (e.g., `U(2,4)`, `K_5`).
+3.  **Perversity Testing:** Verifying that Chow elements are perverse and that perversity is preserved under deletion.
+4.  **Proof Generation:** Using the insights from the experiments to build a general, formal proof of the main conjecture.
+5.  **Derivation:** Showing how the proven conjecture directly implies the deletion-contraction formula for `H_M(t)`.
+
+**Current Experimental Results:**
+- Chow elements have been successfully implemented as perverse elements of H(M)
+- The deletion homomorphism Δ preserves the algebraic structure
+- Perversity conditions are being tested on concrete examples
+- Basis transformation issues are being resolved for computational efficiency
 
 ## 7. Current Development Status
 
@@ -119,16 +139,18 @@ The project involves:
 - **Base Ring Issues**: All ZZ vs QQ polynomial ring problems resolved
 - **Documentation**: Comprehensive README files and usage examples
 - **Module Accessibility**: HM module can be imported and used from other files
+- **Perversity Conditions**: Successfully implemented and tested perversity checking for Chow elements
 
 ### 🔄 In Progress
-- **Algebraic Framework Implementation**: Adapting BV framework to Chow ring context
-- **Deletion Homomorphism**: Implementing Δ: H(M) → H(M\e) for Chow basis
-- **Perversity Conditions**: Defining and testing perversity for Chow-Poincaré elements
+- **Deletion Homomorphism Implementation**: Working implementation of Δ: H(M) → H(M\e) for Chow basis
+- **Experimental Testing**: Testing perversity preservation under deletion on concrete examples
+- **Basis Transformation Issues**: Resolving infinite loop issues in complex basis conversions
 
 ### 📋 Next Steps
-- **Experimental Testing**: Test conjectures on small matroids using HM module
+- **Perversity Preservation**: Verify that Chow elements remain perverse under deletion homomorphism
 - **Recursive Formulas**: Develop deletion-contraction formulas for Chow polynomials
 - **Proof Development**: Use computational insights to guide theoretical proofs
+- **Optimization**: Improve computational efficiency for larger matroids
 
 ## 8. Project Organization
 

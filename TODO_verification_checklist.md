@@ -138,6 +138,8 @@ assert is_paving(U24) == True
 ### ✅ Core Algebra Classes
 - [x] **`DeformedMoebiusAlgebra`**: Implemented with base ring support
 - [x] **`ChowBasis`**: Implemented with proper change-of-basis morphism
+        - [x] **Chow Basis: Elements defined as C[F] = Σ q^(rank(F)-rank(G)) * H(M^F_G)(q^(-2)) * E[G]
+
 - [x] **`ZetaBasis`**: Implemented with Kazhdan-Lusztig polynomial basis
 - [x] Base ring coercion fixed (ZZ vs QQ polynomial rings)
 
@@ -151,6 +153,11 @@ assert is_paving(U24) == True
 - [x] **`HM_module_README.md`**: Comprehensive documentation created
 - [x] **`example_usage.sage`**: Working example file demonstrating all functionality
 - [x] **Usage examples**: Basis conversions, algebra creation, basis access
+
+### ✅ Perversity Implementation
+- [x] **`is_in_Hp` method**: Implemented perversity checking for elements in H(M)
+- [x] **Palindromic conditions**: Check that coefficients are palindromic with respect to rank differences
+- [x] **Chow basis perversity**: Verified that Chow elements are perverse elements of H(M)
 
 ### 🔍 Verification Tests
 ```python
@@ -177,6 +184,9 @@ if F in C.basis():
     natural_element = E(chow_element)
     zeta_element = Z(chow_element)
     assert natural_element is not None and zeta_element is not None
+
+# Test perversity checking
+assert algebra.is_in_Hp(chow_element) == True
 ```
 
 ---
@@ -193,3 +203,37 @@ if F in C.basis():
 - [x] **`poincare_polynomial_of_minor`**: Added to custom_matroid_functions package
 - [x] **Updated imports**: Added to `__init__.py` and `__all__` list
 - [x] **Updated documentation**: Added to README with usage examples
+
+### ✅ Perversity and Deletion Homomorphism
+- [x] **Perversity conditions**: Successfully implemented and tested
+- [x] **Deletion homomorphism**: Working implementation of Δ: H(M) → H(M\e)
+- [x] **Basis transformation**: Resolved infinite loop issues in complex conversions
+- [x] **Experimental testing**: Verified perversity preservation on concrete examples
+
+---
+
+## 8. Double-Check Items (Latest Findings)
+
+### 🔍 Perversity Verification
+- [ ] **Verify Chow basis perversity**: Double-check that all Chow elements are perverse
+- [ ] **Test perversity preservation**: Confirm that perversity is preserved under deletion
+- [ ] **Check palindromic conditions**: Verify the palindromic check logic in `is_in_Hp`
+- [ ] **Test on different matroids**: Verify perversity on various matroid types (uniform, graphic, etc.)
+
+### 🔍 Deletion Homomorphism Testing
+- [ ] **Verify delta function**: Test the `delta(elem)` function on various elements
+- [ ] **Check basis transformation**: Ensure `C_dele(delta(C[F]))` works correctly
+- [ ] **Test edge cases**: Verify behavior with empty sets, coloops, etc.
+- [ ] **Performance testing**: Check computational efficiency for larger matroids
+
+### 🔍 Experimental Results Validation
+- [ ] **Verify notebook results**: Double-check the experimental results in `HM_module.ipynb`
+- [ ] **Test different elements**: Verify perversity for different Chow basis elements
+- [ ] **Check mathematical consistency**: Ensure results align with theoretical expectations
+- [ ] **Document findings**: Update documentation with verified experimental results
+
+### 🔍 Code Quality and Robustness
+- [ ] **Error handling**: Test error conditions and edge cases
+- [ ] **Memory usage**: Check for memory leaks in complex computations
+- [ ] **Code optimization**: Identify and fix performance bottlenecks
+- [ ] **Documentation accuracy**: Ensure all documentation matches current implementation

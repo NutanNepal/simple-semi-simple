@@ -18,6 +18,7 @@ from .polynomials import (
 )
 from .chow_polynomials import (
     chow_polynomial, get_chow_polynomial, reduced_characteristic_polynomial,
+    reduced_characteristic_polynomial_of_minor,
     poincare_polynomial_of_minor,
     clear_chow_cache, get_chow_cache_info,
     save_chow_cache, export_chow_cache_to_csv
@@ -36,7 +37,7 @@ __all__ = [
     'chow_polynomial', 'get_chow_polynomial', 'reduced_characteristic_polynomial',
     'poincare_polynomial_of_minor',
     'clear_chow_cache', 'get_chow_cache_info',
-    'save_chow_cache', 'export_chow_cache_to_csv',
+    'save_chow_cache', 'export_chow_cache_to_csv', 'reduced_characteristic_polynomial_of_minor',
     
     # Extension functions
     'is_graphic', 'is_paving'
