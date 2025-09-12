@@ -1,10 +1,18 @@
 import sys
-sys.path.insert(0, '/home/nnutannep/Github/simple-semi-simple')
+import os
+# Get the parent directory of the current file's directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
+parent_dir = os.path.dirname(current_dir)
+sys.path.insert(0, parent_dir)
+sys.path.insert(0, current_dir)
 
 # Import SageMath and custom functions
 from custom_matroid_functions import *
 from sage.combinat.posets.moebius_algebra import *
 from sage.matroids.constructor import Matroid
+from sage.combinat.free_module import CombinatorialFreeModule
+from sage.rings.polynomial.laurent_polynomial_ring import LaurentPolynomialRing
+from sage.rings.integer_ring import ZZ
 
 class ChowBasis(BasisAbstract):
     """
