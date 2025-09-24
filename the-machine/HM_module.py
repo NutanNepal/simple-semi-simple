@@ -46,10 +46,11 @@ class ChowBasis(BasisAbstract):
         matroid = M._matroid
         R = M.base_ring()
         # For each G ≤ F, get the Poincaré polynomial of the contraction M^F_G
-        return -E.sum_of_terms(
+        return E.sum_of_terms(
             (G, q**(1 * (rank(F) - rank(G))) *
-            #R(poincare_polynomial_of_minor(matroid, F, G)(q**-2)))
-            R(reduced_characteristic_polynomial_of_minor(matroid, F, G)(q**-2)))
+            R(poincare_polynomial_of_minor(matroid, F, G)(q**-2)))
+            #R(reduced_characteristic_polynomial_of_minor(matroid, F, G)(q**-2)))
+            #R(characteristic_polynomial(matroid.delete(matroid.groundset() - F).contract(G))(q**-2)))
             for G in L.order_ideal([F])
         )
 
@@ -124,7 +125,7 @@ class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
 
     def is_in_Hp(self, alpha):
         """
-        Check if an element alpha belongs to the Hodge-Poincaré space H_p.
+        Check if an element alpha belongs to the space H_p.
         
         INPUT:
         - alpha: an element of the algebra
@@ -132,7 +133,7 @@ class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
         OUTPUT:
         - True if alpha is in H_p, False otherwise
         
-        The Hodge-Poincaré space H_p consists of elements that satisfy
+        The space H_p consists of elements that satisfy
         certain palindromic conditions with respect to the lattice structure.
         For perverse elements, we check that the coefficients are palindromic
         with respect to the rank differences.
@@ -145,13 +146,13 @@ class DeformedMoebiusAlgebra(QuantumMoebiusAlgebra):
         alpha_dict = E(alpha).monomial_coefficients()
         
         for F in alpha_dict.keys():
-            for G in L.order_filter([F]):
-                if G in alpha_dict and not isinstance(alpha_dict[G], type(t**0)):
-                    try:
-                        alpha_dict[G].subs({t: 0})
-                    except (TypeError, ValueError):
-                        print(f"Coefficient for G={G} is not a polynomial: {alpha_dict[G]}")
-                        return False
+            """
+            try:
+                alpha_dict[F].subs({t: 0})
+            except (TypeError, ValueError, ZeroDivisionError):
+                print(f"Coefficient for F={F} is not a polynomial: {alpha_dict[F]}")
+                return False
+            """
 
             sum_S_F = 0
             rank_F = rank_func(F)
